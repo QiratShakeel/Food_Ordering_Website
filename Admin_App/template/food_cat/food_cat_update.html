@@ -9,16 +9,18 @@
               <h4 class="card-title">Food Type form</h4>
                   <form class="forms-sample" method="post">
                     {% csrf_token %}
-                <div class="form-group">
-                    <input type="id" hidden class="form-control" id="exampleInputUsername1" placeholder="Username">
-                  </div>
-                    <div class="form-group">
+                {% comment %} <div class="form-group">
+                      <label>Food Type</label>
+                    <input type="text" value="{{type.food_type}}" name="food_type" class="form-control">
+                  </div> {% endcomment %}
+                     <div class="form-group">
                         <label>select the Food Type</label>
-                        <select class="js-example-basic-single w-100">
+                        <select name="food_type"class="js-example-basic-single w-100">
+                          {% comment %} <option default >{{type.food_type}}</option> {% endcomment %}
                           <option value="veg">Veg</option>
                           <option value="non_veg">Non veg</option>
                         </select>
-                      </div>
+                      </div> 
                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
                 <button class="btn btn-light">Cancel</button>
               </form>

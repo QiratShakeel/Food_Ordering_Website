@@ -1,0 +1,30 @@
+{% extends 'Restaurant_App/template/base.html' %}
+{% block content %}
+<!-- Form Start -->
+<div class="container-fluid pt-4 px-4">
+  <div class="row g-4">
+      <div class="col-lg-12">
+          <div class="bg-secondary rounded h-100 p-4">
+              <h6 class="mb-4">Branch Form</h6>
+              <form method="post">
+                {% csrf_token %}
+                  <div class="mb-3">
+                      <label class="form-label">Country</label>
+                      <input type="text" value="{{branch.branch_country}}" name="country" class="form-control">
+                  </div>
+                  <div class="mb-3">
+                      <label class="form-label">City</label>
+                      <input type="text" name="city" value="{{branch.branch_country}}" class="form-control">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Area</label>
+                    <textarea class="form-control" value="{{branch.branch_country}}" name="locality" placeholder="Area"
+                    style="height: 100px;"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+          </div>
+      </div>
+    </div>
+</div>
+{% endblock %}
