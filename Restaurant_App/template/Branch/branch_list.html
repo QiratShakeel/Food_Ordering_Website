@@ -5,7 +5,10 @@
     <div class="row g-4">
         <div class="col-lg-12">
             <div class="bg-secondary rounded h-100 p-4">
-                <h6 class="mb-4">Branch List</h6>
+                <div class="d-flex p-2">
+                <h6 class="mb-4 col-lg-8">Branch List</h6>
+                <a href="{% url 'branch_form' %}" class="btn btn-warning btn-icon-text">Create<i class="ti-file btn-icon-append"></i></a>
+                </div>
                 <table class="table">
                     <thead>
                         <tr>
@@ -17,18 +20,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% comment %} {% for branch in list  %}
+                         {% for branch in list  %}
                         <tr>
                             <td>{{branch.branch_id}}</td>
                             <td>{{branch.branch_country}}</td>
                             <td>{{branch.branch_city}}</td>
                             <td>{{branch.branch_locality}}</td>
                             <td>
-                                <a href="../update/{{cat.food_cat_id}}" id="{{types.food_id}}" class="btn btn-dark btn-icon-text">Edit<i class="ti-file btn-icon-append"></i></a>
-                                <a href="../delete/{{cat.food_cat_id}}" id="{{types.food_id}}" class="btn btn-danger btn-icon-text">Delete<i class="ti-trash btn-icon-append"></i></a>
+                                <a href="../update/{{branch.branch_id}}" id="{{branch.branch_id}}" class="btn btn-dark btn-icon-text">Edit<i class="ti-file btn-icon-append"></i></a>
+                                <a href="../delete/{{branch.branch_id}}" id="{{branch.branch_id}}" class="btn btn-danger btn-icon-text">Delete<i class="ti-trash btn-icon-append"></i></a>
                             </td>
                         </tr>
-                        {% endfor %} {% endcomment %}
+                        {% endfor %} 
                     </tbody>
                 </table>
             </div>

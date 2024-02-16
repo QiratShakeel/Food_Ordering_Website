@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 12, 2024 at 02:32 PM
+-- Generation Time: Feb 16, 2024 at 02:21 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -38,8 +38,8 @@ CREATE TABLE `admin_app_food_category` (
 --
 
 INSERT INTO `admin_app_food_category` (`food_cat_id`, `food_cat`, `food_type_fk_id`) VALUES
-(1, 'Beef Mutton', 2),
-(2, 'Salad', 3);
+(1, 'Beef Karahi', 2),
+(3, 'Beef Mutton', 2);
 
 -- --------------------------------------------------------
 
@@ -57,8 +57,9 @@ CREATE TABLE `admin_app_food_type` (
 --
 
 INSERT INTO `admin_app_food_type` (`food_id`, `food_type`) VALUES
-(2, 'non_veg'),
-(3, 'veg');
+(2, 'veg'),
+(4, 'non_veg'),
+(5, 'veg');
 
 -- --------------------------------------------------------
 
@@ -171,8 +172,8 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$720000$r4uSiYFJr7gixZDfPKFLDB$+htn5XWpV9hYLJesk3juZlLdiVAu6TPP/WE4nDE9FXY=', '2024-02-12 07:14:51.718025', 0, 'zosevy@mailinator.com', '', '', 'sywicyvaj@mailinator.com', 0, 1, '2024-02-11 14:23:39.057292'),
-(2, 'pbkdf2_sha256$720000$TVI0PNV2NmC8cUKYK03txd$nxkTEmWBMxapibWZn2RAepq8jnD40WPG7nzipIF2XGI=', '2024-02-12 07:01:49.228066', 1, 'qiratshakeel', '', '', '', 1, 1, '2024-02-11 15:27:15.876975');
+(1, 'pbkdf2_sha256$720000$r4uSiYFJr7gixZDfPKFLDB$+htn5XWpV9hYLJesk3juZlLdiVAu6TPP/WE4nDE9FXY=', '2024-02-14 21:06:04.061057', 0, 'zosevy@mailinator.com', '', '', 'sywicyvaj@mailinator.com', 0, 1, '2024-02-11 14:23:39.057292'),
+(2, 'pbkdf2_sha256$720000$TVI0PNV2NmC8cUKYK03txd$nxkTEmWBMxapibWZn2RAepq8jnD40WPG7nzipIF2XGI=', '2024-02-14 21:10:11.943387', 1, 'qiratshakeel', '', '', '', 1, 1, '2024-02-11 15:27:15.876975');
 
 -- --------------------------------------------------------
 
@@ -283,7 +284,8 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (19, 'Admin_App', '0001_initial', '2024-02-09 13:42:46.749017'),
 (20, 'Admin_App', '0002_alter_food_type_food_type', '2024-02-10 13:21:23.113304'),
 (21, 'Admin_App', '0003_food_category', '2024-02-10 18:57:46.063234'),
-(22, 'Restaurant_App', '0001_initial', '2024-02-11 09:18:23.614783');
+(22, 'Restaurant_App', '0001_initial', '2024-02-11 09:18:23.614783'),
+(23, 'Restaurant_App', '0002_food_item_food_item_discount_price_and_more', '2024-02-14 19:04:29.514038');
 
 -- --------------------------------------------------------
 
@@ -302,7 +304,35 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('1qam6o3fqlorsl1ekp2l0x73ujosbfct', '.eJxVjEEOwiAQRe_C2hAodAZcuvcMhIFBqoYmpV0Z765NutDtf-_9lwhxW2vYOi9hyuIstDj9bhTTg9sO8j222yzT3NZlIrkr8qBdXufMz8vh_h3U2Ou39qTAaQdxSA6QE-ZCNCZrldE-JyAiNGQ8OBx5KLqYyFoxAaMnY1G8P-bFOA8:1rZQWh:4OdNcybJQuxurmQzjvnBvAhrzAa-fiti_AYG-ropceQ', '2024-02-26 07:14:51.720024');
+('0br8cl0iu492yx0xmzngbrfyq6bmvd5f', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raMQN:vaBFZ0w3BnH2vsDCxp-pBrvfT583bDi72Qbh4zH4hew', '2024-02-28 21:04:11.883603'),
+('0imhy276492tgjp0paviyc0bo0jdi04e', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raMQO:Y_xpooo1dBwYaKhxaI2sK5zYthxvg3c-Bzm7vdYvGUE', '2024-02-28 21:04:12.080350'),
+('0uosok4v643vfjdyei08lqy8507e0d03', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raMQN:vaBFZ0w3BnH2vsDCxp-pBrvfT583bDi72Qbh4zH4hew', '2024-02-28 21:04:11.365978'),
+('4qmjcqbn85o94gtdv9ii9ivsxqvefeim', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raMQM:Hq4gkSshvdKuufhsAeTTAwRA8fXtBa4iisAJK1X-8Ik', '2024-02-28 21:04:10.565510'),
+('5v0gj18gwmhprk0ssvjcyj9qgsmjwnnn', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raMQJ:dRutVnr_JrZwAAYwNLn3gzpEyl4zZDuW35XEMvBK0Os', '2024-02-28 21:04:07.525342'),
+('6f6vgjw7h7w1pm1xoocmyn45k1ymvxr5', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raMQL:NqS7uu8hAkXGcmSmwFtAeCSgetn8umpYWyMwCd-IiBM', '2024-02-28 21:04:09.973961'),
+('8um44ay6kd04x0mnx444a75bt7g6nq0g', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raMQN:vaBFZ0w3BnH2vsDCxp-pBrvfT583bDi72Qbh4zH4hew', '2024-02-28 21:04:11.809602'),
+('9gc54m7kz2yyt118x74v8v1htfd9k28q', '.eJxVjjsOwjAQRO_iGllZO-s1lPQ5Q-TPGgeQI8VOhbg7CUoB7byZp3mJ0a0tj2vlZZyiuAglTr-Zd-HBZQfx7sptlmEubZm83CvyoFUOc-Tn9ej-CbKreVv3HHTnSCEaq7hPPXSeCSNqHSAQImkymiIRBOtBWVLRJgNgztgl8Jt04dq-H-H9AV_BOlA:1ray7n:WNclTGj0H90iNoNaL2LWbgR8VIR43Bfk8Eos9_iTcVg', '2024-03-01 13:19:31.170268'),
+('azj9wezxzel3dauxxg92ynhlp1sy3n9u', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raMQI:cDY-xS5qGOXyI2l9gt4hs24Bd4u2Pezj5QI9QTx4EeY', '2024-02-28 21:04:06.754343'),
+('c8usg4omxi8m68w379rcr6ma700y39nm', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raMQN:vaBFZ0w3BnH2vsDCxp-pBrvfT583bDi72Qbh4zH4hew', '2024-02-28 21:04:11.627800'),
+('c9frzem2w873do9pq4vznmsxtv878c9n', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raEG7:tvr0c9GOULz5ipM2662g95dvU4fMgC5auxJMcoAfET0', '2024-02-28 12:21:03.973510'),
+('f8m0frzix50m69sixwhqkr9o8i51w66e', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raEG7:tvr0c9GOULz5ipM2662g95dvU4fMgC5auxJMcoAfET0', '2024-02-28 12:21:03.105644'),
+('htq96xpza0jm6ur7r34ryor72d498c28', 'eyJyZXN0X2lkIjoxfQ:1raJTm:ECFwjXgK3Hm2dN-aIHvsmjLsYoaZQ1gw7whCtWEi0cE', '2024-02-28 17:55:30.950338'),
+('hy7bagnj361n77ecdr413wmnjhhe55jo', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raMQJ:dRutVnr_JrZwAAYwNLn3gzpEyl4zZDuW35XEMvBK0Os', '2024-02-28 21:04:07.918107'),
+('ip7w1jtt532sr95jkxyp73ll3alp8cf8', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raMRG:fEqK4oTQ26TrWhkWQGFL8EzEltmw40qhKaxsuNPfVNQ', '2024-02-28 21:05:06.820285'),
+('j9i0n035s3eaxl263nlblwjqbgyvt1hv', 'e30:1raEYj:gxWGrReyGgLTSAoXsRBCa3qdMsMY15LekfJ0Oq6grNQ', '2024-02-28 12:40:17.957437'),
+('jng0x9ypo793h3p0z2g45dmh1kw0sg08', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raMQM:Hq4gkSshvdKuufhsAeTTAwRA8fXtBa4iisAJK1X-8Ik', '2024-02-28 21:04:10.979164'),
+('l32q7yebltl2ijcnhxi4ne3j8teut6oi', 'e30:1raIzF:ICLV_GoyOKSOIRYvdPwhbzs3sTbgh9aNVeAYZVt_a4E', '2024-02-28 17:23:57.351016'),
+('l3sojtdtdmhjl61bf1z22wit76wy8czr', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raMQN:vaBFZ0w3BnH2vsDCxp-pBrvfT583bDi72Qbh4zH4hew', '2024-02-28 21:04:11.298978'),
+('myf5ubepo90zfqkp0nx1zflk92ljl2cq', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raMQM:Hq4gkSshvdKuufhsAeTTAwRA8fXtBa4iisAJK1X-8Ik', '2024-02-28 21:04:10.248651'),
+('oat3ol630xifn60604ethiv1vrsuu32t', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raMQM:Hq4gkSshvdKuufhsAeTTAwRA8fXtBa4iisAJK1X-8Ik', '2024-02-28 21:04:10.432362'),
+('plbb20l2tnbufhktgu5oehyycksbzk78', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raMQI:cDY-xS5qGOXyI2l9gt4hs24Bd4u2Pezj5QI9QTx4EeY', '2024-02-28 21:04:06.370430'),
+('qdexn2x60h6nc83qel66ew3gb4s6biku', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raMQN:vaBFZ0w3BnH2vsDCxp-pBrvfT583bDi72Qbh4zH4hew', '2024-02-28 21:04:11.520872'),
+('r59vnehh1cnndbyur3i88xizde5lmnh5', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raMQJ:dRutVnr_JrZwAAYwNLn3gzpEyl4zZDuW35XEMvBK0Os', '2024-02-28 21:04:07.360015'),
+('rvhpx0hjjdom0t6wnd0wuohhq2h5v3f9', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raMQL:NqS7uu8hAkXGcmSmwFtAeCSgetn8umpYWyMwCd-IiBM', '2024-02-28 21:04:09.568575'),
+('u73381u9p5idn1iepike3phczzpqsb76', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raEG8:R0W-Vq-Smt0jGCXjSivY4AY_WRXfkW7igA3tIUZP_nM', '2024-02-28 12:21:04.312908'),
+('v88lnzujxkfxclpcuw2nc70h40tx7voe', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raEG9:VCL5RiWHZrsDPWpMQRLKZWr7D6gqkfLkoALAVw6FriI', '2024-02-28 12:21:05.406441'),
+('vzcqngim3hi8k1a2uzfwu031qwyn2499', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raMRG:fEqK4oTQ26TrWhkWQGFL8EzEltmw40qhKaxsuNPfVNQ', '2024-02-28 21:05:06.602654'),
+('yut6qtqytio7pcmkgan2yfdsh1tb51ci', '.eJxVjMsOwiAQRf-FtSEMMAy6dN9vIDylaiAp7cr479qkC93ec859Mee3tbpt5MXNiV2YZKffLfj4yG0H6e7brfPY27rMge8KP-jgU0_5eT3cv4PqR_3WOkclPElEY2XWRYMImTChUhEiIZIioygRQbQBpCWZbDEA5oyiQGDvD7n6Nos:1raEG9:VCL5RiWHZrsDPWpMQRLKZWr7D6gqkfLkoALAVw6FriI', '2024-02-28 12:21:05.617617');
 
 -- --------------------------------------------------------
 
@@ -318,6 +348,13 @@ CREATE TABLE `restaurant_app_branch` (
   `rest_fk_id_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `restaurant_app_branch`
+--
+
+INSERT INTO `restaurant_app_branch` (`branch_id`, `branch_country`, `branch_city`, `branch_locality`, `rest_fk_id_id`) VALUES
+(1, 'Pakistan', 'Karachi', 'Nazimabad', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -332,8 +369,16 @@ CREATE TABLE `restaurant_app_food_item` (
   `food_item_avaliblity` tinyint(1) NOT NULL,
   `food_img` varchar(100) NOT NULL,
   `food_cat_fk_id` int(11) NOT NULL,
-  `rest_fk_id_id` int(11) NOT NULL
+  `rest_fk_id_id` int(11) NOT NULL,
+  `food_item_discount_price` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `restaurant_app_food_item`
+--
+
+INSERT INTO `restaurant_app_food_item` (`food_item_id`, `food_item_name`, `food_item_desc`, `food_item_price`, `food_item_avaliblity`, `food_img`, `food_cat_fk_id`, `rest_fk_id_id`, `food_item_discount_price`) VALUES
+(1, 'Pizza', 'Voluptate exercitati', 165, 1, 'Food_Item_Img/menu-7.jpg', 1, 1, '0.00');
 
 -- --------------------------------------------------------
 
@@ -350,6 +395,14 @@ CREATE TABLE `restaurant_app_restaurant` (
   `rest_logo_img` varchar(100) NOT NULL,
   `rest_banner_img` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `restaurant_app_restaurant`
+--
+
+INSERT INTO `restaurant_app_restaurant` (`rest_id`, `rest_name`, `rest_owner_name`, `rest_email`, `rest_pass`, `rest_logo_img`, `rest_banner_img`) VALUES
+(1, 'Bernard William', 'Katell Farley', 'wohipero@mailinator.com', '1234', 'Restaurant_Logo_Img/about-2.jpg', 'Restaurant_Banner_Img/about-3.jpg'),
+(2, 'Bernard William', 'Katell Farley', 'mehid@mailinator.com', '3456', 'Restaurant_Logo_Img/testimonial-2.jpg', 'Restaurant_Banner_Img/about-2.jpg');
 
 --
 -- Indexes for dumped tables
@@ -470,13 +523,13 @@ ALTER TABLE `restaurant_app_restaurant`
 -- AUTO_INCREMENT for table `admin_app_food_category`
 --
 ALTER TABLE `admin_app_food_category`
-  MODIFY `food_cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `food_cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `admin_app_food_type`
 --
 ALTER TABLE `admin_app_food_type`
-  MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `auth_group`
@@ -530,25 +583,25 @@ ALTER TABLE `django_content_type`
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `restaurant_app_branch`
 --
 ALTER TABLE `restaurant_app_branch`
-  MODIFY `branch_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `branch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `restaurant_app_food_item`
 --
 ALTER TABLE `restaurant_app_food_item`
-  MODIFY `food_item_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `food_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `restaurant_app_restaurant`
 --
 ALTER TABLE `restaurant_app_restaurant`
-  MODIFY `rest_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `rest_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

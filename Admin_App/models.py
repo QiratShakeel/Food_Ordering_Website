@@ -18,4 +18,4 @@ class Food_Category(models.Model):
     food_type_fk= models.ForeignKey(Food_Type,on_delete=models.CASCADE)
     food_cat = models.CharField(max_length = 30)
     def __str__(self):
-        return str(self.food_cat_id)
+        return self.food_cat_id

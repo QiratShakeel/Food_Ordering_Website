@@ -51,10 +51,10 @@
                         <center><h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>Restaurant</h3>
                             <h3>Sign Up</h3></center>
                         </div>
-                        <form method="post">
+                        <form method="post"  enctype="multipart/form-data">
                             {% csrf_token %}
                         <div class="form-floating mb-3">
-                            <input name="rest_owner" type="text" class="form-control" id="floatingText" placeholder="jhondoe">
+                            <input name="rest_owner_name" type="text" class="form-control" id="floatingText" placeholder="jhondoe">
                             <label for="floatingText">Enter Restaurant Owmers</label>
                         </div>
                         <div class="form-floating mb-3">
@@ -86,7 +86,7 @@
                         </div>
                         <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Sign Up</button>
                         <p class="text-center mb-0">Already have an Account? <a href="{% url 'restaurant_signin' %}">Sign In</a></p>
-                        <form>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -8,20 +8,22 @@
               <h6 class="mb-4">Branch Form</h6>
               <form method="post">
                 {% csrf_token %}
+                <input type="text" value="{{branch.rest_fk_id}}" hidden name="rest_fk_id" class="form-control">
                   <div class="mb-3">
                       <label class="form-label">Country</label>
-                      <input type="text" value="{{branch.branch_country}}" name="country" class="form-control">
+                      <input type="text" value="{{branch.branch_country}}" name="branch_country" class="form-control">
                   </div>
                   <div class="mb-3">
                       <label class="form-label">City</label>
-                      <input type="text" name="city" value="{{branch.branch_country}}" class="form-control">
+                      <input type="text" name="branch_city" value="{{branch.branch_city}}" class="form-control">
                   </div>
                   <div class="mb-3">
                     <label class="form-label">Area</label>
-                    <textarea class="form-control" value="{{branch.branch_country}}" name="locality" placeholder="Area"
-                    style="height: 100px;"></textarea>
+                    <textarea class="form-control" name="branch_locality" placeholder="Area"
+                    style="height: 100px;">{{branch.branch_locality}}</textarea>
                   </div>
                   <button type="submit" class="btn btn-primary">Submit</button>
+                  <a href="{% url 'branch_list' %}" type="submit" class="btn btn-light">Cancel</a>
               </form>
           </div>
       </div>

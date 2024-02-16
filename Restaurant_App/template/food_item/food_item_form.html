@@ -6,19 +6,20 @@
       <div class="col-lg-12">
           <div class="bg-secondary rounded h-100 p-4">
               <h6 class="mb-4">Food Item Form</h6>
-              <form method="post">
+              <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
+                <input type="text" value="{{rest_id}}" hidden name="rest_fk_id" class="form-control">
                   <div class="mb-3">
                       <label class="form-label">Item Name</label>
-                      <input type="text" name="item_name" class="form-control">
+                      <input type="text" name="food_item_name" class="form-control">
                   </div>
                   <div class="mb-3">
                     <label class="form-label">Description</label>
-                    <textarea class="form-control" name="item_desc" placeholder="Area"
+                    <textarea class="form-control" name="food_item_desc" placeholder="Food Item Description here ..."
                     style="height: 100px;"></textarea>
                   </div>
                 <div class="mb-3">
-                  <select class="form-select">
+                  <select class="form-select" name="food_cat_fk">
                       <option selected>Select Category</option>
                       {% for cat in cat  %}
                       <option value="{{cat.food_cat_id}}">{{cat.food_cat}}</option>
@@ -26,19 +27,23 @@
                   </select>
                 </div>
                 <div class="mb-3">
-                  <select class="form-select">
+                  <select class="form-select" name="food_item_avaliblity">
                       <option selected>Select Availiblty</option>
-                      <option value="1">Yes</option>
-                      <option value="0">No</option>
+                      <option value="True">Yes</option>
+                      <option value="False">No</option>
                   </select>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Price</label>
-                  <input type="number" name="item_price" class="form-control">
-              </div>
+                  <input type="number" name="food_item_price" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Discounted Price</label>
+                  <input type="number" name="food_item_discount_price" class="form-control">
+                </div>
               <div class="mb-3">
-                <label class="form-label">Choose File</label>
-                <input class="form-control bg-dark" type="file" id="formFile">
+                <label class="form-label">Choose Food Image File</label>
+                <input class="form-control bg-dark" type="file" name="food_img" id="formFile">
               </div>
                   <button type="submit" class="btn btn-primary">Submit</button>
               </form>

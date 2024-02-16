@@ -9,10 +9,6 @@
               <h4 class="card-title">Food Type form</h4>
                   <form class="forms-sample" method="post">
                     {% csrf_token %}
-                {% comment %} <div class="form-group">
-                      <label>Food Type</label>
-                    <input type="text" value="{{type.food_type}}" name="food_type" class="form-control">
-                  </div> {% endcomment %}
                      <div class="form-group">
                         <label>select the Food Type</label>
                         <select name="food_type"class="js-example-basic-single w-100">

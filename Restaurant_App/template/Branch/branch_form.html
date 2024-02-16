@@ -8,17 +8,18 @@
               <h6 class="mb-4">Branch Form</h6>
               <form method="post">
                 {% csrf_token %}
+                <input type="text" name="rest_fk_id" hidden value={{rest_id}} class="form-control">
                   <div class="mb-3">
                       <label class="form-label">Country</label>
-                      <input type="text" name="country" class="form-control">
+                      <input type="text" name="branch_country" class="form-control">
                   </div>
                   <div class="mb-3">
                       <label class="form-label">City</label>
-                      <input type="text" name="city" class="form-control">
+                      <input type="text" name="branch_city" class="form-control">
                   </div>
                   <div class="mb-3">
                     <label class="form-label">Area</label>
-                    <textarea class="form-control" name="locality" placeholder="Area"
+                    <textarea class="form-control" name="branch_locality" placeholder="Area"
                     style="height: 100px;"></textarea>
                   </div>
                   <button type="submit" class="btn btn-primary">Submit</button>

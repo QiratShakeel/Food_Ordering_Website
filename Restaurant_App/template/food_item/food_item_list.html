@@ -5,32 +5,41 @@
     <div class="row g-4">
         <div class="col-lg-12">
             <div class="bg-secondary rounded h-100 p-4">
-                <h6 class="mb-4">Food Item List</h6>
+                <div class="d-flex p-2">
+                    <h6 class="mb-4 col-lg-8">Food Item List</h6>
+                    <a href="{% url 'food_item_form' %}" class="btn btn-warning btn-icon-text">Create<i class="ti-file btn-icon-append"></i></a>
+                    </div>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Item Name</th>
+                            <th>Id</th>
+                            <th>Name</th>
                             <th>Description</th>
                             <th>Category</th>
                             <th>Availiblty</th>
                             <th>Price</th>
+                            <th>Discount Price</th>
                             <th>Image</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% comment %} {% for branch in list  %}
+                         {% for food_item in list  %}
                         <tr>
-                            <td>{{branch.branch_id}}</td>
-                            <td>{{branch.branch_country}}</td>
-                            <td>{{branch.branch_city}}</td>
-                            <td>{{branch.branch_locality}}</td>
+                            <td>{{food_item.food_item_id}}</td>
+                            <td>{{food_item.food_item_name}}</td>
+                            <td>{{food_item.food_item_desc}}</td>
+                            <td>{{food_item.food_cat_fk.food_cat}}</td>
+                            <td>{{food_item.food_item_avaliblity}}</td>
+                            <td>{{food_item.food_item_price}}</td>
+                            <td>{{food_item.food_item_discount_price}}</td>
+                            <td><img src="{{food_item.food_img.url}}" /></td>
                             <td>
-                                <a href="../update/{{cat.food_cat_id}}" id="{{types.food_id}}" class="btn btn-dark btn-icon-text">Edit<i class="ti-file btn-icon-append"></i></a>
-                                <a href="../delete/{{cat.food_cat_id}}" id="{{types.food_id}}" class="btn btn-danger btn-icon-text">Delete<i class="ti-trash btn-icon-append"></i></a>
+                                <a href="../update/{{food_item.food_item_id}}" id="{{food_item.food_item_id}}" class="btn btn-dark btn-icon-text">Edit<i class="ti-file btn-icon-append"></i></a>
+                                <a href="../delete/{{food_item.food_item_id}}" id="{{food_item.food_item_id}}" class="btn btn-danger btn-icon-text">Delete<i class="ti-trash btn-icon-append"></i></a>
                             </td>
                         </tr>
-                        {% endfor %} {% endcomment %}
+                        {% endfor %} 
                     </tbody>
                 </table>
             </div>
