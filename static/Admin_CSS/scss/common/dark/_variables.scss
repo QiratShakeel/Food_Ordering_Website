@@ -6,7 +6,7 @@ $indigo:            #6610f2;
 $purple:            #6a008a;
 $pink:              #E91E63;
 $red:               #f96868;
-$orange:            #f2a654;
+$orange:            #ff6900;
 $yellow:            #f6e84e;
 $green:             #46c35f;
 $teal:              #58d8a3;
@@ -36,7 +36,8 @@ $colors: (
   gray-lighter:     #e8eff4,
   gray-lightest:    #e6e9ed,
   gray-dark:        #0f1531,
-  black:            #000000
+  black:            #000000,
+  orange:           $orange
 );
 
 
@@ -48,7 +49,8 @@ $theme-colors: (
   warning:         #FFC100,
   danger:          #FF4747,
   light:           #f8f9fa,
-  dark:            #282f3a
+  dark:            #282f3a,
+  wave:            #ff6900
 );
 
 $theme-gradient-colors: (

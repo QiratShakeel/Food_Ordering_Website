@@ -5,10 +5,14 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
+  <title>Foodie Admin Login</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="/static/Admin_CSS/vendors/feather/feather.css">
   <link rel="stylesheet" href="/static/Admin_CSS/vendors/ti-icons/css/themify-icons.css">
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Arizonia&family=Bad+Script&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="/static/Admin_CSS/vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
@@ -16,30 +20,69 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="/static/Admin_CSS/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="/static/Admin_CSS/images/favicon.png" />
+  <link rel="shortcut icon" href="/static/Admin_CSS/images/preview.png" />
+
+  <style>
+    .btn-grad {
+        background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%);
+        padding: 15px 45px;
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;            
+        box-shadow: 0 0 20px #eee;
+        border-radius: 10px;
+        display: block;
+      }
+
+      .btn-grad:hover {
+        background-position: right center; /* change the direction of the change here */
+        color: #fff;
+        text-decoration: none;
+      }
+      .btn-gradi {
+        background-image: linear-gradient(to right, #000428 0%, #004e92  51%, #000428  100%);
+        padding: 15px 45px;
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;            
+        box-shadow: 0 0 20px #eee;
+        border-radius: 10px;
+        display: block;
+      }
+
+      .btn-gradi:hover {
+        background-position: right center; /* change the direction of the change here */
+        color: #fff;
+        text-decoration: none;
+      }
+</style>
 </head>
 
 <body>
   <div class="container-scroller">
-    <div class="container-fluid page-body-wrapper full-page-wrapper">
-      <div class="content-wrapper d-flex align-items-center auth px-0">
+    <div class="container-fluid page-body-wrapper full-page-wrapper" style="background-image: url(/static/Admin_CSS/images/b.jpg);">
+      <div class="content-wrapper d-flex align-items-center auth px-0" style="background-color: #1e1e1f7e;">
         <div class="row w-100 mx-0">
           <div class="col-lg-4 mx-auto">
-            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-              <div class="brand-logo">
-                <img src="/static/Admin_CSS/images/logo.svg" alt="logo">
+            <div class="auth-form-light text-left py-5 px-4 px-sm-5" style="border-radius: 1rem;  box-shadow: 0 0.5rem 1.2rem rgba(0, 0, 0, 0.712);">
+              <div class="d-flex align-items-center mb-3 pb-1" style="text-align: center;">
+                <h1 class="text-primary m-0" style="background: linear-gradient(50deg, #fb3c00, #ffb800); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight:bold;"><span class="fa fa-utensils text-gradient"></span> Foodie</h1>
               </div>
-              <h4>Hello! let's get started</h4>
-              <form class="pt-3" method="post">
+              <h2 style=" color:rgb(116, 116, 116); font-size: 18px; font-family: 'Bad Script'; ">... Welcome to Admin Login Page ...</h2>
+              <form class="pt-3 needs-validation" method="post" novalidate>
                 {% csrf_token %}
                 <div class="form-group">
-                  <input type="text" name="admin_name" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
+                  <input type="text" name="admin_name" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Admin Name" required>
                 </div>
                 <div class="form-group">
-                  <input type="password" name="admin_pass" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                  <input type="password" name="admin_pass" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" required>
                 </div>
                 <div class="mt-3">
-                  <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
+                  <button type="submit" class="btn btn-block btn-lg font-weight-medium auth-form-btn btn-grad" style="background-color: #ff6900; color: white;">SIGN IN</button>
                 </div>
                 <div class="my-2 d-flex justify-content-between align-items-center">
                   <div class="form-check">
@@ -48,15 +91,15 @@
                       Keep me signed in
                     </label>
                   </div>
-                  <a href="#" class="auth-link text-black">Forgot password?</a>
+                  <a href="#" class="auth-link text-black" style="text-decoration: none;">Forgot password?</a>
                 </div>
                 <div class="mb-2">
-                  <button type="button" class="btn btn-block btn-facebook auth-form-btn">
+                  <button type="button" class="btn btn-block auth-form-btn btn-gradi">
                     <i class="ti-facebook mr-2"></i>Connect using facebook
                   </button>
                 </div>
                 <div class="text-center mt-4 font-weight-light">
-                  Don't have an account? <a href="register.html" class="text-primary">Create</a>
+                  Don't have an account? <a href="register.html" class="text-primary" style="text-decoration: none; color:#ff6900!important;">Create</a>
                 </div>
               </form>
             </div>

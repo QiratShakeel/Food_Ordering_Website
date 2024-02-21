@@ -25,7 +25,6 @@
     + Reset Styles
     + Fonts
     + Functions
-    + Backgrounds
     + Sidebar
     + Navbar
     + Typography
@@ -28591,7 +28590,7 @@ div.tagsinput span.tag a {
 }
 
 .sidebar .nav .nav-item.active > .nav-link {
-  background: #4B49AC;
+  background: #ff6900;
   position: relative;
 }
 
@@ -28622,7 +28621,7 @@ div.tagsinput span.tag a {
 }
 
 .sidebar .nav:not(.sub-menu) > .nav-item:hover > .nav-link, .sidebar .nav:not(.sub-menu) > .nav-item:hover[aria-expanded="true"] {
-  background: #4B49AC;
+  background: #ff6900;
   color: #fff;
 }
 
@@ -28632,12 +28631,12 @@ div.tagsinput span.tag a {
 
 .sidebar .nav:not(.sub-menu) > .nav-item > .nav-link[aria-expanded="true"] {
   border-radius: 8px 8px 0 0;
-  background: #4B49AC;
+  background: #ff6900;
   color: #fff;
 }
 
 .sidebar .nav:not(.sub-menu) > .nav-item.active {
-  background: #4B49AC;
+  background: #ff6900;
 }
 
 .sidebar .nav.sub-menu {
@@ -28645,7 +28644,7 @@ div.tagsinput span.tag a {
   margin-top: 0;
   list-style: none;
   padding: 0.25rem 0 0 3.07rem;
-  background: #4B49AC;
+  background: #ff6900;
   padding-bottom: 12px;
 }
 
@@ -28654,16 +28653,18 @@ div.tagsinput span.tag a {
 }
 
 .sidebar .nav.sub-menu .nav-item::before {
+  box-shadow: 0 0.5rem 1.2rem rgba(0, 0, 0, 0.137);
   content: '';
   width: 5px;
   height: 5px;
   position: absolute;
   margin-top: 16px;
   border-radius: 50%;
-  background: #b2b2b2;
+  background: #ff6900;
 }
 
 .sidebar .nav.sub-menu .nav-item .nav-link {
+  box-shadow: 0 0.5rem 1.2rem rgba(0, 0, 0, 0.137);
   color: #fff;
   padding: 0.7rem 1rem;
   position: relative;
@@ -28711,7 +28712,7 @@ div.tagsinput span.tag a {
 }
 
 .sidebar-dark .sidebar .nav .nav-item.active > .nav-link {
-  background: #4B49AC;
+  background: z;
 }
 
 .sidebar-dark .sidebar .nav .nav-item.active > .nav-link .menu-title,
@@ -28720,7 +28721,7 @@ div.tagsinput span.tag a {
 }
 
 .sidebar-dark .sidebar .nav:not(.sub-menu) > .nav-item:hover > .nav-link {
-  background: #4B49AC;
+  background: #ff6900;
   color: #fff;
 }
 
@@ -30545,11 +30546,12 @@ div.tagsinput span.tag a {
 
 #settings-trigger {
   position: fixed;
+  box-shadow: 0 0.5rem 1.2rem rgba(0, 0, 0, 0.137);
   bottom: 40px;
   right: 30px;
   height: 45px;
   width: 45px;
-  background: #4B49AC;
+  background: #ff6900;
   z-index: 99;
   display: -webkit-flex;
   display: flex;
@@ -30590,6 +30592,33 @@ div.tagsinput span.tag a {
   #settings-trigger {
     display: none;
   }
+}
+
+.amita-regular {
+  font-family: "Amita", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.amita-bold {
+  font-family: "Amita", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+.allura-regular {
+  font-family: "Allura", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.arizonia-regular {
+  font-family: "Arizonia", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.bad-script-regular {
+  font-family: "Bad Script", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
 
 /*# sourceMappingURL=../maps/vertical-layout-light/style.css.map */
