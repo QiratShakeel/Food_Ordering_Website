@@ -12,7 +12,7 @@
     <!-- ===============================================-->
     <title>Foodwagon | Responsive, Ecommerce &amp; Business Templatee</title>
 
-
+{% comment %} main page theme link start {% endcomment %}
     <!-- ===============================================-->
     <!--    Favicons-->
     <!-- ===============================================-->
@@ -23,12 +23,15 @@
     <link rel="manifest" href="/static/Customer_CSS/assets/img/favicons/manifest.json">
     <meta name="msapplication-TileImage" content="/static/Customer_CSS/assets/img/favicons/mstile-150x150.png">
     <meta name="theme-color" content="#ffffff">
+    
+      <!-- ===============================================-->
+      <!--    Stylesheets-->
+      <!-- ===============================================-->
+      <link href="/static/Customer_CSS/assets/css/theme.css" rel="stylesheet" /> 
+{% comment %} main page theme link end {% endcomment %}
 
 
-    <!-- ===============================================-->
-    <!--    Stylesheets-->
-    <!-- ===============================================-->
-    <link href="/static/Customer_CSS/assets/css/theme.css" rel="stylesheet" />
+
 
   </head>
 
@@ -55,10 +58,10 @@
           </div>
         </div>
       </nav>
-
-         {% block content %}
+      <div class="container-fluid">
+        {% block content %}
         {% endblock %} 
-        
+      </div>
         
       <!-- ============================================-->
       <!-- <section> begin ============================-->
@@ -200,6 +203,7 @@
 
 
 
+    {% comment %} Main Page scripting start{% endcomment %}
 
     <!-- ===============================================-->
     <!--    JavaScripts-->
@@ -212,6 +216,12 @@
     <script src="/static/Customer_CSS/assets/js/theme.js"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&amp;display=swap" rel="stylesheet">
+    {% comment %} Main Page scripting end{% endcomment %}
+  
+    
+
+
+
   </body>
 
 </html>

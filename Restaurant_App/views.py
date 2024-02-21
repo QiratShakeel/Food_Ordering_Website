@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from .models import Branch,Food_Item,Restaurant
 from .forms import BranchForm, FoodItemForm,RestaurantForm
 from Admin_App.models import Food_Category
+from django.contrib.auth import logout
 
 def home(request):
     if 'rest_id' in request.session:

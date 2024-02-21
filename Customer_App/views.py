@@ -9,6 +9,12 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     return render(request,"Customer_App/template/index.html")
 
+def restaurant_detail(request):
+    return render(request,"Customer_App/template/restaurant_detail.html")
+
+def food_item_detail(request):
+    return render(request,"Customer_App/template/Food_Details/food_item_detail.html")
+
 # customer registration
 def customer_signup(request):
     if request.method == 'POST':
