@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.http import HttpResponse
 from .models import Branch,Food_Item,Restaurant
 from .forms import BranchForm, FoodItemForm,RestaurantForm
 from Admin_App.models import Food_Category
@@ -103,6 +104,8 @@ def food_item_form(request):
             if form.is_valid():
                 form.save()
                 return redirect('food_item_list')
+            else: 
+                return HttpResponse("form is not sended")
         form = FoodItemForm()
         return render(request,'Restaurant_App/template/food_item/food_item_form.html',{'form': form,'cat':Food_Category.objects.all(),'rest_id':rest_id})
     else:

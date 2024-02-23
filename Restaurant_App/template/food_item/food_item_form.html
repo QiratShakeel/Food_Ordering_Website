@@ -8,7 +8,7 @@
               <h6 class="mb-4">Food Item Form</h6>
               <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                <input type="text" value="{{rest_id}}" hidden name="rest_fk_id" class="form-control">
+                <input type="text" value="{{rest_id}}" hidden name="rest_fk_id_id" class="form-control">
                   <div class="mb-3">
                       <label class="form-label">Item Name</label>
                       <input type="text" name="food_item_name" class="form-control">
@@ -19,7 +19,7 @@
                     style="height: 100px;"></textarea>
                   </div>
                 <div class="mb-3">
-                  <select class="form-select" name="food_cat_fk">
+                  <select class="form-select" name="food_cat_fk_id">
                       <option selected>Select Category</option>
                       {% for cat in cat  %}
                       <option value="{{cat.food_cat_id}}">{{cat.food_cat}}</option>
@@ -46,6 +46,7 @@
                 <input class="form-control bg-dark" type="file" name="food_img" id="formFile">
               </div>
                   <button type="submit" class="btn btn-primary">Submit</button>
+                  <a href="{% url 'food_item_list' %}" class="btn btn-light">Cancel</a>
               </form>
           </div>
       </div>

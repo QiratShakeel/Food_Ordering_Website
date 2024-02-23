@@ -81,7 +81,7 @@ def food_cat_form(request):
         form = FoodCatForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('food_cat_list')
     form = FoodCatForm()
     return render(request,'Admin_App/template/food_cat/food_cat_form.html',{'form': form,'type':Food_Type.objects.all()})
 

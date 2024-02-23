@@ -1,8 +1,7 @@
-from django.contrib import admin
 from django.urls import path
 from Customer_App import views
 urlpatterns = [
-    path('', views.home,name='customer_index'),
+    path('', views.home),
     path('signup/', views.customer_signup,name='customer_signup'),
     path('signin/', views.customer_signin,name='customer_signin'),
     path('signout/', views.customer_signout,name='customer_signout'),

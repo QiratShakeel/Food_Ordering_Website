@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'Customer_App',
     'Restaurant_App',
-    'Admin_App'
+    'Admin_App',
+    'debug_toolbar'
 ]
 
 MIDDLEWARE = [
@@ -119,6 +120,22 @@ USE_I18N = True
 
 USE_TZ = True
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
