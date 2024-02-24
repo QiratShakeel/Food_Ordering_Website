@@ -37,7 +37,7 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row ">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center" style="padding-right: 15px;">
-        <a class="navbar-brand brand-logo mr-5" href="index.html" ><h2 class="text-primary m-0" style="background: linear-gradient(50deg, #fb3c00, #ffb800); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight:bold; text-align: center;"><span class="fa fa-utensils text-gradient"></span> Foodie</h2></a>
+        <a class="navbar-brand brand-logo mr-5" href="{% url 'home' %}" ><h2 class="text-primary m-0" style="background: linear-gradient(50deg, #fb3c00, #ffb800); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight:bold; text-align: center;"><span class="fa fa-utensils text-gradient"></span> Foodie</h2></a>
         <a class="navbar-brand brand-logo-mini" href="index.html" style="margin-left: 0px;"><h2 class="text-primary m-0" style="background: linear-gradient(50deg, #fb3c00, #ffb800); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight:bold; text-align: center;"> <span class="fa fa-utensils text-gradient"></span></h2></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -114,7 +114,7 @@
                 <i class="ti-settings" style="color: #ff6900;"></i>
                 Settings
               </a>
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="{% url 'admin_signout' %}">
                 <i class="ti-power-off" style="color: #ff6900;"></i>
                 Logout
               </a>
@@ -159,30 +159,16 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link"  href="{% url 'food_type_list' %}" aria-controls="form-elements" >
               <i class="icon-layout menu-icon"></i>
               <span class="menu-title">Food Types</span>
-              <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{% url 'food_type_form' %}"><i class="fa-solid fa-circle-plus" style="padding-right: 5px;"></i>Food Create</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% url 'food_type_list' %}"><i class="fa-solid fa-list" style="padding-right: 5px;"></i>Food List</a></li>
-              </ul>
-            </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+            <a class="nav-link" href="{% url 'food_cat_list' %}" aria-controls="form-elements">
               <i class="icon-columns menu-icon"></i>
               <span class="menu-title">Food Category</span>
-              <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="form-elements">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="{% url 'food_cat_form' %}"><i class="fa-solid fa-circle-plus" style="padding-right: 5px;"></i> Category Create</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'food_cat_list' %}"><i class="fa-solid fa-list" style="padding-right: 5px;"></i>Category List</a></li>
-              </ul>
-            </div>
           </li>
         </ul>
       </nav>

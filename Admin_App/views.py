@@ -13,6 +13,16 @@ def home(request):
             return render(request,"Admin_App/template/index.html",{'username':user_name})
 
 # admin registration
+def admin_signup(request):
+    if request.method == 'POST':
+        name=request.POST.get('admin_name')
+        email=request.POST.get('admin_email')
+        password=request.POST.get('admin_pass')
+        user= User.objects.create_user(name,email,password)
+        user.save()
+        return redirect('admin_signin')
+    return render(request,"Admin_App/template/admin_signup.html")
+
 def admin_signin(request):
     if request.method == 'POST':
         us= request.POST.get('admin_name')

@@ -4,10 +4,14 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required 
+from Restaurant_App.models import Food_Item
+from Admin_App.models import Food_Category
 
 @login_required(login_url='customer_signin')
 def home(request):
-    return render(request,"Customer_App/template/index.html")
+    items = Food_Item.objects.all()
+    cat = Food_Category.objects.all()
+    return render(request,"Customer_App/template/index.html",{'items':items,'cat':cat})
 
 def restaurant_detail(request):
     return render(request,"Customer_App/template/restaurant_detail.html")
