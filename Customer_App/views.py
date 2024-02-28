@@ -5,19 +5,31 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required 
 from Restaurant_App.models import Food_Item
+from Restaurant_App.forms import FoodItemForm
 from Admin_App.models import Food_Category
-
+from math import ceil
 @login_required(login_url='customer_signin')
 def home(request):
     items = Food_Item.objects.all()
     cat = Food_Category.objects.all()
-    return render(request,"Customer_App/template/index.html",{'items':items,'cat':cat})
+    n = len(items)
+    nSlides = n//4 + ceil((n//4) - (n//4))
+    params={'items':items,'no_of_slides':nSlides,'range':range(nSlides),'cat':cat}
+    return render(request,"Customer_App/template/index.html")
 
 def restaurant_detail(request):
     return render(request,"Customer_App/template/restaurant_detail.html")
 
-def food_item_detail(request):
-    return render(request,"Customer_App/template/Food_Details/food_item_detail.html")
+def food_item_detail(request,id):
+    id=int(id)
+    try:
+        obj = Food_Item.objects.get(food_item_id = id)
+    except Food_Item.DoesNotExist:
+        return redirect('customer_index')
+    return render(request,"Customer_App/template/Food_Details/food_item_detail.html",{'item':obj})
+
+def cart(request):
+    return render(request,"Customer_App/template/Food_Details/cart.html")
 
 # customer registration
 def customer_signup(request):

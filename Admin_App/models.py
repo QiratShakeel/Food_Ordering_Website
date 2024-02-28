@@ -17,5 +17,6 @@ class Food_Category(models.Model):
     food_cat_id = models.AutoField(primary_key=True)
     food_type_fk= models.ForeignKey(Food_Type,on_delete=models.CASCADE)
     food_cat = models.CharField(max_length = 30)
+    food_cat_img = models.ImageField(upload_to='Food_Category_Imge',default=None)
     def __str__(self):
         return self.food_cat_id

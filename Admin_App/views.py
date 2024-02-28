@@ -88,7 +88,7 @@ def food_cat_list(request):
 @login_required(login_url='admin_signin')
 def food_cat_form(request):
     if request.method == 'POST':
-        form = FoodCatForm(request.POST)
+        form = FoodCatForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             return redirect('food_cat_list')
@@ -102,7 +102,7 @@ def food_cat_update(request, id):
         obj = Food_Category.objects.get(food_cat_id = id)
     except Food_Category.DoesNotExist:
         return redirect('food_cat_list')
-    form = FoodCatForm(request.POST or None, instance=obj)
+    form = FoodCatForm(request.POST or None,request.FILES, instance=obj)
     if form.is_valid():
        form.save()
        return redirect('food_cat_list')
