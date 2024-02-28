@@ -1,32 +1,40 @@
 {% extends 'Restaurant_App/template/base.html' %}
 {% block content %}
 <!-- Form Start -->
+<section style="background-image: url(/static/Restaurant_CSS/img/px.jpg); background-position: cover;">
+<main style="min-height: 100vh;background-color: #ff9d0048!important;">
 <div class="container-fluid pt-4 px-4">
-  <div class="row g-4">
-      <div class="col-lg-12">
-          <div class="bg-secondary rounded h-100 p-4">
-              <h6 class="mb-4">Branch Form</h6>
+  <div class="row g-4" style="padding-top: 2%; padding-bottom: 4%;">
+    <div class="col-lg-2"></div>
+      <div class="col-lg-8">
+          <div class="bg-secondary h-100 p-4" style="box-shadow: 0 0.5rem 1.2rem rgba(160, 131, 131, 0.822);  border-radius: 15px 30px;">
+            <h1 class="mb-4"  style="text-align: center; color:#ff6a00bb; font-size: 30px; font-family:cursive; background: linear-gradient(50deg, #fb3c00, #ffb800); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Branch Update</h1>
+            <h2 style=" color:rgb(116, 116, 116); font-size: 18px; font-family: 'Bad Script'; margin-bottom: 5%; text-align:center;"> .... You Can Update Restaurant Here ....</h2>
               <form method="post">
                 {% csrf_token %}
                 <input type="text" value="{{branch.rest_fk_id}}" hidden name="rest_fk_id" class="form-control">
-                  <div class="mb-3">
-                      <label class="form-label">Country</label>
-                      <input type="text" value="{{branch.branch_country}}" name="branch_country" class="form-control">
+                  <div class="form-floating mb-3">
+                      <input type="text" value="{{branch.branch_country}}" name="branch_country" class="form-control" id="floatingInput" placeholder=" Country Name" style="border: none;">
+                      <label class="form-label" for="floatingInput">Country Name</label>
                   </div>
-                  <div class="mb-3">
-                      <label class="form-label">City</label>
-                      <input type="text" name="branch_city" value="{{branch.branch_city}}" class="form-control">
+                  <div class="form-floating mb-3">
+                      <input type="text" name="branch_city" value="{{branch.branch_city}}" class="form-control" id="floatingInput" placeholder=" City Name" style="border: none;">
+                      <label class="form-label" for="floatingInput">City Name</label>
                   </div>
-                  <div class="mb-3">
-                    <label class="form-label">Area</label>
-                    <textarea class="form-control" name="branch_locality" placeholder="Area"
-                    style="height: 100px;">{{branch.branch_locality}}</textarea>
+                  <div class="form-floating mb-3">
+                    <textarea class="form-control" name="branch_locality" placeholder="Area Name" id="floatingInput" style="height: 100px; border: none;">{{branch.branch_locality}}</textarea>
+                    <label class="form-label" for="floatingInput">Area Name</label>
                   </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                  <a href="{% url 'branch_list' %}" type="submit" class="btn btn-light">Cancel</a>
+                  <div class="d-grid gap-2 col-6 mx-auto">
+                    <button type="submit" class="btn btn-grad">Update</button>
+                    <a href="{% url 'branch_list' %}" type="submit" class="btn btn-light" style="margin-top: 10px;">Cancel</a>
+                  </div>
               </form>
           </div>
       </div>
+      <div class="col-lg-2"></div>
     </div>
 </div>
 {% endblock %}
+</main>
+</section>

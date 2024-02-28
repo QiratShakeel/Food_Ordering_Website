@@ -1,22 +1,26 @@
 {% extends 'Restaurant_App/template/base.html' %}
 {% block content %}
 <!-- Form Start -->
+<section style="background-image: url(/static/Restaurant_CSS/img/p.jpg); background-position: cover;">
+<main style="min-height: 100vh;background-color: #ff9d0048!important;">
 <div class="container-fluid pt-4 px-4">
   <div class="row g-4">
-      <div class="col-lg-12">
-          <div class="bg-secondary rounded h-100 p-4">
-              <h6 class="mb-4">Food Item Form</h6>
+    <div class="col-lg-2"></div>
+      <div class="col-lg-8">
+          <div class="bg-secondary h-100 p-4" style="box-shadow: 0 0.5rem 1.2rem rgba(160, 131, 131, 0.822);  border-radius: 15px 30px;">
+            <h1 class="mb-4" style="text-align: center; color:#ff6a00bb; font-size: 30px; font-family:cursive; background: linear-gradient(50deg, #fb3c00, #ffb800); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Food Item Form</h1>
+            <h2 style=" color:rgb(116, 116, 116); font-size: 18px; font-family: 'Bad Script'; margin-bottom: 5%; text-align:center;"> .... You Can Register Food Items Here ....</h2>
               <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="text" value="{{rest_id}}" hidden name="rest_fk_id" class="form-control">
-                  <div class="mb-3">
-                      <label class="form-label">Item Name</label>
-                      <input type="text" name="food_item_name" class="form-control">
+                  <div class="form-floating mb-3">
+                      <input type="text" name="food_item_name" class="form-control" id="floatingInput">
+                      <label class="form-label" for="floatingInput">Item Name</label>
                   </div>
-                  <div class="mb-3">
-                    <label class="form-label">Description</label>
+                  <div class="form-floating mb-3">
                     <textarea class="form-control" name="food_item_desc" placeholder="Food Item Description here ..."
-                    style="height: 100px;"></textarea>
+                    style="height: 100px;" id="floatingInput"></textarea>
+                    <label class="form-label" for="floatingInput">Description</label>
                   </div>
                 <div class="mb-3">
                   <select class="form-select" name="food_cat_fk">
@@ -33,22 +37,27 @@
                       <option value="False">No</option>
                   </select>
                 </div>
-                <div class="mb-3">
-                  <label class="form-label">Price</label>
-                  <input type="number" name="food_item_price" class="form-control">
+                <div class="form-floating mb-3">
+                  <input type="number" name="food_item_price" class="form-control" id="floatingInput">
+                  <label class="form-label" for="floatingInput">Price</label>
                 </div>
-                <div class="mb-3">
-                  <label class="form-label">Discounted Price</label>
-                  <input type="number" name="food_item_discount_price" class="form-control">
+                <div class="form-floating mb-3">
+                  <input type="number" name="food_item_discount_price" class="form-control" id="floatingInput">
+                  <label class="form-label" for="floatingInput">Discounted Price</label>
                 </div>
               <div class="mb-3">
                 <label class="form-label">Choose Food Image File</label>
                 <input class="form-control bg-dark" type="file" name="food_img" id="formFile">
               </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <div class="d-grid gap-2 col-6 mx-auto">
+                    <button type="submit" class="btn btn-grad">Food Items Create</button>
+                  </div>
               </form>
           </div>
       </div>
+      <div class="col-lg-2"></div>
     </div>
 </div>
 {% endblock %}
+</main>
+</section>
