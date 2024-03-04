@@ -23,6 +23,7 @@
     <link rel="manifest" href="/static/Customer_CSS/assets/img/favicons/manifest.json">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <meta name="msapplication-TileImage" content="/static/Customer_CSS/assets/img/favicons/mstile-150x150.png">
     <meta name="theme-color" content="#ffffff">
     
@@ -38,7 +39,7 @@
     <!--    Main Content-->
     <!-- ===============================================-->
     <main class="main" id="top">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" data-navbar-on-scroll="data-navbar-on-scroll">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" data-navbar-on-scroll="data-navbar-on-scroll"> 
         <div class="container"><a class="navbar-brand d-inline-flex" href="index.html"><img class="d-inline-block" src="/static/Customer_CSS/assets/img/gallery/logo.svg" alt="logo" /><span class="text-1000 fs-3 fw-bold ms-2 text-gradient">foodwaGon</span></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span></button>
           <div class="collapse navbar-collapse border-top border-lg-0 my-2 mt-lg-0" id="navbarSupportedContent">
@@ -49,12 +50,31 @@
               <div class="input-group-icon pe-2"><i class="fas fa-search input-box-icon text-primary"></i>
                 <input class="form-control border-0 input-box bg-100" type="search" placeholder="Search Food" aria-label="Search" />
               </div>
-              <a href="{% url 'customer_signout' %}" class="btn btn-white shadow-warning text-warning" type="submit"> <i class="fas fa-user me-2"></i>logout</a>
-              <p>cart(<span id="cartno">0</span>)</p>
             </form>
+              <a href="{% url 'customer_signout' %}" class="btn btn-white shadow-warning text-warning" type="submit"> <i class="fas fa-user me-2"></i>logout <span><i class="fa-solid fa-caret-down"></i></span></a>
+              
+              {% comment %} <p>cart(<span id="cartno">0</span>)</p> {% endcomment %}
+            
           </div>
         </div>
+        <button class="btn btn-primary d-flex" id="cart_btn_" type="button" data-bs-toggle="offcanvas" data-bs-target="#cart_sidebar" aria-controls="cart_sidebar"><i class="fa-solid fa-cart-shopping"></i><span id="cartno"> 0</span></button>
       </nav>
+      
+<div class="offcanvas offcanvas-end" tabindex="-1" id="cart_sidebar" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">Cart</h5>
+    <button class="btn btn-primary clear_cart" type="button" style="margin-left:39%;">Clear Cart</button>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body" style="padding:0;">
+    <div class="container" id="cart_items_offcanvas" style="padding:0;">
+      </div>
+    </div>
+  </div>
+  
+</div>
+      {% comment %} {% include 'Customer_App/template/Food_Details/cart.html' %}  {% endcomment %}
+      
         {% block content %}
         {% endblock %} 
         
@@ -210,11 +230,99 @@
     <script src="/static/Customer_CSS/vendors/fontawesome/all.min.js"></script>
     <script src="/static/Customer_CSS/assets/js/theme.js"></script>
 	  <script src="/static/Customer_CSS/Restaurant_Page_theme/js/jquery-3.4.1.min.js"></script>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     {% comment %} Main Page scripting end{% endcomment %}
-  
-    {% comment %} {% block js %}{% endblock js %} {% endcomment %}
+    <script src="/static/Customer_CSS/assets/js/main.js"></script>
+    <script>
+$(document).ready(function(){
+  $('#cart_btn_').click(function(){
+    cart= JSON.parse(localStorage.getItem('cart'));
+    console.log("cart",cart)
+  if(cart.length === 0){
+    document.getElementById("cart_items_offcanvas").innerHTML += `Empty`;
+  }
+  else{
+    cart_ids=[];
+    for (var i = 0; i < cart.length; i++) {
+      id=parseInt(cart[i].id)
+      cart_ids.push(id);      
+    }
+    console.log(cart_ids)
+    $.ajax({
+      url: 'cart/',
+      type: 'GET',
+      data: { cart_ids: cart_ids },
+      success: function(response) {
+        console.log(response); // Log the entire response object
+        if (response && response.items_in_cart) {
+            console.log(response.items_in_cart); // Log the items_in_cart property
+            // Your code to iterate over cart items and update HTML
+            cartItems = response.items_in_cart;
+            var cartItemsContainer = document.getElementById("cart_items_offcanvas");
+            cartItemsContainer.innerHTML = "";
+        
+        if (cartItems.length === 0) {
+          cartItemsContainer.innerHTML += `Empty`;
+        } else {
+        for (var i = 0; i < cartItems.length; i++) {
+            var item = cartItems[i];
+            console.log(item.food_item_name);
+            document.getElementById("cart_items_offcanvas")
+                .insertAdjacentHTML("beforeend",  `<div class="container"><div class="row" style="border-bottom: 1px solid lightgrey;">
+                  <ul style="display: flex;
+                      list-style: none;
+                      align-items: center;
+                      justify-content: space-around;
+                      ">
+                      <li><img src="`+item.food_img+`" style="width:100px"></li>
+                      <li><p>`+item.food_item_name+`</p></li>
+                        <div class="counter" style="display: flex;
+                        flex-wrap: wrap;
+                        flex-direction: row-reverse;
+                        justify-content: center;">
+                          <button class="button is-ghost btn_cart_minus" id="btn_cart_minus`+cart[i].id+`"><i class="counter-icons fa-solid fa-minus"></i></button>
+                          <p id="btn_qty_val`+cart[i].id+`" style="padding:5px;font-weight:600;margin-top:0;line-height:3.5;">`+cart[i].qty+`</p>  
+                          <button class="button is-ghost btn_cart_plus" id="btn_cart_plus`+cart[i].id+`"><i class="counter-icons fa-solid fa-plus"></i></button>
+                          </div>
+                      <p>Rs. `+item.food_item_price+`</p>
+                  </ul>
+                  </div></div>`);
+                //$('#cart_items').append(html);
+        };
+      }
+      } else {
+      console.error("Response or items_in_cart is undefined:", response);
+      }
+      },
+      error: function(xhr, status, error) {
+          console.error("ajax error is:",xhr.responseText);
+      }
+  });
+  }
+  });
+  //plus or minus work
+  $(document-).on('click', 'button.btn_cart_minus', function() {
+    // Get the ID of the minus button
+    var id = $(this).attr('id').replace('btn_cart_minus', '');
+    console.log("Minus button with ID " + id + " is clicked");
+    
+    // Update the quantity for this specific item
+    var element = $(".btn_qty_val" + id);
+    var qty = parseInt(element.text());
+    qty = Math.max(0, qty - 1);
+    element.text(qty);
+});
+    $(".counter").on('click', 'button.btn_cart_plus', function() {
+        console.log("plus is clicked");
+        var element = document.querySelector(".btn_qty_val");
+        b=parseInt(element.innerText);
+        b=b+1;
+        element.innerHTML = b;
+    });
+});
+    </script>
+    {% block js %}{% endblock js %}
 
 
 

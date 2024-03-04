@@ -1,134 +1,34 @@
-{% extends 'Customer_App/template/base.html' %}
-{% block content %}
 
-    {% comment %} food detail page theme link start {% endcomment %}
-      <!-- Favicon -->
-  <link rel="shortcut icon" type="/static/Customer_CSS/Food_Related_Page_theme/image/x-icon" href="images/favicon.png" /> 
-  
-  <!-- Themefisher Icon font -->
-  <link rel="stylesheet" href="/static/Customer_CSS/Food_Related_Page_theme/plugins/themefisher-font/style.css">
-  <!-- bootstrap.min css -->
-  <link rel="stylesheet" href="/static/Customer_CSS/Food_Related_Page_theme/plugins/bootstrap/css/bootstrap.min.css">
-  
-  <!-- Animate css -->
-  <link rel="stylesheet" href="/static/Customer_CSS/Food_Related_Page_theme/plugins/animate/animate.css">
-  <!-- Slick Carousel -->
-  <link rel="stylesheet" href="/static/Customer_CSS/Food_Related_Page_theme/plugins/slick/slick.css">
-  <link rel="stylesheet" href="/static/Customer_CSS/Food_Related_Page_theme/plugins/slick/slick-theme.css">
-  
-  <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="/static/Customer_CSS/Food_Related_Page_theme/css/style.css"> 
-  {% comment %} food detail page theme link end {% endcomment %}
-<section class="page-header">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="content">
-					<h1 class="page-name">Cart</h1>
-					<ol class="breadcrumb">
-						<li><a href="index.html">Home</a></li>
-						<li class="active">cart</li>
-					</ol>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<div class="page-wrapper">
-  <div class="cart shopping">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <div class="block">
-            <div class="product-list">
-              <form method="post">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th class="">Item Name</th>
-					  {% comment %} <th class="">Quantity</th> {% endcomment %}
-                      <th class="">Item Price</th>
-                      {% comment %} <th class="">Total Price</th> {% endcomment %}
-                      <th class="">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr class="">
-                      <td class="">
-                        <div class="product-info">
-                          <img width="80" src="images/shop/cart/cart-1.jpg" alt="" />
-                          <a href="#!">Sunglass</a>
-                        </div>
-                      </td>
-                      <td class="">$200.00</td>
-                      <td class="">
-                        <a class="product-remove" href="#!">Remove</a>
-                      </td>
-                    </tr>
-                    <tr class="">
-                      <td class="">
-                        <div class="product-info">
-                          <img width="80" src="images/shop/cart/cart-2.jpg" alt="" />
-                          <a href="#!">Airspace</a>
-                        </div>
-                      </td>
-                      <td class="">$200.00</td>
-                      <td class="">
-                        <a class="product-remove" href="#!">Remove</a>
-                      </td>
-                    </tr>
-                    <tr class="">
-                      <td class="">
-                        <div class="product-info">
-                          <img width="80" src="images/shop/cart/cart-3.jpg" alt="" />
-                          <a href="#!">Bingo</a>
-                        </div>
-                      </td>
-                      <td class="">$200.00</td>
-                      <td class="">
-                        <a class="product-remove" href="#!">Remove</a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <a href="checkout.html" class="btn btn-main pull-right">Checkout</a>
-              </form>
-            </div>
-          </div>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="cart_sidebar" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">Cart</h5>
+    <button class="btn btn-primary clear_cart" type="button" style="margin-left:39%;">Clear Cart</button>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body" style="padding:0;">
+    <div class="container" id="#cart_items">
+      {% comment %} {% for item in items_in_cart %}
+      <div class="row" style="border-bottom: 1px solid lightgrey;">
+        <div class="col-3" style="padding: 0;">
+            <img src="/static/Customer_CSS/assets/img/gallery/search-pizza.png" style="width:100px">
+          <p></p>
         </div>
+        <div class="col-4" style="padding:0;line-height: 5;padding-left: 9px;font-weight: 600;font-size: large;">
+            <p>Cheese Burger</p>
+          <p></p>
+        </div>
+        <div class="col-5 d-flex" style="justify-content:flex-end;align-items:flex-end;flex-direction: column;">
+          <p style="margin-top: revert-layer;margin-bottom: unset;">Rs. 490</p>
+          <!--<div class="counter">
+            <button class="button is-ghost" ><i class="counter-icons fa-solid fa-minus"></i></button>
+            <p class="valpr" id="" style="padding:5px;font-weight:600;margin-top:0;line-height:3.5;">1</p>
+            <button class="button is-ghost " ><i class="counter-icons fa-solid fa-plus"></i></button>
+          </div>-->
+        <p></p>
+      </div>
+      {% endfor %} {% endcomment %}
       </div>
     </div>
   </div>
+  
 </div>
-
-{% endblock %}
-
-{% block js %}
-{% comment %} Restaurant Detail Page scripting start{% endcomment %}
-    <!-- jQery -->
-    {% comment %} <script src="/static/Customer_CSS/Restaurant_Page_theme/js/jquery-3.4.1.min.js"></script>
-    <!-- popper js -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <!-- bootstrap js -->
-    <script src="/static/Customer_CSS/Restaurant_Page_theme/js/bootstrap.js"></script>
-    <!-- owl slider -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
-    </script>
-    <!-- isotope js -->
-    <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
-    <!-- nice select -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
-    <!-- custom js -->
-    <script src="/static/Customer_CSS/Restaurant_Page_theme/js/custom.js"></script>
-    <!-- Google Map -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
-    </script> {% endcomment %}
-    <!-- End Google Map -->
-      {% comment %} Restaurant Detail Page scripting end{% endcomment %}
-    
-<script>
-  console.log("Hello");
-</script>  
-{% endblock js %}
