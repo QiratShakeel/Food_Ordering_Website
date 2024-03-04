@@ -13,6 +13,16 @@ def home(request):
             return render(request,"Admin_App/template/index.html",{'username':user_name})
 
 # admin registration
+def admin_signup(request):
+    if request.method == 'POST':
+        name=request.POST.get('admin_name')
+        email=request.POST.get('admin_email')
+        password=request.POST.get('admin_pass')
+        user= User.objects.create_user(name,email,password)
+        user.save()
+        return redirect('admin_signin')
+    return render(request,"Admin_App/template/admin_signup.html")
+
 def admin_signin(request):
     if request.method == 'POST':
         us= request.POST.get('admin_name')
@@ -78,10 +88,10 @@ def food_cat_list(request):
 @login_required(login_url='admin_signin')
 def food_cat_form(request):
     if request.method == 'POST':
-        form = FoodCatForm(request.POST)
+        form = FoodCatForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('food_cat_list')
     form = FoodCatForm()
     return render(request,'Admin_App/template/food_cat/food_cat_form.html',{'form': form,'type':Food_Type.objects.all()})
 
@@ -92,7 +102,7 @@ def food_cat_update(request, id):
         obj = Food_Category.objects.get(food_cat_id = id)
     except Food_Category.DoesNotExist:
         return redirect('food_cat_list')
-    form = FoodCatForm(request.POST or None, instance=obj)
+    form = FoodCatForm(request.POST or None,request.FILES, instance=obj)
     if form.is_valid():
        form.save()
        return redirect('food_cat_list')

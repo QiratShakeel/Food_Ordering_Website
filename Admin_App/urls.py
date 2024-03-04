@@ -11,6 +11,7 @@ urlpatterns = [
     path('food_cat/list/', views.food_cat_list,name='food_cat_list'),
     path('food_cat/update/<int:id>', views.food_cat_update,name='food_cat_update'),
     path('food_cat/delete/<int:id>', views.food_cat_delete),
+    path('signup/', views.admin_signup,name="admin_signup"),
     path('signin/', views.admin_signin,name="admin_signin"),
-    path('signout/', views.admin_signout),
+    path('signout/', views.admin_signout,name="admin_signout"),
 ] 

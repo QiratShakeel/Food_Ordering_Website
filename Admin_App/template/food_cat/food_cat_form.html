@@ -10,7 +10,7 @@
           <div class="card-body" style="margin: 20px;">
                  <h1 class="card-title" style="text-align: center; color:#ff6a00bb; font-size: 30px; font-family:cursive;">Category Register</h1>
                  <h2 class="card-title" style="text-align: center; color:rgb(95, 95, 95); font-size: 15px; font-family: 'Bad Script'; font-weight:bold">... You Can Register Food Categories Here ...</h2>
-                  <form class="forms-sample" method="post">
+                  <form class="forms-sample" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {% comment %} <input type="text" name="food_cat_id" hidden class="form-control"> {% endcomment %}
                     <div class="form-group">
@@ -24,6 +24,10 @@
                         <option value="{{type.food_id}}">{{type.food_type}}</option>
                         {% endfor %}
                       </select>
+                    </div>
+                    <div class="form-group">
+                      <label style="font-size: 17px; color:rgb(90, 90, 90);">Choose Food Category File</label>
+                      <input class="form-control" type="file" name="food_cat_img" id="formFile">
                     </div> 
                     <button type="submit" class="btn mr-2 btn-grade" style="background-color: #ff6900; color: white;">Submit Food Category</button>
                     <a href="{% url 'food_cat_list' %}" class="btn btn-light">Cancel</a>

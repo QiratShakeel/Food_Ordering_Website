@@ -100,10 +100,12 @@ def food_item_form(request):
     if 'rest_id' in request.session:
         rest_id = request.session['rest_id']
         if request.method == 'POST':
-            form = FoodItemForm(request.POST,request.FILES)
+            form = FoodItemForm(request.POST or None,request.FILES)
             if form.is_valid():
                 form.save()
                 return redirect('food_item_list')
+            # else: 
+            #     return HttpResponse("form is not valid")
         form = FoodItemForm()
         return render(request,'Restaurant_App/template/food_item/food_item_form.html',{'form': form,'cat':Food_Category.objects.all(),'rest_id':rest_id})
     else:

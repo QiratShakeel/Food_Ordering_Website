@@ -16,6 +16,7 @@
                             <th style="font-size: 23px;">Food Category ID</th>
                             <th style="font-size: 23px;">Food Types</th>
                             <th style="font-size: 23px;">Food Categories</th>
+                            <th style="font-size: 23px;">Image</th>
                             <th style="font-size: 23px;">Action Buttons</th>
                         </tr>
                     </thead>
@@ -25,6 +26,7 @@
                         <td>{{cat.food_cat_id}}</td>
                         <td>{{cat.food_cat}}</td>
                         <td>{{cat.food_type_fk.food_type}}</td>
+                        <td><img src="{{cat.food_cat_img.url}}" style="height: 80px; width:100px;"/></td>
                         <td>
                             <a href="../update/{{cat.food_cat_id}}" id="{{cat.food_cat_id}}"  class="btn btn-icon-text" style="background-color: #e46103; color: white; border-radius: 15px 30px; border: none; box-shadow: 0 0.5rem 1.2rem rgba(247, 127, 29, 0.534);">Update <i class="fa-solid fa-pen-to-square"></i></a>
                             <a href="../delete/{{cat.food_cat_id}}" id="{{cat.food_cat_id}}" class="btn btn-danger btn-icon-text" style="border-radius: 15px 30px; margin-left:10px; box-shadow: 0 0.5rem 1.2rem rgba(248, 72, 18, 0.534);">Delete <i class="fa-solid fa-trash-can"></i></a>
