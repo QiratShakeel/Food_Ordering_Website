@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'Customer_App',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'widget_tweaks',
-    'Customer_App',
     'Restaurant_App',
     'Admin_App',
     'debug_toolbar'
@@ -154,3 +154,4 @@ STATICFILES_DIRS=[
 #DataFlair #User_Uploaded_Files
 MEDIA_URL = '/media/'
 MEDIA_ROOT=BASE_DIR/ 'media'
+
