@@ -1,0 +1,23 @@
+{% extends 'Admin_App/template/base.html' %}
+{% block content %}
+    <div class="main-panel">
+    <div class="content-wrapper" style="padding:0;">
+    <div class="profile_container">
+    <div class="profile_card">
+        <div class="imgbx">
+            <img src="/static/Admin_CSS/images/admin_profile_image.jpg" alt="profile">
+        </div>
+        <div class="content">
+            <div class="details">
+                <h1 class="text-primary m-0" style="background: linear-gradient(50deg, #fb3c00, #ffb800); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight:bold; margin-bottom: 30px"><span class="fa fa-utensils text-gradient"></span> Foodie</h1>
+                <h2 style=" color:rgb(116, 116, 116); font-size: 18px; font-family: 'Bad Script'; ">... Welcome to Foodie Profile Page ...</h2>
+                <h1 class="card-title" style="text-align: center; color:#ff6a00bb; font-size: 18px; font-family:cursive;">{{msg}}</h1>
+                <div class="data">
+                    <h2>Name: {{name}} <br><span>Email: {{email}}</span></h2>
+                <a href="{% url 'admin_update_profile' id %}" class="btn profile_btn-grad">You can Update Your Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %} 

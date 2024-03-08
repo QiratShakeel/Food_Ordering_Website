@@ -287,3 +287,52 @@
     background: var(--dark);
     border-color: var(--primary);
 }
+
+/* **************************Restaurant Profile CSS HERE **************************/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+.restaurant_profile_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3% 0%;
+  background: #000;
+}
+.restaurant_profile_container .wrapper {
+  position: relative;
+  width: 60%;
+  /* height: 30%; */
+  background: #191C24 ;
+  /* box-shadow: 0 0 50px rgb(255, 174, 0); */
+  /* box-shadow: 0 0 50px rgb(195, 163, 98); */
+  border-radius: 20px;
+  padding: 40px;
+}
+/* .restaurant_profile_container .wrapper:hover {
+  animation: animate 1s linear infinite;
+}
+@keyframes animate {
+  100% {
+    filter: hue-rotate(360deg);
+  }
+} */
+.restaurant_profile_container .form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  text-align: center;
+}
+
+.restaurant_profile_container h2 {
+  font-size: 30px;
+  color: #fff;
+  text-align: center;
+}
+/* **************************Restaurant Profile CSS END HERE **************************/

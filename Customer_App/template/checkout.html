@@ -1,0 +1,64 @@
+{% extends 'Customer_App/template/checkout_base.html' %}
+{% block content %}
+
+<div style="display: flex;justify-content:center;padding-top:2%;">
+  {% comment %} <img src="/static/Admin_CSS/images/preview.png" style="width:15%;"/> {% endcomment %}
+  <a class="navbar-brand brand-logo mr-5" href="{% url 'customer_index' %}" ><h2 class="text-primary m-0" style="background: linear-gradient(50deg, #fb3c00, #ffb800); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight:bold; text-align: center;"><span class="fa fa-utensils text-gradient"></span> Foodie</h2></a>
+</div>
+<div class="checkout_row">
+  <div id="cart_url" style="display: none;">{% url 'cart' %}</div>
+  <div id="checkout_url" style="display: none;">{% url 'checkout' %}</div>
+  <div class="col-75">
+    <div class="checkout_container">
+      <form method="post">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-50">
+            <h3>Billing Address</h3>
+            <input  name="order_total_price" id="totalprice" hidden>
+            <label><i class="fa fa-institution"></i> City</label>
+            <input type="text" name="order_address_city" placeholder="Karachi">
+            </label><i class="fa fa-address-card-o"></i> Address</label>
+            <input type="text" name="order_address" placeholder="542 W. 15th Street">
+            <label for="fname"><i class="fa fa-map-marker"></i> Nearest Landmark</label>
+            <input type="text" name="order_address_landmark" placeholder="Any famous Place Nearby">
+            <label><i class="fa fa-info"></i> Delivery Instructions</label>
+            <input type="text" name="order_address_instructions" placeholder="">
+          </div>
+          <!--<div class="col-50">
+            <h3>Payment</h3>
+            <label for="fname">Accepted Cards</label>
+            <div class="icon-container">
+              <i class="fa fa-cc-visa" style="color:navy;"></i>
+              <i class="fa fa-cc-amex" style="color:blue;"></i>
+              <i class="fa fa-cc-mastercard" style="color:red;"></i>
+              <i class="fa fa-cc-discover" style="color:orange;"></i>
+            </div>
+            <label for="cname">Name on Card</label>
+            <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+            <label for="ccnum">Credit card number</label>
+            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+            <label for="expmonth">Exp Month</label>
+            <input type="text" id="expmonth" name="expmonth" placeholder="September">
+            <div class="row">
+              <div class="col-50">
+                <label for="expyear">Exp Year</label>
+                <input type="text" id="expyear" name="expyear" placeholder="2018">
+              </div>
+              <div class="col-50">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" placeholder="352">
+              </div>
+            </div>
+          </div>-->
+        </div>
+        <button type="submit" class="btn" id="order_btn_">Place Your Order</button>
+      </form>
+    </div>
+  </div>
+  <div class="col-25">
+    <div class="checkout_container" id="checkout_cart_section_">      
+    </div>
+  </div>
+</div>
+{%endblock content%}

@@ -14,4 +14,10 @@ urlpatterns = [
     path('signup/', views.admin_signup,name="admin_signup"),
     path('signin/', views.admin_signin,name="admin_signin"),
     path('signout/', views.admin_signout,name="admin_signout"),
+    path('admin_profile/', views.admin_profile,name="admin_profile"),
+    path('admin_change_password/', views.admin_change_password,name="admin_change_password"),
+    path('admin_update_profile/<int:id>', views.admin_update_profile,name="admin_update_profile"),
+    path('admin_restaurants_list', views.admin_restaurants_list,name="admin_restaurants_list"),
+    path('admin_customers_list', views.admin_customers_list,name="admin_customers_list"),
+    path('admin_orders_list', views.admin_orders_list,name="admin_orders_list"),
 ] 

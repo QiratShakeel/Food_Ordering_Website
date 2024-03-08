@@ -13,6 +13,7 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpRequest
 from django.db import transaction
 from .models import Order,Cart_Items
+from Restaurant_App.models import Restaurant
 import json
 
 @login_required(login_url='customer_signin')
@@ -26,7 +27,9 @@ def home(request):
     return render(request,"Customer_App/template/index.html",params)
 
 def restaurant_detail(request):
-    return render(request,"Customer_App/template/restaurant_detail.html")
+    obj=Restaurant.objects.all()
+    params={"obj":obj}
+    return render(request,"Customer_App/template/restaurant_detail.html",params)
 
 def food_item_detail(request):
     if request.method == 'GET' and request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
@@ -86,67 +89,182 @@ def customer_signout(request):
     logout(request)
     return redirect('customer_index')
 
+# def checkout(request):
+#     if request.user.is_authenticated:
+#             user_id = request.user.id
+#             userId = User.objects.get(id=user_id)
+#             # params={'user_id':user_id}
+#             try:
+#                 with transaction.atomic():
+#                     if request.method == 'POST' and request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':                        
+#                         data=json.loads(request.body)
+#                         key=data.get('key')
+#                         if not key:
+#                             user_fk=userId
+#                             order_total_price=request.POST.get('order_total_price')
+#                             order_address_city=request.POST.get('order_address_city')
+#                             order_address=request.POST.get('order_address')
+#                             order_address_landmark=request.POST.get('order_address_landmark') if request.POST.get('order_address_landmark') else None 
+#                             order_address_instructions=request.POST.get('order_address_instructions') if request.POST.get('order_address_instructions') else None
+#                             order = Order.objects.create(
+#                             user_fk=user_fk,
+#                             order_total_price=order_total_price,
+#                             order_address_city=order_address_city,
+#                             order_address=order_address,
+#                             order_address_landmark=order_address_landmark,
+#                             order_address_instructions=order_address_instructions
+#                             )                        
+#                         # print("ajax data key",key)
+#                             order.save()
+#                         else:
+#                             cart=data.get('cart')
+#                             print("Received AJAX data cart:", cart)
+#                             for item in cart:
+#                                 food_item_fk =  item.get('id')
+#                                 cart_item_qty = item.get('qty')
+#                                 cart_item_instructions = item.get('instructions') if item.get('instructions') else None
+#                                 food_item=Food_Item.objects.get(food_item_id=food_item_fk)
+#                                 price=food_item.food_item_price
+#                                 cart_item_price = cart_item_qty*price
+#                                 Cart_Items.objects.create(
+#                                     order_fk= order.order_id,
+#                                     food_item_fk= food_item_fk,
+#                                     cart_item_qty= cart_item_qty,
+#                                     cart_item_price=cart_item_price,
+#                                     cart_item_instructions= cart_item_instructions
+#                                 )
+#                             return redirect('customer_index')                        
+#                     # else:
+#                     #     return HttpResponse("not valid")
+#             except Exception as e:
+#                 return JsonResponse({'error': str(e)}, status=400)            
+#     return render(request,"Customer_App/template/checkout.html")
+
+
+@login_required(login_url='customer_signin')
 def checkout(request):
-    # ajax_data = json.loads(request.body)
-    # print(ajax_data)
     if request.user.is_authenticated:
-            user_id = request.user.id
-            params={'user_id':user_id}
-            try:
-                with transaction.atomic():
-                    if request.method == 'POST':
-                        ajax_data = json.loads(request.body)
-                        cart = ajax_data.get('cart')
-                        print("Received cart data:", cart)
-                        user_fk=user_id
-                        order_total_price=request.POST.get('order_total_price')
-                        order_address_city=request.POST.get('order_address_city')
-                        order_address=request.POST.get('order_address')
-                        order_address_landmark=request.POST.get('order_address_landmark') if request.POST.get('order_address_landmark') else None 
-                        order_address_instructions=request.POST.get('order_address_instructions') if request.POST.get('order_address_instructions') else None
+        user_id = request.user.id
+        userId = User.objects.get(id=user_id)
+        try:
+            with transaction.atomic():
+                if request.is_ajax():  # Checking for AJAX request
+                    data = json.loads(request.body)
+                    key = data.get('key')
+                    if not key:
+                        user_fk = userId
+                        order_total_price = data.get('order_total_price')
+                        order_address_city = data.get('order_address_city')
+                        order_address = data.get('order_address')
+                        order_address_landmark = data.get('order_address_landmark')
+                        order_address_instructions = data.get('order_address_instructions')
                         order = Order.objects.create(
-                                user_fk=user_fk,
-                                order_total_price=order_total_price,
-                                order_address_city=order_address_city,
-                                order_address=order_address,
-                                order_address_landmark=order_address_landmark,order_address_instructions=order_address_instructions
-                                )
-                        order.save()    
-                        if 'key' in ajax_data:
-                            ajax_data = request.POST.get('key')
-                            print("Received AJAX data:", ajax_data)
-                            for item in cart:
-                                food_item_fk =  item.get('id')
-                                cart_item_qty = item.get('qty')
-                                cart_item_instructions = item.get('instructions') if item.get('instructions') else None
-                                food_item=Food_Item.objects.get(food_item_id=food_item_fk)
-                                price=food_item.food_item_price
-                                cart_item_price = cart_item_qty*price
-                                Cart_Items.objects.create(
-                                    order_fk= order.order_id,
-                                    food_item_fk= food_item_fk,
-                                    cart_item_qty= cart_item_qty,
-                                    cart_item_price=cart_item_price,
-                                    cart_item_instructions= cart_item_instructions
-                                )
-                            return redirect('customer_index')
+                            user_fk=user_fk,
+                            order_total_price=order_total_price,
+                            order_address_city=order_address_city,
+                            order_address=order_address,
+                            order_address_landmark=order_address_landmark,
+                            order_address_instructions=order_address_instructions
+                        )
+                        order.save()
                     else:
-                        return HttpResponse("not valid")
-            except Exception as e:
-                print("Error:", str(e))            
-            return render(request,"Customer_App/template/checkout.html",params)
+                        cart = data.get('cart')
+                        for item in cart:
+                            food_item_fk = item.get('id')
+                            cart_item_qty = item.get('qty')
+                            cart_item_instructions = item.get('instructions')
+                            food_item = Food_Item.objects.get(food_item_id=food_item_fk)
+                            price = food_item.food_item_price
+                            cart_item_price = cart_item_qty * price
+                            Cart_Items.objects.create(
+                                order_fk=order.order_id,
+                                food_item_fk=food_item_fk,
+                                cart_item_qty=cart_item_qty,
+                                cart_item_price=cart_item_price,
+                                cart_item_instructions=cart_item_instructions
+                            )
+                        return JsonResponse({'success': True})  # Returning JSON response for success
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)  # Returning JSON response for error
+    return render(request, "Customer_App/template/checkout.html")
 
-# def add_to_cart_and_create_order(request, cart_item_data, order_data):
-#     # Assuming cart_item_data and order_data are dictionaries containing data for Cart and Order models respectively
 
-#     try:
-#         with transaction.atomic():
-#             # Create and save cart item
-#             cart_item = Cart.objects.create(**cart_item_data)
+# profile
+def customer_profile(request):
+    if request.user.is_authenticated:
+            user_name = request.user.username
+            email = request.user.email
+            params = {"name":user_name,"email":email}
+            return render(request,"Customer_App/template/customer_settings/customer_profile.html",params)
+    
+def customer_change_password(request):
+    if request.user.is_authenticated:
+            id = request.user.id
+            user=User.objects.get(id=id)
+            if request.method == "POST":
+                current_password = request.POST.get('current_password')
+                new_password = request.POST.get('new_password') 
+                confirm_new_password = request.POST.get('confirm_new_password')
+                if user.check_password(current_password):
+                    if new_password == confirm_new_password:
+                        user.set_password(new_password)
+                        user.save()
+                        params={"msg":"password is Changed !!"}
+                        return render(request,"Customer_App/template/customer_settings/customer_change_password.html",params)
+                    else:
+                        params={"msg":"Confirm password is not match to new password !!"}
+                        return render(request,"Customer_App/template/customer_settings/customer_change_password.html",params)
+                else:
+                    params={"msg":"Password doesnt match to the current password !!"}
+                    return render(request,"Customer_App/template/customer_settings/customer_change_password.html",params)
+            return render(request,"Customer_App/template/customer_settings/customer_change_password.html")
 
-#             # Create and save order
-#             order = Order.objects.create(**order_data)
+def customer_profile_update(request,id):
+    obj=User.objects.get(id=id)
+    if request.method=="POST":
+        name= request.POST.get('name')
+        email= request.POST.get('email')
+        obj.username= name
+        obj.email= email
+        obj.save()
+        params={"msg":"Your Profile is Updated!",'id':obj.id,"name":name,"email":email}
+        return render(request,"Customer_App/template/customer_settings/customer_profile.html",params)
+    return render(request,"Customer_App/template/customer_settings/customer_profile_update.html",{"obj":obj})
 
-#     except Exception as e:
-#         # Handle exceptions here
-#         print("Error:", str(e))
+# 
+
+
+# if not key:
+#                             user_fk=userId
+#                             order_total_price=request.POST.get('order_total_price')
+#                             order_address_city=request.POST.get('order_address_city')
+#                             order_address=request.POST.get('order_address')
+#                             order_address_landmark=request.POST.get('order_address_landmark') if request.POST.get('order_address_landmark') else None 
+#                             order_address_instructions=request.POST.get('order_address_instructions') if request.POST.get('order_address_instructions') else None
+#                             order = Order.objects.create(
+#                                 user_fk=user_fk,
+#                                 order_total_price=order_total_price,
+#                                 order_address_city=order_address_city,
+#                                 order_address=order_address,
+#                                 order_address_landmark=order_address_landmark,
+#                                 order_address_instructions=order_address_instructions
+#                                 )
+#                             order.save()
+#                         else:
+#                             cart=data.get('cart')
+#                             print("Received AJAX data cart:", cart)
+#                             for item in cart:
+#                                 food_item_fk =  item.get('id')
+#                                 cart_item_qty = item.get('qty')
+#                                 cart_item_instructions = item.get('instructions') if item.get('instructions') else None
+#                                 food_item=Food_Item.objects.get(food_item_id=food_item_fk)
+#                                 price=food_item.food_item_price
+#                                 cart_item_price = cart_item_qty*price
+#                                 Cart_Items.objects.create(
+#                                     order_fk= order.order_id,
+#                                     food_item_fk= food_item_fk,
+#                                     cart_item_qty= cart_item_qty,
+#                                     cart_item_price=cart_item_price,
+#                                     cart_item_instructions= cart_item_instructions
+#                                 )
+#                             return redirect('customer_index')

@@ -1,0 +1,46 @@
+{% extends 'Restaurant_App/template/base.html' %}
+{% block content %}
+<!-- Table Start -->
+<main>
+<div class="container-fluid pt-4 px-4">
+    <div class="row" style="margin-top: 30px;">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card bg-secondary" style="border-radius: 15px 30px; box-shadow: 0 0.5rem 1.2rem rgba(0,0,0,.2)">
+                <div class="card-body" style="margin-bottom: 50px; padding: 20px;"></div>
+                <h1 class="card-title" style="text-align: center; color:#ff6a00bb; font-size: 30px; font-family:cursive;">Cart Items</h1>
+                <h2 class="card-title" style="text-align: center; color:rgb(95, 95, 95); font-size: 15px; font-family: 'Bad Script'; font-weight:bold">... You Can View Cart Items List Here ...</h2>
+                   <div class="table-responsive pt-3" style=" padding: 20px">
+                     <table  class="table table-striped table table-striped table-hover"  style=" box-shadow: 0 0.5rem 1.2rem rgba(0,0,0,.2);">
+                    <thead>
+                        <tr style="text-align: center;">
+                            <th style="font-size: 23px;">CartId</th>
+                            <th style="font-size: 23px;">OrderId</th>
+                            <th style="font-size: 23px;">UserName</th>
+                            <th style="font-size: 23px;">Item Name</th>
+                            <th style="font-size: 23px;">Item Qty</th>
+                            <th style="font-size: 23px;">Item Price</th>
+                            <th style="font-size: 23px;">Item Instructions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                         {% for cart_item in list  %}
+                        <tr style="text-align: center; font-size: 19px; font-family:cursive;">
+                            <td>{{cart_item.cart_item_id}}</td>
+                            <td>{{cart_item.order_fk.order_id}}</td>
+                            <td>{{cart_item.order_fk.user_fk.username}}</td>
+                            <td>{{cart_item.food_item_fk.food_item_name}}</td>
+                            <td>{{cart_item.cart_item_qty}}</td>
+                            <td>{{cart_item.cart_item_price}}</td>
+                            <td>{{cart_item.cart_item_instructions}}</td>
+                        </tr>
+                        {% endfor %} 
+                    </tbody>
+                     </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
+</div>
+</main>
