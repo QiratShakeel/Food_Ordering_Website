@@ -1,12 +1,32 @@
 {% extends 'Customer_App/template/base.html' %}
 {% block content %}
-<section class="py-5 overflow-hidden bg-primary" id="home">
+<style>
+  .btn-grad {
+    background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%);
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #f88e029f;
+    border-radius: 10px;
+    display: block;
+  }
+
+  .btn-grad:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
+</style>
+<section class="py-5 overflow-hidden" style="background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%);" id="home">
   <div class="container">
     <div class="row flex-center">
       <div class="col-md-5 col-lg-6 order-0 order-md-1 mt-8 mt-md-0"><a class="img-landing-banner" href="#!"><img class="img-fluid" src="/static/Customer_CSS/assets/img/gallery/hero-header.png" alt="hero-header" /></a></div>
       <div class="col-md-7 col-lg-6 py-8 text-md-start text-center">
         <h1 class="display-1 fs-md-5 fs-lg-6 fs-xl-8 text-light">Are you starving?</h1>
-        <h1 class="text-800 mb-5 fs-4">Within a few clicks, find meals that<br class="d-none d-xxl-block" />are accessible near you</h1>
+        <h1 class=" mb-5 fs-4 text-light">Within a few clicks, find meals that<br class="d-none d-xxl-block" />are accessible near you</h1>
         <div class="card w-xxl-75">
           <div class="card-body">
             <nav>
@@ -25,7 +45,7 @@
                     </div>
                   </div>
                   <div class="d-grid gap-3 col-sm-auto">
-                    <button class="btn btn-danger" type="submit">Find Food</button>
+                    <button class="btn btn-grad" type="submit">Find Food</button>
                   </div>
                 </form>
               </div>
@@ -38,7 +58,7 @@
                     </div>
                   </div>
                   <div class="d-grid gap-3 col-sm-auto">
-                    <button class="btn btn-danger" type="submit">Find Food</button>
+                    <button class="btn btn-grad " type="submit">Find Food</button>
                   </div>
                 </form>
               </div>
@@ -209,7 +229,7 @@
                       <span class="text-1000 fw-bold">$3.88</span>
                     </div>
                   </div>
-                  <div class="d-grid gap-2"><a class="btn btn-lg btn-danger" href="#!" role="button">Order now</a></div>
+                  <div class="d-grid gap-2"><a class="btn btn-lg btn-grad" href="#!" role="button">Order now</a></div>
                 </div>
                 {% endfor %}
               </div>
@@ -249,7 +269,7 @@
                         <div><span class="text-warning me-2"><i class="fas fa-map-marker-alt"></i></span><span class="text-primary">{{items.0.rest_fk_id.rest_name}}</span></div><span class="text-1000 fw-bold">Rs.{{items.0.food_item_price}}</span>
                       </div>
                       </div>
-                      <div class="d-grid gap-2"><a class="btn btn-lg btn-danger" href="#!" role="button">Order now</a></div>
+                      <div class="d-grid gap-2"><a class="btn btn-lg btn-grad" href="#!" role="button">Order now</a></div>
                     </button>
                     
                   </div>
@@ -262,7 +282,7 @@
                         <div><span class="text-warning me-2"><i class="fas fa-map-marker-alt"></i></span><span class="text-primary">{{items.rest_fk_id.rest_name}}</span></div><span class="text-1000 fw-bold">Rs.{{items.food_item_price}}</span>
                       </div>
                       </div>
-                      <div class="d-grid gap-2"><a class="btn btn-lg btn-danger" href="#!" role="button">Order now</a></div>
+                      <div class="d-grid gap-2"><a class="btn btn-lg btn-grad" href="#!" role="button">Order now</a></div>
                     </button>
                     
                   </div>
@@ -427,7 +447,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12 d-flex justify-content-center mt-5"> <a class="btn btn-lg btn-primary" href="#!">View All <i class="fas fa-chevron-right ms-2"> </i></a></div>
+      <div class="col-12 d-flex justify-content-center mt-5"> <a class="btn btn-lg btn-grad" href="#!">View All <i class="fas fa-chevron-right ms-2"> </i></a></div>
     </div>
   </div>
 </section>
@@ -709,7 +729,7 @@
               <div class="col-md-7 col-xl-5 col-xxl-4 p-4 p-lg-5">
                 <h1 class="card-title mt-xl-5 mb-4">Best deals <span class="text-primary"> Crispy Sandwiches</span></h1>
                 <p class="fs-1">Enjoy the large size of sandwiches. Complete your meal with the perfect slice of sandwiches.</p>
-                <div class="d-grid bottom-0"><a class="btn btn-lg btn-primary mt-xl-6" href="#!">PROCEED TO ORDER<i class="fas fa-chevron-right ms-2"></i></a></div>
+                <div class="d-grid bottom-0"><a class="btn btn-lg mt-xl-6 btn-grad" href="#!">PROCEED TO ORDER<i class="fas fa-chevron-right ms-2"></i></a></div>
               </div>
             </div>
           </div>
@@ -739,7 +759,7 @@
               <div class="col-md-7 col-xl-5 col-xxl-4 p-4 p-lg-5">
                 <h1 class="card-title mt-xl-5 mb-4">Celebrate parties with <span class="text-primary">Fried Chicken</span></h1>
                 <p class="fs-1">Get the best fried chicken smeared with a lip smacking lemon chili flavor. Check out best deals for fried chicken.</p>
-                <div class="d-grid bottom-0"><a class="btn btn-lg btn-primary mt-xl-6" href="#!">PROCEED TO ORDER<i class="fas fa-chevron-right ms-2"></i></a></div>
+                <div class="d-grid bottom-0"><a class="btn btn-lg btn-grad mt-xl-6" href="#!">PROCEED TO ORDER<i class="fas fa-chevron-right ms-2"></i></a></div>
               </div>
             </div>
           </div>
@@ -769,7 +789,7 @@
               <div class="col-md-7 col-xl-5 col-xxl-4 p-4 p-lg-5">
                 <h1 class="card-title mt-xl-5 mb-4">Wanna eat hot & <span class="text-primary">spicy Pizza?</span></h1>
                 <p class="fs-1">Pair up with a friend and enjoy the hot and crispy pizza pops. Try it with the best deals.</p>
-                <div class="d-grid bottom-0"><a class="btn btn-lg btn-primary mt-xl-6" href="#!">PROCEED TO ORDER<i class="fas fa-chevron-right ms-2"></i></a></div>
+                <div class="d-grid bottom-0"><a class="btn btn-lg btn-grad mt-xl-6" href="#!">PROCEED TO ORDER<i class="fas fa-chevron-right ms-2"></i></a></div>
               </div>
             </div>
           </div>
@@ -783,7 +803,7 @@
 <!-- ============================================-->
 
 
-<section class="py-0">
+<section class="py-0" style="margin-bottom: 120px;">
   <div class="bg-holder" style="background-image:url(/static/Customer_CSS/assets/img/gallery/cta-two-bg.png);background-position:center;background-size:cover;">
   </div>
   <!--/.bg-holder-->
@@ -791,7 +811,7 @@
   <div class="container">
     <div class="row flex-center">
       <div class="col-xxl-9 py-7 text-center">
-        <h1 class="fw-bold mb-4 text-white fs-6">Are you ready to order <br />with the best deals? </h1><a class="btn btn-danger" href="#"> PROCEED TO ORDER<i class="fas fa-chevron-right ms-2"></i></a>
+        <h1 class="fw-bold mb-4 text-white fs-6">Are you ready to order <br />with the best deals? </h1><a class="btn btn-grad" href="#"> PROCEED TO ORDER<i class="fas fa-chevron-right ms-2"></i></a>
       </div>
     </div>
   </div>

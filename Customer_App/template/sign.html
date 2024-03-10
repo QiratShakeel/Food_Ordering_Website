@@ -11,9 +11,30 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <link rel="stylesheet" href="/static/Customer_login_CSS/assets/css/style.css">
-<title>Title</title>
+<link rel="shortcut icon" href="/static/Admin_CSS/images/preview.png" />
+<title>Foodie Customer Signin</title>
+<style>
+  .btn-grad {
+    background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%);
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+  }
+
+  .btn-grad:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
+</style>
 </head>
-<body style="background-color: #ff9d0070;">
+<body style="background-image: linear-gradient(to right, #ff522f91 0%, #f096198e  51%, #ff522f7c  100%);">
     <section class="vh-100">
         <div class="container py-10 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
@@ -30,9 +51,8 @@
                       <form class="needs-validation" novalidate method="post">
                         {% csrf_token %}
                         <div class="d-flex align-items-center mb-3 pb-1">
-                            <h1 class="text-primary m-0" style="color: #ff9c00!important; font-weight:bold; text-shadow: 3px 3px 3px #ff9d0065;"><i class="fa fa-utensils me-3"  style="color: #ff9c00;"></i> Restoran</h1>
+                          <h1 class="text-primary m-0" style="background: linear-gradient(50deg, #fb3c00, #ffb800); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight:bold;"><span class="fa fa-utensils text-gradient"></span> Foodie</h1>
                         </div>
-
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="cust_name" id="floatingInput" required>
                             <label for="floatingInput"> Name</label>
@@ -47,7 +67,7 @@
                         </div>
       
                         <div class="pt-1 mb-4">
-                          <button class="btn btn-warning btn-lg btn-block" type="submit" style="color: white; margin-top: 20px">Register</button>
+                          <button class="btn btn-lg btn-block btn-grad" type="submit" style="color: white; margin-top: 20px">Register</button>
                         </div>
       
                         <p class="mb-5 pb-lg-2" style="color: #393f81;">You have account? <a href="{% url 'customer_signin' %}"

@@ -2047,7 +2047,7 @@ input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, inp
   font-weight: 600;
 }
 .shopping.cart .product-list .product-remove {
-  color: #c7254e;
+  color: #ff6900;
 }
 .shopping.cart .account-details {
   margin-top: 30px;
@@ -2288,7 +2288,7 @@ input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, inp
 .error {
   display: none;
   padding: 10px;
-  color: #D8000C;
+  color: #ff6900;
   border-radius: 4px;
   font-size: 13px;
   background-color: #FFBABA;
