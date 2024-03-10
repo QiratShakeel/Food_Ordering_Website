@@ -1,9 +1,11 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .models import Branch,Food_Item,Restaurant
+from .models import Branch,Food_Item,Restaurant,Restaurant_Timings
 from .forms import BranchForm, FoodItemForm,RestaurantForm
 from Admin_App.models import Food_Category
+from Customer_App.models import Cart_Items,Order
 from django.contrib.auth import logout
+from django.urls import reverse
 
 def home(request):
     if 'rest_id' in request.session:
@@ -111,7 +113,6 @@ def food_item_form(request):
     else:
         return redirect('restaurant_signin')
 
-
 def food_item_update(request, id):
     if 'rest_id' in request.session:
         id = int(id)
@@ -129,8 +130,6 @@ def food_item_update(request, id):
     else:
         return redirect("restaurant_signin")
     
-        
-
 def food_item_delete(request, id):
     id = int(id)
     try:
@@ -140,3 +139,115 @@ def food_item_delete(request, id):
     obj.delete()
     return redirect('food_item_list')
 
+# profile 
+def restaurant_profile(request):
+    if 'rest_id' in request.session:
+        rest_id = request.session['rest_id']
+        user = Restaurant.objects.get(rest_id= rest_id)
+        params ={"user":user}
+        return render(request,"Restaurant_App/template/restaurant_settings/restaurant_profile.html",params)
+    else:
+        return redirect(restaurant_signin)
+    
+def restaurant_change_password(request):
+    if 'rest_id' in request.session:
+        rest_id = request.session['rest_id']
+        user = Restaurant.objects.get(rest_id= rest_id)
+        # params ={"user":user}
+        if request.method == "POST":
+            current_password = request.POST.get('current_password')
+            new_password = request.POST.get('new_password')
+            confirm_new_password = request.POST.get('confirm_new_password')
+            if current_password == user.rest_pass:
+                if new_password == confirm_new_password:
+                    user.rest_pass = new_password
+                    user.save()
+                    param={"msg":"Your Password is Changed !!"}
+                    return render(request,"Restaurant_App/template/restaurant_settings/restaurant_change_password.html",param)
+                else: 
+                    param={"msg":"Confirm Password doesnot match to New Password"}
+                    return render(request,"Restaurant_App/template/restaurant_settings/restaurant_change_password.html",param)
+            else:
+                param={"msg":"Password doesnot match to the Current Password"}
+                return render(request,"Restaurant_App/template/restaurant_settings/restaurant_change_password.html",param)
+        return render(request,"Restaurant_App/template/restaurant_settings/restaurant_change_password.html")
+
+def restaurant_profile_update(request,id):
+    if 'rest_id' in request.session:
+        obj=Restaurant.objects.get(rest_id=id)
+        if request.method=="POST":
+            form= RestaurantForm(request.POST,request.FILES,instance=obj)
+            if form.is_valid():
+                form.save()
+                return redirect(restaurant_profile)
+        form= RestaurantForm()
+        params={"obj":obj,"form":form}
+        return render(request,"Restaurant_App/template/restaurant_settings/restaurant_profile_update.html",params)
+    else:
+        return redirect(restaurant_signin)
+# timings CRUD
+def timing_form(request):
+    if 'rest_id' in request.session:
+        rest_id = request.session['rest_id']
+        restId=Restaurant.objects.get(rest_id=rest_id)
+        try:
+            idExist=Restaurant_Timings.objects.get(rest_fk_id=restId)
+            if idExist:
+                detail_url = reverse('timing_details', kwargs={'id': idExist.rest_timing_id})
+                return redirect(detail_url)
+        except Restaurant_Timings.DoesNotExist:
+            if request.method == "POST":
+                open_timings = request.POST.get('open_timings')
+                closing_timings= request.POST.get('closing_timings')
+                obj=Restaurant_Timings.objects.create(
+                    open_timings = open_timings,
+                    closing_timings= closing_timings,
+                    rest_fk_id = restId
+                    )    
+                obj.save()
+                detail_url = reverse('timing_details', kwargs={'id': obj.rest_timing_id})
+                return redirect(detail_url)
+        return render(request,"Restaurant_App/template/restaurant_timings/timing_form.html")
+    else:
+        return redirect(restaurant_signin)
+
+def timing_update(request,id):
+    if 'rest_id' in request.session:
+        try:
+            obj=Restaurant_Timings.objects.get(rest_timing_id= id)
+        except:
+            return HttpResponse("Id is not found")
+        if request.method == "POST":
+            open_timings = request.POST.get('open_timings')
+            closing_timings= request.POST.get('closing_timings')
+            obj.open_timings = open_timings
+            obj.closing_timings = closing_timings
+            obj.save()
+            detail_url = reverse('timing_details', kwargs={'id': obj.rest_timing_id})
+            return redirect(detail_url)
+        return render(request,"Restaurant_App/template/restaurant_timings/timing_update.html",{"obj":obj})
+    else:
+        return redirect(restaurant_signin)
+    
+def timing_details(request,id):
+    if 'rest_id' in request.session:
+        # rest_id = request.session['rest_id']
+        try:
+            obj=Restaurant_Timings.objects.get(rest_timing_id= id)
+        except:
+            return HttpResponse("Id is not found")
+        params={"obj":obj}
+        return render(request,"Restaurant_App/template/restaurant_timings/timing_details.html",params)
+    else:
+        return redirect(restaurant_signin)
+    
+# list
+def cart_items_list(request):
+    obj=Cart_Items.objects.all()
+    params={"obj":obj}
+    return render(request,"Restaurant_App/template/list/cart_items_list.html",params)
+
+def orders_list(request):
+    obj=Order.objects.all()
+    params={"obj":obj}
+    return render(request,"Restaurant_App/template/list/orders_list.html",params)

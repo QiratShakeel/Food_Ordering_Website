@@ -5,6 +5,8 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required 
+from Restaurant_App.models import Restaurant
+from Customer_App.models import Order,Cart_Items
 
 @login_required(login_url='admin_signin')
 def home(request):
@@ -117,4 +119,68 @@ def food_cat_delete(request, id):
     obj.delete()
     return redirect('food_cat_list')
 
+# profile
+def admin_profile(request):
+    if request.user.is_authenticated:
+            user_name = request.user.username
+            email = request.user.email
+            id = request.user.id
+            params = {"name":user_name,"email":email,"id":id}
+            return render(request,"Admin_App/template/admin_settings/admin_profile.html",params)
+    
+def admin_change_password(request):
+    if request.user.is_authenticated:
+            id = request.user.id
+            user=User.objects.get(id=id)
+            if request.method == "POST":
+                current_password = request.POST.get('current_password')
+                new_password = request.POST.get('new_password') 
+                confirm_new_password = request.POST.get('confirm_new_password')
+                if user.check_password(current_password):
+                    if new_password == confirm_new_password:
+                        user.set_password(new_password)
+                        user.save()
+                        params={"msg":"password is Changed !!"}
+                        return render(request,"Admin_App/template/admin_settings/admin_change_password.html",params)
+                    else:
+                        params={"msg":"Confirm password is not match to new password !!"}
+                        return render(request,"Admin_App/template/admin_settings/admin_change_password.html",params)
+                else:
+                    params={"msg":"Password doesnt match to the current password !!"}
+                    return render(request,"Admin_App/template/admin_settings/admin_change_password.html",params)
+            return render(request,"Admin_App/template/admin_settings/admin_change_password.html")
 
+def admin_update_profile(request,id):
+    obj=User.objects.get(id=id)
+    if request.method=="POST":
+        name= request.POST.get('name')
+        email= request.POST.get('email')
+        obj.username= name
+        obj.email= email
+        obj.save()
+        params={"msg":"Your Profile is Updated!",'id':obj.id,"name":name,"email":email}
+        return render(request,"Admin_App/template/admin_settings/admin_profile.html",params)
+    return render(request,"Admin_App/template/admin_settings/admin_update_profile.html",{"obj":obj})
+
+# list
+def admin_customers_list(request):
+    obj=User.objects.filter(is_superuser=0)
+    params={"list":obj}
+    return render(request,"Admin_App/template/list/admin_customers_list.html",params)
+
+def admin_restaurants_list(request):
+    obj=Restaurant.objects.all()
+    params={"list":obj}
+    return render(request,"Admin_App/template/list/admin_restaurants_list.html",params)
+
+def admin_orders_list(request):
+    obj=Order.objects.all()
+    restaurant_name="";
+    for order in obj:
+        cart_items=Cart_Items.objects.filter(order_fk=order.order_id)
+        if cart_items.exists():
+            restaurant_name = cart_items.first().food_item_fk.rest_fk_id.rest_name
+        else:
+            restaurant_name= "N/A" 
+    params={"list":obj,"restaurant_name":restaurant_name}
+    return render(request,"Admin_App/template/list/admin_orders_list.html",params)

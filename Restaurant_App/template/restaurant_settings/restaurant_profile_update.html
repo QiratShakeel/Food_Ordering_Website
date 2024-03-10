@@ -1,0 +1,50 @@
+{% extends 'Restaurant_App/template/base.html' %}
+{% block content %}
+<!-- Form Start -->
+<section style="background-image: url(/static/Restaurant_CSS/img/p.jpg); background-position: cover;">
+<main >
+<div class="container-fluid pt-4 px-4">
+  <div class="row g-4">
+    <div class="col-lg-2"></div>
+      <div class="col-lg-8 py-5" >
+          <div class="bg-secondary h-100 p-4" style="border-radius: 15px 30px;">
+            <h1 class="mb-4" style="text-align: center; color:#ff6a00bb; font-size: 30px; font-family:cursive; background: linear-gradient(50deg, #fb3c00, #ffb800); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Update Profile</h1>
+            <h2 style=" color:rgb(116, 116, 116); font-size: 18px; font-family: 'Bad Script'; margin-bottom: 5%; text-align:center;"> .... You Can Change Your Profile Here ....</h2>
+                <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                  <div class="form-floating mb-3">
+                      <input type="text" name="rest_owner_name" value="{{obj.rest_owner_name}}" class="form-control" id="floatingInput">
+                      <label class="form-label" for="floatingInput">Restaurant Owner</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                      <input type="text" name="rest_name" value="{{obj.rest_name}}" class="form-control" id="floatingInput">
+                      <label class="form-label" for="floatingInput">Restaurant Name</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="text" name="rest_email" value="{{obj.rest_email}}" class="form-control" id="floatingInput">
+                    <label class="form-label" for="floatingInput">Business Email</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="text" name="rest_pass" value="{{obj.rest_pass}}" class="form-control" id="floatingInput">
+                    <label class="form-label" for="floatingInput">Password</label>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label" >Restaurant Logo File</label>
+                    <input name="rest_logo_img" class="form-control bg-dark" type="file" id="formFile">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Restaurant Banner Image</label>
+                    <input name="rest_banner_img" class="form-control bg-dark" type="file" id="formFile">
+                  </div>
+                  <div class="d-grid gap-2 col-6 mx-auto">
+                    <button type="submit" class="btn btn-grad">Update Profile</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+      <div class="col-lg-2"></div>
+    </div>
+</div>
+{% endblock %}
+</main>
+</section>

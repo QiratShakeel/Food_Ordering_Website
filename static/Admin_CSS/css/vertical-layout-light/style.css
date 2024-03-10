@@ -30635,3 +30635,135 @@ div.tagsinput span.tag a {
   text-decoration: none;
 }
 /*# sourceMappingURL=../maps/vertical-layout-light/style.css.map */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ****************************Admin Profile CSS HERE **********************/
+
+    @import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900');
+
+.profile_container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(50deg, #fb3c00, #ffb800);
+}
+.profile_card
+{
+    position: relative;
+    width: 600px;
+    height: 260px;
+    background: #fff;
+    border-radius: 15px 50px;
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.521);
+    transition: 0.5s;
+}
+.profile_card:hover
+{
+    height: 530px;
+}
+.imgbx
+{
+    position: absolute;
+    left: 50%;
+    top: -50px;
+    transform: translateX(-50%);
+    width: 450px;
+    height: 200px;
+    background: #fff;
+    border-radius: 50px 15px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    transition: 0.5s;
+}
+.imgbx img
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.profile_card:hover .imgbx
+{
+    width: 400px;
+    height: 250px;
+}
+.profile_card .content
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: hidden;
+}
+.profile_card .content .details
+{
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+    transition: 0.5s;
+    transform: translateY(150px);
+}
+.profile_card:hover .content .details
+{
+    padding: 60px;
+    transform: translateY(0px);
+}
+.profile_card .content .details .data h2
+{
+    margin-top: 30px;
+    font-size: 1.25em;
+    font-weight: 600;
+    color: #555;
+    line-height: 1.2em;
+}
+.profile_card .content .details .data h2 span
+{
+    font-size: 0.74em;
+    font-weight: 500;
+    opacity: 0.5;
+}
+.profile_btn-grad {
+    margin-top: 20px;
+    background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%);
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #f7a50b96;
+    border-radius: 30px;
+    width: 400px;
+  }
+
+  .profile_btn-grad:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
+/* ****************************Admin Profile CSS END HERE **********************/

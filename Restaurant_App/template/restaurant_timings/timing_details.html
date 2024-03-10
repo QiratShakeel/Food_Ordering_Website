@@ -1,0 +1,36 @@
+{% extends 'Restaurant_App/template/base.html' %}
+{% block content %}
+<!-- Form Start -->
+<body>
+  <section style="background-image: url(/static/Restaurant_CSS/img/peakpx\ \(6\).jpg); background-position: cover;">
+  <main style="min-height: 100vh;background-color: #ff9d0048!important;">
+<div class="container-fluid pt-4 px-4">
+  <div class="row g-4" style="padding-top: 2%; padding-bottom: 4%;">
+    <div class="col-lg-2"></div>
+      <div class="col-lg-8">
+          <div class="bg-secondary h-100 p-4" style="box-shadow: 0 0.5rem 1.2rem rgba(160, 131, 131, 0.822);  border-radius: 15px 30px;">
+            <h1 class="mb-4"  style="text-align: center; color:#ff6a00bb; font-size: 30px; font-family:cursive; background: linear-gradient(50deg, #fb3c00, #ffb800); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Restaurant Timings</h1>
+            <h2 style=" color:rgb(116, 116, 116); font-size: 18px; font-family: 'Bad Script'; margin-bottom: 5%; text-align:center;"> .... Your Restaurant Timings Are ....</h2>
+              {% comment %} <form method="post">
+                {% csrf_token %} {% endcomment %}
+                  <div style="display:flex;justify-content: space-around;">
+                      <h6>Your Opening Timings:</h6>
+                      <p style="border: none;">{{obj.open_timings}}</p>
+                  </div>
+                  <div style="display:flex;justify-content: space-around;">
+                    <h6>Your Closing Timings:</h6>
+                    <p style="border: none;">{{obj.closing_timings}}</p>
+                  </div>                  
+                   <div class="d-grid gap-2 col-6 mx-auto">
+                    <a href="{% url 'timing_update' obj.rest_timing_id %}" class="btn btn-grad">You can Update Your Timings Here</a>
+                  </div> 
+              {% comment %} </form> {% endcomment %}
+          </div>
+      </div>
+    <div class="col-lg-2"></div>
+    </div>
+</div>
+{% endblock %}
+</main>
+</section>
+</body>

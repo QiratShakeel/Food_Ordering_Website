@@ -28,7 +28,10 @@
     <!-- Libraries Stylesheet -->
     <link href="/static/Restaurant_CSS/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="/static/Restaurant_CSS/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-
+    <!-- Restaurant Profile Link Here -->    
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Arizonia&family=Bad+Script&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Customized Bootstrap Stylesheet -->
     <link href="/static/Restaurant_CSS/css/bootstrap.min.css" rel="stylesheet">
 
@@ -68,7 +71,7 @@
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-secondary navbar-dark">
-                <a href="index.html" class="navbar-brand mx-4 mb-3">
+                <a href="{% url 'index' %}" class="navbar-brand mx-4 mb-3">
                     <h2 class="text-primary" style="background: linear-gradient(50deg, #fb3c00, #ffb800); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight:bold;"><i class="fa fa-utensils text-gradient me-2"></i>Foodie</h2>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
@@ -84,18 +87,19 @@
                 <div class="navbar-nav w-100">
                     <a href="index.html" class="nav-item nav-link active"><i class="fa-solid fa-house me-2"></i> Dashboard</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa-solid fa-utensils me-2"></i> Branch</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="{% url 'branch_form' %}" class="dropdown-item"><i class="fa-solid fa-plus me-2"></i> Restaurant Create</a>
-                            <a href="{% url 'branch_list' %}" class="dropdown-item"><i class="fa-solid fa-list me-2"></i> Restaurant List</a>
-                        </div>
+                        <a href="{% url 'branch_list' %}" class="nav-link" ><i class="fa-solid fa-utensils me-2"></i> Branch</a>
                     </div>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa-solid fa-burger me-2"></i></i> Food Items</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="{% url 'food_item_form' %}" class="dropdown-item"><i class="fa-solid fa-plus me-2"></i> Food create</a>
-                            <a href="{% url 'food_item_list' %}" class="dropdown-item"><i class="fa-solid fa-list me-2"></i> Food List</a>
-                        </div>
+                        <a href="{% url 'food_item_list' %}" class="nav-link" ><i class="fa-solid fa-burger me-2"></i></i> Food Items</a>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="{% url 'timing_form' %}" class="nav-link" ><i class="fa-solid fa-burger me-2"></i></i>Timings </a>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="{% url 'cart_items_list' %}" class="nav-link" ><i class="fa-solid fa-burger me-2"></i></i>Cart Items </a>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="{% url 'orders_list' %}" class="nav-link" ><i class="fa-solid fa-burger me-2"></i></i>Orders </a>
                     </div>
                 </div>
             </nav>
@@ -186,8 +190,8 @@
                             <span class="d-none d-lg-inline-flex">John Doe</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">My Profile</a>
-                            <a href="#" class="dropdown-item">Settings</a>
+                            <a href="{% url 'restaurant_profile' %}" class="dropdown-item">My Profile</a>
+                            <a href="{% url 'restaurant_change_password' %}" class="dropdown-item">Change Password</a>
                             <a href="{% url 'restaurant_signout' %}" class="dropdown-item">Log Out</a>
                         </div>
                     </div>

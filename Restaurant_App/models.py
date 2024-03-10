@@ -33,3 +33,11 @@ class Food_Item(models.Model):
     food_item_discount_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     def __str__(self):
         return str(self.food_item_id)
+
+class Restaurant_Timings(models.Model): 
+    rest_timing_id = models.AutoField(primary_key=True)
+    open_timings= models.TimeField()
+    closing_timings= models.TimeField()
+    rest_fk_id = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    def __str__(self):
+        return str(self.rest_timing_id)

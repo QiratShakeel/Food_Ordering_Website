@@ -1,0 +1,29 @@
+{% extends 'Restaurant_App/template/base.html' %}
+{% block content %}
+    <div class="restaurant_profile_container">
+  <div class="wrapper">
+    <div class="form-wrapper sign-in">
+        {% comment %} <form action=""> {% endcomment %}
+            <div class="d-flex align-items-center mb-3 pb-1" style="text-align: center;">
+                {% comment %} <img src="/static/Admin_CSS/images/preview.png" class="main" alt="profile" style="height: 60px; width: 60px; margin-bottom: 20px;"> {% endcomment %}
+                <img src="{{user.rest_logo_img.url}}" class="main" alt="profile" style="height: 60px; width: 60px; margin-bottom: 2%;border-radius:50%;">
+                
+            </div>
+            <h2 style=" color:rgb(116, 116, 116); font-size: 18px; font-family: 'Bad Script';" >... Welcome to Restaurant Profile Page ...</h2>
+            <img src="{{user.rest_banner_img.url}}" style="width: 80%;margin:2%"/>
+        <div class="name" style="margin:2%">
+          <h6 style="display:inline">Restaurant Name: </h6><span>{{user.rest_name}}</span>
+        </div>
+        <div style="margin:2%">
+            <h6 style="display:inline">Email: </h6><span >{{user.rest_email}}</span>
+        </div>
+        <div class="email" style="margin:2%">
+          <h6 style="display:inline">Owners Name: </h6><span>{{user.rest_owner_name}}</span>
+        </div>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <a href="{% url 'restaurant_profile_update' user.rest_id %}" class="btn btn-grad">Update Your Profile</a>
+          </div>
+    </div>
+  </div>
+    </div>
+    {% endblock %} 
