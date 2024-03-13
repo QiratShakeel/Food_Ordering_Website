@@ -468,14 +468,22 @@ a:focus {
 }
 
 .offer_section .box .detail-box h5 {
+<<<<<<< HEAD
   font-family: 'Source Sans Pro', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+=======
+  font-family: 'Dancing Script', cursive;
+>>>>>>> 42f507cf85402d6d8ed93dc5a314f5a645670cf9
   font-size: 34px;
   margin: 0;
 }
 
 .offer_section .box .detail-box h6 {
   color: rgb(184, 181, 181);
+<<<<<<< HEAD
   font-family: 'Source Sans Pro', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+=======
+  font-family: 'Dancing Script', cursive;
+>>>>>>> 42f507cf85402d6d8ed93dc5a314f5a645670cf9
   margin: 10px 0;
 }
 
@@ -544,7 +552,11 @@ a:focus {
   /* color: #ffffff; */
   border-radius: 15px;
   overflow: hidden;
+<<<<<<< HEAD
   /* background: linear-gradient(to bottom, #f1f2f3 25px, #222831 25px); */
+=======
+  background: linear-gradient(to bottom, #f1f2f3 25px, #222831 25px);
+>>>>>>> 42f507cf85402d6d8ed93dc5a314f5a645670cf9
   box-shadow: 0 0 20px #14141433;
 }
 

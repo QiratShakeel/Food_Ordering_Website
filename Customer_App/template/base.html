@@ -10,7 +10,11 @@
     <!-- ===============================================-->
     <!--    Document Title-->
     <!-- ===============================================-->
+<<<<<<< HEAD
     {% block title %}<title>Foodie</title>{% endblock title %}
+=======
+    <title>Foodie</title>
+>>>>>>> 42f507cf85402d6d8ed93dc5a314f5a645670cf9
 
 {% comment %} main page theme link start {% endcomment %}
     <!-- ===============================================-->
@@ -26,7 +30,33 @@
       <!--    Stylesheets-->
       <!-- ===============================================-->
       <link href="/static/Customer_CSS/assets/css/theme.css" rel="stylesheet" /> 
+<<<<<<< HEAD
       {% block links %}{% endblock links %}
+=======
+
+      <style>
+        .btn-gradee {
+          background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%);
+          text-align: center;
+          padding: 15px 45px;
+          text-transform: uppercase;
+          transition: 0.5s;
+          background-size: 200% auto;
+          color: white!important;            
+          box-shadow: 0 0 20px #f39303b4;
+          border-radius: 10px;
+          display: block;
+        }
+        
+        .btn-gradee:hover {
+          background-position: right center; /* change the direction of the change here */
+          color: #fff;
+          text-decoration: none;
+        }
+        
+      </style>
+{% comment %} main page theme link end {% endcomment %}
+>>>>>>> 42f507cf85402d6d8ed93dc5a314f5a645670cf9
   </head>
     
     <style>
@@ -100,6 +130,7 @@
                 <input class="form-control border-0 input-box bg-100" type="search" placeholder="Search Food" aria-label="Search" />
               </div>
             </form>
+<<<<<<< HEAD
               {% comment %} <a href="{% url 'customer_signout' %}" class="btn btn-danger btn-gradee shadow-warning text-white"> <i class="fas fa-user me-2"></i>logout <span><i class="fa-solid fa-caret-down"></i></span></a>               {% endcomment %}
               
               <div class="base_dropdown">
@@ -110,6 +141,19 @@
                   <a href="{% url 'customer_signout' %}">Logout</a>
                 </div>
               </div>
+=======
+            <div class="nav-item nav-profile dropdown">
+              <button type="button" class="btn btn-danger dropdown-toggle btn-gradee" data-bs-toggle="dropdown" aria-expanded="false">
+                Action
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><a class="dropdown-item" href="#">Change Password</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{% url 'customer_signout' %}">Logout</a></li>
+              </ul>            
+            </div>
+>>>>>>> 42f507cf85402d6d8ed93dc5a314f5a645670cf9
               {% comment %} <p>cart(<span id="cartno">0</span>)</p> {% endcomment %}
           </div>
         </div>
@@ -120,7 +164,11 @@
     {% comment %} Cart Section Starts Here  {% endcomment %}
       <div class="offcanvas offcanvas-end" tabindex="-1" id="cart_sidebar" aria-labelledby="offcanvasRightLabel">
   <div class="offcanvas-header">
+<<<<<<< HEAD
     <h5 class="offcanvas-title" id="offcanvasRightLabel" style="color: #F17228 !important;font-weight:bold;">Cart</h5>
+=======
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">Cart</h5>
+>>>>>>> 42f507cf85402d6d8ed93dc5a314f5a645670cf9
     <button class="btn btn-gradee clear_cart" type="button" style="margin-left:39%;">Clear Cart</button>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
