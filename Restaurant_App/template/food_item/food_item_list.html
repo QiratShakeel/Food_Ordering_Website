@@ -2,16 +2,17 @@
 {% block content %}
 <!-- Table Start -->
 <div class="container-fluid pt-4 px-4">
-    <div class="row g-4">
-        <div class="col-lg-12">
-            <div class="bg-secondary rounded h-100 p-4">
-                <div class="d-flex p-2">
-                    <h6 class="mb-4 col-lg-8">Food Item List</h6>
-                    <a href="{% url 'food_item_form' %}" class="btn btn-warning btn-icon-text">Create<i class="ti-file btn-icon-append"></i></a>
-                    </div>
-                <table class="table">
+    <a href="{% url 'food_item_form' %}" class="btn-icon-text" style="padding: 20px; color: #ff6a00bb; text-decoration: none;">CREATE MORE ITEMS <i class="fa-solid fa-plus"></i></a>
+    <div class="row" style="margin-top: 30px;">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card bg-secondary" style="border-radius: 15px 30px; box-shadow: 0 0.5rem 1.2rem rgba(0,0,0,.2)">
+                <div class="card-body" style="margin-bottom: 50px; padding: 20px;"></div>
+                <h1 class="card-title" style="text-align: center; color:#ff6a00bb; font-size: 30px; font-family:cursive;">Itens View</h1>
+                <h2 class="card-title" style="text-align: center; color:rgb(95, 95, 95); font-size: 15px; font-family: 'Bad Script'; font-weight:bold">... You Can View Restaurant Branch List Here ...</h2>
+                   <div class="table-responsive pt-3" style=" padding: 20px">
+                     <table  class="table table-striped table table-striped table-hover"  style=" box-shadow: 0 0.5rem 1.2rem rgba(0,0,0,.2);">
                     <thead>
-                        <tr>
+                        <tr style="text-align: center;">
                             <th>Id</th>
                             <th>Name</th>
                             <th>Description</th>
@@ -25,7 +26,7 @@
                     </thead>
                     <tbody>
                          {% for food_item in list  %}
-                        <tr>
+                        <tr style="text-align: center; font-size: 19px; font-family:cursive;">
                             <td>{{food_item.food_item_id}}</td>
                             <td>{{food_item.food_item_name}}</td>
                             <td>{{food_item.food_item_desc}}</td>
@@ -35,8 +36,8 @@
                             <td>{{food_item.food_item_discount_price}}</td>
                             <td><img src="{{food_item.food_img.url}}" style="height: 80px; width:100px;"/></td>
                             <td>
-                                <a href="../update/{{food_item.food_item_id}}" id="{{food_item.food_item_id}}" class="btn btn-dark btn-icon-text">Edit<i class="ti-file btn-icon-append"></i></a>
-                                <a href="../delete/{{food_item.food_item_id}}" id="{{food_item.food_item_id}}" class="btn btn-danger btn-icon-text">Delete<i class="ti-trash btn-icon-append"></i></a>
+                                <a href="../update/{{food_item.food_item_id}}" id="{{branch.branch_id}}" class="btn btn-icon-text" style="background-color: #e46103; color: white; border-radius: 15px 30px; border: none; box-shadow: 0 0.5rem 1.2rem rgba(247, 127, 29, 0.534);margin-bottom:10px">Update <i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="../delete/{{food_item.food_item_id}}" id="{{branch.branch_id}}"  class="btn btn-danger btn-icon-text" style="border-radius: 15px 30px; margin-left:10px; box-shadow: 0 0.5rem 1.2rem rgba(248, 72, 18, 0.534);">Delete <i class="fa-solid fa-trash-can"></i></a>
                             </td>
                         </tr>
                         {% endfor %} 

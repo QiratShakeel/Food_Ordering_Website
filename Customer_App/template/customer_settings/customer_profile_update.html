@@ -1,0 +1,119 @@
+{% extends 'Customer_App/template/base.html' %}
+{% block content %}
+    {% block title %}<title>Foodie Profile Update</title>{% endblock title %}
+    {% block links %}
+    <!--Google Font-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!--Stylesheet-->
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="shortcut icon" href="/static/Admin_CSS/images/preview.png" /> -->
+    {% endblock links %}
+    {% block css %}
+    <style>
+        /***,
+/***:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}**/
+body{
+    background: linear-gradient(180deg, rgba(245,104,11,1) 0%, rgba(244,158,10,1) 35%, rgba(255,244,0,1) 100%);
+    /**background-color:#fc7d29;**/
+}
+.customer_update_profile_section{
+    /**background-color: #080710;**/
+    display:flex;
+    justify-content:center;
+}
+.customer_profile_update_form{
+    height: 50%;
+    width: 50%;
+    /**background-color: rgba(255,255,255,0.07);**/
+    background-color: white;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+}
+.customer_profile_update_form *{
+    font-family: 'Poppins',sans-serif;
+    color: black;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+.customer_profile_update_form h3{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+}
+.customer_profile_update_form h3 span{
+    display: block;
+    font-size: 16px;
+    font-weight: 300;
+    color: #635e5e;
+}
+.customer_profile_update_form label{
+    display: block;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.customer_profile_update_form input{
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: rgb(47 40 40 / 7%);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+}
+::placeholder{
+    color: black;
+}
+.btn-grad {
+    background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%);
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #f57002;
+    border-radius: 10px;
+    display: block;
+  }
+
+  .btn-grad:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
+</style>
+{% endblock css %}
+
+    <section class="customer_update_profile_section">    
+    <!--<div class="customer_update_profile_section_background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>-->
+    <form class="customer_profile_update_form" method="post">
+        {% csrf_token %}
+        <h3>Welcome Customer!
+            <span>Update to your Profile.</span>
+        </h3>
+        <label for="username">Username</label>
+        <input type="text" placeholder="Username" name="name" id="username" value={{obj.username}}>
+
+        <label for="email">Email</label>
+        <input type="email" placeholder="@gmail.com" name="email" id="email" value={{obj.email}}>
+
+        <button type="submit" class="btn-grad mt-4">Profile Update</button>
+    </form>
+</section>
+    {% endblock %} 

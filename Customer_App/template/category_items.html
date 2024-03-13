@@ -1,0 +1,92 @@
+{% extends 'Customer_App/template/base.html' %}
+{% block content %}
+
+<section class="py-5 overflow-hidden" style="background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%);" id="home">
+  <div class="container">
+    <div class="row flex-center">
+      <div class="col-md-5 col-lg-6 order-0 order-md-1 mt-8 mt-md-0"><a class="img-landing-banner" href="#!"><img class="banner_img-fluid" src="{{category_item.food_cat_img.url}}" alt="hero-header" /></a></div>
+      <div class="col-md-7 col-lg-6 py-8 text-md-start text-center">
+        <h1 class="display-1 fs-md-5 fs-lg-6 fs-xl-8 text-light">Want Your Favourite Cuisine Items?</h1>
+        <h1 class=" mb-5 fs-4 text-light">Let's check the {{category_item.food_cat}} Items </h1>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================-->
+<!-- <section> begin(Food Items) ============================-->
+  <section id="restaurant">
+    <div class="container">
+      <div class="row h-100">
+        <div class="col-lg-7 mx-auto text-center mb-6">
+          <h5 class="fw-bold fs-3 fs-lg-5 lh-sm mb-3" style="color: #F17228 !important;">{{category_item.food_cat}} Food Items</h5>
+          <h3>{{msg}}</h3>
+        </div>
+      </div>
+      <div class="row gx-2">
+        {% for items in items %}
+        <div class="col-sm-6 col-md-4 col-xl mb-5 h-100" style="text-align:center;">
+          <button type="button" class="item_detail_btn" data-bs-toggle="modal" data-bs-target="#item_modal" data-item-id="{{ items.food_item_id }}">
+            <div class="card card-span h-100 rounded-3"><img class="img-fluid rounded-3 h-100" style="width: 100% !important;height: 250px !important;" src="{{items.food_img.url}}" alt="..." />
+            <div class="card-body ps-0">
+              <h5 class="fw-bold text-1000 text-truncate mb-1">{{items.food_item_name}}</h5>
+              <div><span class="text-warning me-2"><i class="fas fa-map-marker-alt"></i></span><span class="text-primary">{{items.rest_fk_id.rest_name}}</span></div><span class="text-1000 fw-bold">Rs.{{items.food_item_price}}</span>
+            </div>
+            </div>
+            <div class="d-grid gap-2"><a class="btn btn-lg btn-grad" href="#!" role="button">Order now</a></div>
+          </button>
+        {% comment %} </div> {% endcomment %}
+          
+        </div>
+        {% if forloop.counter|divisibleby:4 or forloop.last %}
+          {% if not forloop.last %}</div><div class="row gx-2">{% endif %}
+        {% endif %}
+      {% endfor %}
+        
+    </div>
+  </section>
+  <!-- <section> close ============================-->
+<!-- ============================================-->
+
+<!-- ============================================-->
+<!-- <section> begin(Food Items Modal) ============================-->
+  <!-- Modal -->
+  <div class="modal fade" id="item_modal" tabindex="-1" aria-labelledby="item_modal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content modal-container">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 modal-container-title" id="exampleModalLabel">Food Item Detail</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body modal-container-body">
+          <img class="food_img" id="modal_image" src=""/>
+          <div class=".item-info rtf">
+            <h1 id="modal_name"></h1>
+            <p id="modal_desc"></p>
+            <h6 id="modal_price"></h6>
+          </div>
+          <div class="rtf">
+            <h1>Special Instructions</h1>
+			      <p>Any specific preference? Let the restaurant know.</p>
+			      <textarea rows="3" cols="53" placeholder="eg: No Mayo" class="inst" id=""></textarea>
+          </div>
+        </div>
+        <div class="modal-footer modal-container-footer container">
+          <div class="counter divpr" id="">
+            <button class="button is-ghost minus" id=""><i class="counter-icons fa-solid fa-minus"></i></button>
+            <p class="valpr" id="" style="padding:5px;font-weight:600;margin-top:0;">1</p>
+            <button class="button is-ghost plus " id=""><i class="counter-icons fa-solid fa-plus"></i></button>
+            </div>
+            <button class="button is-primary btn-cart cart btn-grad" id="">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ============================================-->
+<!-- <section> ENDD(Food Items Modal) ============================-->
+
+
+
+{% endblock %}

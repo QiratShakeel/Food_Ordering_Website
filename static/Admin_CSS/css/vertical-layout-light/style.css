@@ -20190,10 +20190,10 @@ code {
   transform: scale(1.1);
 }
 
-.card-people {
+/* .card-people {
   position: relative;
   padding-top: 20px;
-}
+} */
 
 .card-people img {
   border-radius: 20px;

@@ -1,6 +1,14 @@
 {% extends 'Restaurant_App/template/base.html' %}
+{% block css %}
+<style>
+  body{
+    background-image: url(/static/Restaurant_CSS/img/peakpx\ \(6\).jpg); 
+    background-position: cover;
+  }
+</style>
+{% endblock css %}
 {% block content %}
-    <div class="restaurant_profile_container">
+    <div class="restaurant_profile_container" >
   <div class="wrapper">
     <div class="form-wrapper sign-in">
         {% comment %} <form action=""> {% endcomment %}

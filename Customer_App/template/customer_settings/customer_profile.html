@@ -1,0 +1,148 @@
+{% extends 'Customer_App/template/base.html' %}
+{% block title %}<title>Profile</title>{% endblock title %}
+{% block links %}
+<!-- Font Awesome CDN -->
+<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet"/>
+<link rel="shortcut icon" href="/static/Admin_CSS/images/preview.png" />
+<!-- Stylesheet -->
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+{% endblock links %}
+{% block css %}
+<style>
+    :root {
+        --theme-color-1: #fc7d29;
+        --theme-color-2: #f86605;
+        --bg-color: #fc843f;
+        --white-shade-1: #ffffff;
+        --white-shade-2: #d0d0d0;
+        --white-rgba: rgba(255, 255, 255, 0.12);
+    }
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+    }
+    body {
+        background: linear-gradient(180deg, rgba(245,104,11,1) 0%, rgba(244,158,10,1) 35%, rgba(255,244,0,1) 100%);
+        /**background-color: var(--bg-color);**/
+    }
+    /**.container_profile_cust {
+        transform: translate(-50%, -50%);
+            top: 45%;
+            left: 50%;
+            perspective: 800px;
+          }
+          .container_profile_cust:before {
+            display:flex;  
+            content: "";
+              height: 280px;
+              width: 100%;
+              background: radial-gradient(var(--theme-color-1), var(--theme-color-2));
+              border-radius: 50%;
+              top: 100%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }**/
+            #main_card_pro {
+                height: 500px;
+                width: 750px;
+                position: relative;
+                font-family: "Poppins", sans-serif;
+            }
+          .front_profile,
+          .back_profile_cust {
+            position: absolute;
+            display:flex;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            border-radius: 15px;
+            background-color: var(--white-rgba);
+            border: 2px solid var(--white-rgba);
+            backdrop-filter: blur(8px);
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            transition: 1s;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+          .front_profile {
+              flex-direction: column;
+              justify-content: center;
+              gap: 50px;
+            }
+            .front_profile img {
+            height: 140px;
+            width: 140px;
+            border-radius: 50%;
+            border: 10px solid var(--white-rgba);
+        }
+        .details_profile_cust {
+            text-align: center;
+        }
+        .heading_profile_customer {
+            font-size: 22px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: black;
+        }
+        #title_profile_cust {
+            font-size: 14px;
+            color: var(--white-shade-2);
+        }
+        .back_profile_cust {
+            justify-content: space-around;
+            transform: rotateY(180deg);
+        }
+        .icon_profile_cust {
+            background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%);
+            padding: 15px 45px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;            
+            box-shadow: 0 0 20px #f36f03;
+            border-radius: 10px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .icon_profile_cust:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+        }
+        #main_card_pro:hover .back_profile_cust {
+            transform: rotateY(0deg);
+        }
+        #main_card_pro:hover .front_profile {
+            transform: rotateY(-180deg);
+        }
+    </style>
+    {% endblock css %}
+    {% block content %}
+    <div class="customer_profile_section">
+    <div class="container_profile_cust" style="display:flex;
+    justify-content: center;padding:10%;">      
+      <div class="card" id="main_card_pro">
+          <div class="front_profile">
+            <h4 style="color:#635e5e">{{msg}}</h4>
+          <img src="/static/Admin_CSS/images/l.jpg" alt="profile"/>
+          <div class="details_profile_cust">
+              <h2 class="heading_profile_customer">Name: {{name}}</h2>
+              <span id="title_profile_cust">Email: {{email}}</span>
+            </div>
+        </div>
+        <div class="back_profile_cust">
+            <a href="{% url 'customer_profile_update' id %}" class="icon_profile_cust">
+                Update Profile <i class="fa-solid fa-user" style="color: white; padding-left: 10px;"></i>
+            </a>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

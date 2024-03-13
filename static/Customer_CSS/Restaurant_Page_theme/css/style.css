@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap");
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Source Sans Pro', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   color: #0c0c0c;
   background-color: #ffffff;
   overflow-x: hidden;
@@ -32,7 +32,7 @@ body {
 
 h1,
 h2 {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Source Sans Pro', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
 .heading_container {
@@ -56,7 +56,7 @@ h2 {
 }
 
 .heading_container h2 span {
-  color: #ffbe33;
+  color: #ff6900;
 }
 
 .heading_container p {
@@ -148,7 +148,7 @@ a:focus {
 }
 
 .navbar-brand {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Source Sans Pro", "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 .navbar-brand span {
@@ -176,7 +176,7 @@ a:focus {
 }
 
 .custom_nav-container .navbar-nav .nav-item:hover .nav-link, .custom_nav-container .navbar-nav .nav-item.active .nav-link {
-  color: #ffbe33;
+  color: #ff6900;
 }
 
 .custom_nav-container .nav_search-btn {
@@ -189,7 +189,7 @@ a:focus {
 }
 
 .custom_nav-container .nav_search-btn:hover {
-  color: #ffbe33;
+  color: #ff6900;
 }
 
 .user_option {
@@ -210,7 +210,7 @@ a:focus {
 }
 
 .user_option .user_link:hover {
-  color: #ffbe33;
+  color: #ff6900;
 }
 
 .user_option .cart_link {
@@ -233,13 +233,13 @@ a:focus {
 }
 
 .user_option .cart_link:hover svg {
-  fill: #ffbe33;
+  fill: #ff6900;
 }
 
 .user_option .order_online {
   display: inline-block;
   padding: 8px 30px;
-  background-color: #ffbe33;
+  background-color: #ff6900;
   color: #ffffff;
   border-radius: 45px;
   -webkit-transition: all 0.3s;
@@ -331,9 +331,10 @@ a:focus {
           align-items: center;
 }
 
-.slider_section #customCarousel1 {
+.slider_section #carouselExampleCaptions {
   width: 100%;
   position: unset;
+  
 }
 
 .slider_section .detail-box {
@@ -342,6 +343,10 @@ a:focus {
 }
 
 .slider_section .detail-box h1 {
+  background: linear-gradient(50deg, #ff6900, #ffb800); 
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent; 
+  font-weight:bold;
   font-size: 3.5rem;
   font-weight: bold;
   margin-bottom: 15px;
@@ -351,10 +356,29 @@ a:focus {
   font-size: 14px;
 }
 
+.btn-grad {
+  background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%);
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  box-shadow: 0 0 20px #f39303b4;
+  border-radius: 10px;
+  display: block;
+}
+
+.btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
 .slider_section .detail-box a {
   display: inline-block;
   padding: 10px 45px;
-  background-color: #ffbe33;
+  background-color: #ff6900;
   color: #ffffff;
   border-radius: 45px;
   -webkit-transition: all 0.3s;
@@ -382,7 +406,7 @@ a:focus {
           align-items: center;
 }
 
-.slider_section .carousel-indicators li {
+.slider_section .carousel-indicators button {
   background-color: #ffffff;
   width: 12px;
   height: 12px;
@@ -390,15 +414,16 @@ a:focus {
   opacity: 1;
 }
 
-.slider_section .carousel-indicators li.active {
+.slider_section .carousel-indicators button.active {
   width: 20px;
   height: 20px;
-  background-color: #ffbe33;
+  background-color: #ff6900;
 }
 
 .offer_section {
   position: relative;
   padding-top: 45px;
+  border-radius: 15px 30px;
 }
 
 .offer_section .box {
@@ -414,7 +439,15 @@ a:focus {
   background-color: #222831;
   color: #ffffff;
 }
-
+ .main_heading h5
+{
+  background: linear-gradient(50deg, #ff6900, #ffb800); 
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent; 
+  font-weight:bold;
+  font-family: 'Source Sans Pro', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-size: 34px;
+}
 .offer_section .box .img-box {
   width: 175px;
   min-width: 175px;
@@ -424,7 +457,7 @@ a:focus {
   -webkit-transition: all 0.1 0.5s;
   transition: all 0.1 0.5s;
   border-radius: 100%;
-  border: 5px solid #ffbe33;
+  border: 5px solid #f88705;
   overflow: hidden;
 }
 
@@ -435,13 +468,14 @@ a:focus {
 }
 
 .offer_section .box .detail-box h5 {
-  font-family: 'Dancing Script', cursive;
-  font-size: 24px;
+  font-family: 'Source Sans Pro', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-size: 34px;
   margin: 0;
 }
 
 .offer_section .box .detail-box h6 {
-  font-family: 'Dancing Script', cursive;
+  color: rgb(184, 181, 181);
+  font-family: 'Source Sans Pro', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   margin: 10px 0;
 }
 
@@ -453,7 +487,7 @@ a:focus {
 .offer_section .box .detail-box a {
   display: inline-block;
   padding: 10px 30px;
-  background-color: #ffbe33;
+  background-color: #ff6900;
   color: #ffffff;
   border-radius: 45px;
   -webkit-transition: all 0.3s;
@@ -498,7 +532,7 @@ a:focus {
 }
 
 .food_section .filters_menu li.active {
-  background-color: #222831;
+  background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%);
   color: #ffffff;
 }
 
@@ -507,10 +541,11 @@ a:focus {
   margin-top: 25px;
   background-color: #ffffff;
   border-radius: 10px;
-  color: #ffffff;
+  /* color: #ffffff; */
   border-radius: 15px;
   overflow: hidden;
-  background: linear-gradient(to bottom, #f1f2f3 25px, #222831 25px);
+  /* background: linear-gradient(to bottom, #f1f2f3 25px, #222831 25px); */
+  box-shadow: 0 0 20px #14141433;
 }
 
 .food_section .box .img-box {
@@ -566,7 +601,7 @@ a:focus {
   width: 40px;
   height: 40px;
   border-radius: 100%;
-  background: #ffbe33;
+  background: #f76505;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -600,18 +635,22 @@ a:focus {
 }
 
 .food_section .btn-box a {
-  display: inline-block;
-  padding: 10px 55px;
-  background-color: #ffbe33;
-  color: #ffffff;
-  border-radius: 45px;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: none;
+       background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%);
+        padding: 15px 45px;
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;            
+        box-shadow: 0 0 20px #fa7a0285;
+       display: inline-block;
+       border-radius: 45px;
 }
 
 .food_section .btn-box a:hover {
-  background-color: #e69c00;
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
 }
 
 .about_section {
@@ -649,7 +688,7 @@ a:focus {
 .about_section .detail-box a {
   display: inline-block;
   padding: 10px 45px;
-  background-color: #ffbe33;
+  background-color: #ff6900;
   color: #ffffff;
   border-radius: 45px;
   -webkit-transition: all 0.3s;
@@ -711,7 +750,7 @@ a:focus {
   text-transform: uppercase;
   display: inline-block;
   padding: 10px 55px;
-  background-color: #ffbe33;
+  background-color: #ff6900;
   color: #ffffff;
   border-radius: 45px;
   -webkit-transition: all 0.3s;
@@ -770,7 +809,7 @@ a:focus {
 
 .client_section .box .img-box img {
   border-radius: 100%;
-  border: 5px solid #ffbe33;
+  border: 5px solid #ff6900;
   position: relative;
 }
 
@@ -781,7 +820,7 @@ a:focus {
   top: 0;
   width: 20px;
   height: 20px;
-  background-color: #ffbe33;
+  background-color: #ff6900;
   -webkit-transform: rotate(45deg) translateX(-50%);
           transform: rotate(45deg) translateX(-50%);
 }
@@ -820,7 +859,7 @@ a:focus {
 .client_section .owl-carousel .owl-nav .owl-next {
   width: 45px;
   height: 45px;
-  background-color: #ffbe33;
+  background-color: #ff6900;
   color: #ffffff;
   outline: none;
   bottom: 0px;
@@ -886,7 +925,7 @@ a:focus {
   text-transform: uppercase;
   display: inline-block;
   padding: 10px 55px;
-  background-color: #ffbe33;
+  background-color: #ff6900;
   color: #ffffff;
   border-radius: 0px;
   -webkit-transition: all 0.3s;
@@ -914,7 +953,7 @@ a:focus {
 .footer_section .footer-logo {
   font-weight: 600;
   margin-bottom: 20px;
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Source Sans Pro', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
 .footer_section p {
@@ -945,7 +984,7 @@ a:focus {
 }
 
 .footer_section .footer_contact .contact_link_box a:hover {
-  color: #ffbe33;
+  color: #ff6900;
 }
 
 .footer_section .footer-logo {
@@ -988,7 +1027,7 @@ a:focus {
 }
 
 .footer_section .footer_social a:hover {
-  color: #ffbe33;
+  color: #ff6900;
 }
 
 .footer_section .footer-info {

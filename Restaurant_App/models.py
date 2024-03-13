@@ -1,5 +1,6 @@
 from django.db import models
 from Admin_App.models import Food_Category
+import datetime
 # Create your models here.
 class Restaurant(models.Model): 
     rest_id = models.AutoField(primary_key=True)
@@ -39,5 +40,12 @@ class Restaurant_Timings(models.Model):
     open_timings= models.TimeField()
     closing_timings= models.TimeField()
     rest_fk_id = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    def is_open_now(self):
+        now = datetime.datetime.now().time()
+        return self.open_timings <= now <= self.closing_timings
+    def discount(Food_Item):
+        
+        return food_item_with_max_discount
     def __str__(self):
         return str(self.rest_timing_id)
+    

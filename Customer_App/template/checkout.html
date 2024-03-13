@@ -15,7 +15,8 @@
         <div class="row">
           <div class="col-50">
             <h3>Billing Address</h3>
-            <input  name="order_total_price" id="totalprice" hidden>
+            <input name="user_fk" value="{{user_fk}}" >
+            <input  name="order_total_price" id="totalprice" >
             <label><i class="fa fa-institution"></i> City</label>
             <input type="text" name="order_address_city" placeholder="Karachi">
             </label><i class="fa fa-address-card-o"></i> Address</label>
@@ -52,7 +53,7 @@
             </div>
           </div>-->
         </div>
-        <button type="submit" class="btn" id="order_btn_">Place Your Order</button>
+        <button type="submit" class="btn-grad" style="border:none;width: -webkit-fill-available;" id="order_btn_">Place Your Order</button>
       </form>
     </div>
   </div>

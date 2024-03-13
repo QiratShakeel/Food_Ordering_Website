@@ -22,6 +22,7 @@
                             <th style="font-size: 20px;">Landmark</th>
                             <th style="font-size: 20px;">Delivery Instructions</th>
                             <th style="font-size: 20px;">Date</th>
+                            <th style="font-size: 20px;">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,6 +37,11 @@
                             <td>{{order.order_address_landmark}}</td>
                             <td>{{order.order_address_instructions}}</td>
                             <td>{{order.order_date}}</td>
+  <div id="cart_item_detail_url" style="display: none;">{% url 'cart_items_list' %}</div>
+                            <td>
+                                <button type="button" class="cart_detail_btn btn btn-icon-text" style="background-color: #e46103; color: white;  border: none; box-shadow: 0 0.5rem 1.2rem rgba(247, 127, 29, 0.534);margin-bottom:10px" data-bs-toggle="modal" data-bs-target="#cart_modal" data-order-id="{{order.order_id}}">
+                                    Details</button>
+                            </td>                            
                         </tr>
                         {% endfor %} 
                     </tbody>
@@ -45,6 +51,73 @@
             </div>
         </div>
     </div>
+    
+    <!-- ============================================-->
+    <!-- <section> begin(Food Items Modal) ============================-->
+        <!-- Modal -->
+  <div class="modal fade" id="cart_modal" tabindex="-1" aria-labelledby="cart_modal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content modal-container">
+          <div class="modal-header">
+          <h1 class="modal-title fs-5 modal-container-title" id="exampleModalLabel" style="color:black">Cart Items Detail</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body modal-container-body">
+            <div class=".item-info rtf" id="cart_items_info">
+                
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- ============================================-->
+<!-- <section> ENDD(Food Items Modal) ============================-->
+    
     {% endblock content %}
 </div>
 </main>
+
+
+{% block js %}
+<script>
+    $('#cart_modal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var objectId = button.data('order-id'); // Extract object ID from data attribute
+        var cart_items_list_Url = document.getElementById("cart_item_detail_url").textContent;
+        // Perform AJAX request to fetch object details using the object ID
+        // For demonstration, let's assume the details are retrieved and then displayed in the modal body
+        $.ajax({
+            url: cart_items_list_Url,
+            type: 'GET',
+            data: { object_id: objectId },
+            success: function(response) {
+                try {
+                    console.log(response)                    
+                var cartContainer = document.getElementById("cart_items_info");
+                cartContainer.innerHTML= "";
+
+// Iterate over the cart items and create HTML elements to display them
+$.each(response, function(index, item) {
+    var itemElement = document.createElement("div");
+    itemElement.innerHTML = `
+        <div>Name: ${item.name}</div>
+        <div>Quantity: ${item.qty}</div>
+        <div>Price: $${item.price}</div>
+        <div>Instructions: ${item.instructions}</div>
+        <hr>
+    `;
+    cartContainer+=itemElement;
+});
+
+                } catch (error) {
+                  console.error('Error updating modal content:', error);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("ajax error is:",xhr.responseText);
+            }
+        });
+    });
+
+</script>
+{% endblock js %}

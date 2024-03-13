@@ -1,0 +1,57 @@
+{% extends 'Customer_App/template/base.html' %}
+{% block css %}
+body{
+    padding:0
+}
+{% endblock css %}
+
+
+{% block content %}
+
+<!-- ============================================-->
+<!-- <section> begin(All Restaurant Banner Image) ============================-->
+<section style="padding:0px">
+    <img src="/static/Restaurant_CSS/img/all_restaurant_banner_image.jpg" style="height:600px;width:100%">
+    <div class="container">
+    </div>
+</section>
+<!-- <section> close ============================-->
+<!-- ============================================-->
+<!-- ============================================-->
+<!-- <section> begin(Restaurants) ============================-->
+    <section id="restaurant" style="padding: 10px 0px">
+        <div class="container">
+          <div class="row h-100">
+            <div class="col-lg-7 mx-auto text-center mb-6">
+              <h5 class="fw-bold fs-3 fs-lg-5 lh-sm mb-3" style="color: #F17228 !important;">All Restaurants</h5>
+            </div>
+          </div>
+          <div class="row gx-2">
+            {% for restaurant in restaurant %}
+            <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5" >
+              <a href="{% url 'restaurant_detail' restaurant.rest_fk_id %}">
+              <div class="card card-span h-100 text-white rounded-3"><img  class="img-fluid rounded-3 h-100" src="{{restaurant.rest_fk_id.rest_banner_img.url}}" alt="..." />
+                <div class="card-img-overlay ps-0"><span class="badge bg-danger p-2 ms-3"><i class="fas fa-tag me-2 fs-0"></i><span class="fs-0">20% off</span></span><span class="badge bg-primary ms-2 me-1 p-2"><i class="fas fa-clock me-1 fs-0"></i><span class="fs-0">Fast</span></span></div>
+                <div class="card-body ps-0">
+                  <div class="d-flex align-items-center mb-3"><img class="img-fluid" style="width:80px" src="{{restaurant.rest_fk_id.rest_logo_img.url}}" alt="" />
+                    <div class="flex-1 ms-3">
+                      <h5 class="mb-0 fw-bold text-1000">{{restaurant.rest_fk_id.rest_name}}</h5><span class="text-primary fs--1 me-1"><i class="fas fa-star"></i></span><span class="mb-0 text-primary">46</span>
+                    </div>
+                  </div><span class="badge bg-soft-danger p-2"><span class="fw-bold fs-1 text-danger">
+                    {% if restaurant.is_open_now %}
+                      Opens Now
+                    {% else %}
+                      Closed Now
+                    {% endif %}</span></span>
+                </div>
+              </div>
+              </a>
+            </div>
+            {% endfor %}
+            
+        </div>
+</section>
+<!-- <section> close ============================-->
+<!-- ============================================-->
+      
+{% endblock %}

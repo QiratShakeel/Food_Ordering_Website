@@ -118,6 +118,25 @@ span.price {
   color: grey;
 }
 
+.btn-grad {
+  background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%);
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  box-shadow: 0 0 20px #f88e029f;
+  border-radius: 10px;
+  display: block;
+}
+
+.btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
 @media (max-width: 800px) {
   .row {
@@ -133,59 +152,11 @@ span.price {
 
 {% block content %}
 {%endblock content%}
-<section class="py-0 pt-7 bg-1000">
+<section class="py-0 pt-7 bg-1000" style="border-radius: 0 90px 0 0;">
 
-  <div class="container">
-    <div class="row justify-content-lg-between">
-      <h5 class="lh-lg fw-bold text-white">OUR TOP CITIES</h5>
-      <div class="col-6 col-md-4 col-lg-auto mb-3">
-        <ul class="list-unstyled mb-md-4 mb-lg-0">
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">San Francisco</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Miami</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">San Diego</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">East Bay</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Long Beach</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-md-4 col-lg-auto mb-3">
-        <ul class="list-unstyled mb-md-4 mb-lg-0">
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Los Angeles</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Washington DC</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Seattle</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Portland</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Nashville</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-md-4 col-lg-auto mb-3">
-        <ul class="list-unstyled mb-md-4 mb-lg-0">
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">New York City</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Orange County</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Atlanta</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Charlotte</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Denver</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-md-4 col-lg-auto mb-3">
-        <ul class="list-unstyled mb-md-4 mb-lg-0">
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Chicago</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Phoenix</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Las Vegas</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Sacramento</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Oklahoma City</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-md-4 col-lg-auto mb-3">
-        <ul class="list-unstyled mb-md-4 mb-lg-0">
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Columbus</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">New Mexico</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Albuquerque</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Sacramento</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">New Orleans</a></li>
-        </ul>
-      </div>
-    </div>
-    <hr class="text-900" />
-    <div class="row">
+  <div class="container" >
+    <hr class="text-900">
+    <div class="row" style="padding-top: 5%;">
       <div class="col-6 col-md-4 col-lg-3 col-xxl-2 mb-3">
         <h5 class="lh-lg fw-bold text-white">COMPANY</h5>
         <ul class="list-unstyled mb-md-4 mb-lg-0">
@@ -205,23 +176,16 @@ span.price {
         </ul>
       </div>
       <div class="col-6 col-md-4 col-lg-3 col-xxl-2 mb-3">
-        <h5 class="lh-lg fw-bold text-white">LEGAL</h5>
+        <h5 class="lh-lg fw-bold text-white">CITY</h5>
         <ul class="list-unstyled mb-md-4 mb-lg-0">
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Terms &amp; Conditions</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Refund &amp; Cancellation</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Privacy Policy</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Cookie Policy</a></li>
+          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">San Francisco</a></li>
+          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Miami</a></li>
+          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">San Diego</a></li>
+          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">East Bay</a></li>
         </ul>
       </div>
       <div class="col-6 col-md-4 col-lg-3 col-xxl-2 mb-3">
-        <h5 class="lh-lg fw-bold text-white">LEGAL</h5>
-        <ul class="list-unstyled mb-md-4 mb-lg-0">
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Terms &amp; Conditions</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Refund &amp; Cancellation</a></li>
-          <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Privacy Policy</a></li>
-        </ul>
-      </div>
-      <div class="col-12 col-md-8 col-lg-6 col-xxl-4">
+        <h1 class="text-primary m-0" style="background: linear-gradient(50deg, #fb3c00, #ffb800); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight:bold;"><span class="fa fa-utensils text-gradient" style="color: #ff4e00!important;"></span> Foodie</h1>
         <h5 class="lh-lg fw-bold text-500">FOLLOW US</h5>
         <div class="text-start my-3"> <a href="#!">
             <svg class="svg-inline--fa fa-instagram fa-w-14 fs-2 me-2" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="instagram" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -233,27 +197,18 @@ span.price {
             <svg class="svg-inline--fa fa-twitter fa-w-16 fs-2 mx-2" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <path fill="#BDBDBD" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path>
             </svg></a></div>
-        <h3 class="text-500 my-4">Receive exclusive offers and <br />discounts in your mailbox</h3>
-        <div class="row input-group-icon mb-5">
-          <div class="col-auto"><i class="fas fa-envelope input-box-icon text-500 ms-3"></i>
-            <input class="form-control input-box bg-800 border-0" type="email" placeholder="Enter Email" aria-label="email" />
-          </div>
-          <div class="col-auto">
-            <button class="btn btn-primary" type="submit">Subscribe</button>
-          </div>
-        </div>
       </div>
     </div>
     <hr class="border border-800" />
     <div class="row flex-center pb-3">
       <div class="col-md-6 order-0">
-        <p class="text-200 text-center text-md-start">All rights Reserved &copy; Your Company, 2021</p>
+        <p class="text-200 text-center text-md-start">All rights Reserved &copy; Your Company, 2024</p>
       </div>
       <div class="col-md-6 order-1">
         <p class="text-200 text-center text-md-end"> Made with&nbsp;
           <svg class="bi bi-suit-heart-fill" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#FFB30E" viewBox="0 0 16 16">
             <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"></path>
-          </svg>&nbsp;by&nbsp;<a class="text-200 fw-bold" href="https://themewagon.com/" target="_blank">ThemeWagon </a>
+          </svg>&nbsp;by&nbsp;<a class="text-200 fw-bold" href="https://themewagon.com/" target="_blank">Foodie </a>
         </p>
       </div>
     </div>
@@ -330,7 +285,7 @@ $(document).ready(function(){
 
   $('#order_btn_').click(function(){
     var checkoutUrl = document.getElementById("checkout_url").textContent;
-    var ajaxData = { "key":"value","cart":cart };  // Data to be sent via AJAX
+    var ajaxData = { key:"value",cart:cart };  // Data to be sent via AJAX
     //console.log(JSON.stringify(ajaxData))
     var csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     $.ajax({

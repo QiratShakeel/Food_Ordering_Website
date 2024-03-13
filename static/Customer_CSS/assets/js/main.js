@@ -1,4 +1,4 @@
-console.log("Helloo World")
+
 
 
 // /* -------------------------------------------------------------------------- */
@@ -70,10 +70,11 @@ $(document).ready(function(){
     $('#item_modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget); // Button that triggered the modal
         var objectId = button.data('item-id'); // Extract object ID from data attribute
+        var food_item_detail_Url = document.getElementById("food_item_detail_url").textContent;
         // Perform AJAX request to fetch object details using the object ID
         // For demonstration, let's assume the details are retrieved and then displayed in the modal body
         $.ajax({
-            url: 'food_item_detail/',
+            url: food_item_detail_Url,
             type: 'GET',
             data: { object_id: objectId },
             success: function(response) {
@@ -304,7 +305,7 @@ $(document).ready(function(){
                         flex-direction: row-reverse;
                         justify-content: center;">
                           <button class="button is-ghost btn_cart_minus" id="btn_cart_minus`+cart[i].id+`"><i class="counter-icons fa-solid fa-minus"></i></button>
-                          <p id="btn_qty_val`+cart[i].id+`" style="padding:5px;font-weight:600;margin-top:0;line-height:3.5;">`+cart[i].qty+`</p>  
+                          <p id="btn_qty_val`+cart[i].id+`" style="padding:5px;font-weight:600;margin-top:0;">`+cart[i].qty+`</p>  
                           <button class="button is-ghost btn_cart_plus" id="btn_cart_plus`+cart[i].id+`"><i class="counter-icons fa-solid fa-plus"></i></button>
                           </div>
                       <p>Rs.
@@ -315,11 +316,11 @@ $(document).ready(function(){
                   </div>`);
                 //$('#cart_items').append(html);
         };
-        document.getElementById("cart_items_offcanvas").innerHTML += `<div class="row">
-        <div class="col-6">Total Price :</div>
+        document.getElementById("cart_items_offcanvas").innerHTML += `<div class="row" style="margin-top:20px">
+        <div class="col-6" style="text-align:center;">Total Price :</div>
         <div class="col-6">Rs. <span id="sum_of_prices">`+sum_of_prices+`</span></div>
         </div>
-        <div class="row" style="justify-content:center;"><a id="cart_checkout_btn_" class="btn btn-danger">Checkout</a>
+        <div class="row" style="justify-content:center;"><a id="cart_checkout_btn_" class="btn-gradee btn-danger" style="margin-top:20px;width:300px">Checkout</a>
         </div>`;
         // Checkout Btn Click 
         $(document).on('click','#cart_checkout_btn_',function(){
@@ -412,10 +413,28 @@ $(document).ready(function(){
 
 
 
+  // //////////////////////////Food Type Select Page Work/////////////////////
+  // var selectElement = document.getElementById("food_type");
 
+    // Add event listener for change event
+    $('#food_type').change(function() {
+        // Get the selected option value
+        var food_type_id = $(this).val();
+        console.log("Selected value:", food_type_id);
+        food_type_fk=$(".category_food_type_fk").text()
+        console.log("Food Type Fk:", food_type_fk);
+        // food_type_fk.text(food_type_id)
+        if(food_type_fk== food_type_id){
+          $('.carouselSearchByFood_carousel-item').hide();
+          $('.carouselSearchByFood_carousel-item[data-food-type="' + food_type_id + '"]').show();
+          $('#carouselSearchByFood').carousel('dispose').carousel();
+        }else{
+          $('.carouselSearchByFood_carousel-item').show();
+        }
+      // Show only the carousel items that match the selected food type
 
-
-
+      // Trigger the carousel to update its state
+    });
 
 
 

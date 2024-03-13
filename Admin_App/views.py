@@ -7,12 +7,20 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required 
 from Restaurant_App.models import Restaurant
 from Customer_App.models import Order,Cart_Items
+from datetime import datetime
+from django.utils import timezone
 
 @login_required(login_url='admin_signin')
 def home(request):
         if request.user.is_authenticated:
             user_name = request.user.username
-            return render(request,"Admin_App/template/index.html",{'username':user_name})
+            no_of_restaurant=Restaurant.objects.all().count()
+            no_of_orders=Order.objects.all().count()
+            today = timezone.now().date()
+            todays_orders_count = Order.objects.filter(order_date__date=today).count()
+            no_of_users=User.objects.filter(is_superuser=0).count()
+            params={"no_of_restaurant":no_of_restaurant,"no_of_orders":no_of_orders,"todays_orders_count":todays_orders_count,"username":user_name,"no_of_users":no_of_users}
+            return render(request,"Admin_App/template/index.html",params)
 
 # admin registration
 def admin_signup(request):

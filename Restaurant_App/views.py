@@ -6,12 +6,25 @@ from Admin_App.models import Food_Category
 from Customer_App.models import Cart_Items,Order
 from django.contrib.auth import logout
 from django.urls import reverse
+from django.utils import timezone
+from django.http import JsonResponse
+from django.core.serializers import serialize
 
 def home(request):
     if 'rest_id' in request.session:
         rest_id = request.session['rest_id']
         rest = Restaurant.objects.get(rest_id= rest_id)
-        return render(request,"Restaurant_App/template/index.html",{'rest':rest})
+        total_revenue = Order.objects.exclude(order_total_price=None).count()
+        today = timezone.now().date()
+        todays_order_total_price = Order.objects.filter(order_date__date=today)
+        todays_total_price=0
+        for order in todays_order_total_price:
+            todays_total_price+=order.order_total_price
+        no_of_orders=Order.objects.all().count()
+        today = timezone.now().date()
+        todays_orders_count = Order.objects.filter(order_date__date=today).count()
+        params={"total_revenue":total_revenue,"todays_total_price":todays_total_price,'rest':rest,"no_of_orders":no_of_orders,"todays_orders_count":todays_orders_count}
+        return render(request,"Restaurant_App/template/index.html",params)
     else:
         return redirect(restaurant_signin)
 
@@ -243,11 +256,21 @@ def timing_details(request,id):
     
 # list
 def cart_items_list(request):
-    obj=Cart_Items.objects.all()
-    params={"obj":obj}
-    return render(request,"Restaurant_App/template/list/cart_items_list.html",params)
+    if request.method == 'GET' and request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
+        object_id = request.GET.get('object_id')
+        # Logic to fetch object details using object_id
+        try:
+            cart_items=Cart_Items.objects.filter(order_fk=object_id)
+            cart_items_data = list(cart_items.values())
+            return JsonResponse(cart_items_data,safe=False)
+        except Food_Item.DoesNotExist:
+            return JsonResponse({'error': 'Cart Item Not Found for the order'}, status=404)
+    else:
+        # Handle invalid requests
+        return JsonResponse({'error': 'Invalid request'}, status=400)
+
 
 def orders_list(request):
     obj=Order.objects.all()
-    params={"obj":obj}
+    params={"list":obj}
     return render(request,"Restaurant_App/template/list/orders_list.html",params)

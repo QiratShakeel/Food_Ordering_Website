@@ -8,7 +8,6 @@
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                   <h3 class="font-weight-bold">Welcome Foodie - {{username}}</h3>
-                  <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary" style="color: #ff6900!important;">3 unread alerts!</span></h6>
                 </div>
                 <div class="col-12 col-xl-4">
                  <div class="justify-content-end d-flex">
@@ -31,18 +30,10 @@
           <div class="row">
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card tale-bg"style=" box-shadow: 0 0.5rem 1.2rem rgba(0, 0, 0, 0.26)">
-                <div class="card-people mt-auto">
-                  <img src="/static/Admin_CSS/images/dashboard/people.svg" alt="people">
+                <div class="card-people">
+                  <img src="/static/Admin_CSS/images/dashboard/admin_pannel_image.jpg" style="height:250px" alt="people">
                   <div class="weather-info">
-                    <div class="d-flex">
-                      <div>
-                        <h2 class="mb-0 font-weight-normal"><i class="icon-sun mr-2"></i>31<sup>C</sup></h2>
-                      </div>
-                      <div class="ml-2">
-                        <h4 class="location font-weight-normal">Bangalore</h4>
-                        <h6 class="font-weight-normal">India</h6>
-                      </div>
-                    </div>
+                    
                   </div>
                 </div>
               </div>
@@ -53,8 +44,7 @@
                   <div class="card card-tale" style="background-color: #f87313; border-radius: 15px 30px; border: none; box-shadow: 0 0.5rem 1.2rem rgba(0,0,0,.2)">
                     <div class="card-body">
                       <p class="mb-4">Today’s Order</p>
-                      <p class="fs-30 mb-2">4006</p>
-                      <p>10.00% (30 days)</p>
+                      <p class="fs-30 mb-2">{{todays_orders_count}}</p>
                     </div>
                   </div>
                 </div>
@@ -62,8 +52,7 @@
                   <div class="card card-dark-blue" style="background-color: #e77d5d; border-radius: 30px 15px; border: none; box-shadow: 0 0.5rem 1.2rem rgba(0,0,0,.2)">
                     <div class="card-body">
                       <p class="mb-4">Total Order</p>
-                      <p class="fs-30 mb-2">61344</p>
-                      <p>22.00% (30 days)</p>
+                      <p class="fs-30 mb-2">{{no_of_orders}}</p>
                     </div>
                   </div>
                 </div>
@@ -73,8 +62,7 @@
                   <div class="card card-light-blue" style="background-color: #f87313; border-radius: 15px 30px; border: none; box-shadow: 0 0.5rem 1.2rem rgba(0,0,0,.2)">
                     <div class="card-body">
                       <p class="mb-4">Number of Restaurant</p>
-                      <p class="fs-30 mb-2">34040</p>
-                      <p>2.00% (30 days)</p>
+                      <p class="fs-30 mb-2">{{no_of_restaurant}}</p>
                     </div>
                   </div>
                 </div>
@@ -82,8 +70,7 @@
                   <div class="card card-light-danger" style="background-color: #e77d5d; border-radius: 30px 15px; border: none; box-shadow: 0 0.5rem 1.2rem rgba(0,0,0,.2)">
                     <div class="card-body">
                       <p class="mb-4">Number of Customer</p>
-                      <p class="fs-30 mb-2">47033</p>
-                      <p>0.22% (30 days)</p>
+                      <p class="fs-30 mb-2">{{no_of_users}}</p>
                     </div>
                   </div>
                 </div>
