@@ -84,6 +84,9 @@ $(document).ready(function(){
                   $('#modal_name').text(response.name);
                   $('#modal_desc').text(response.description);
                   $('#modal_price').text("Rs."+response.price);
+                  if(response.discount_price>0){
+                    $('#modal_discount_price').text("Discount of: "+response.discount_price+"Rs");
+                  }
                   $('#modal_image').attr('src', response.image);
                   $('.cart').attr('id', "pr"+ objectId);
                   $('.minus').attr('id', "minuspr"+ objectId);
@@ -258,6 +261,7 @@ $(document).ready(function(){
     cart= JSON.parse(localStorage.getItem('cart'));
     console.log("cart",cart)
   if(cart.length === 0){
+    document.getElementById("cart_items_offcanvas").innerHTML = "";
     document.getElementById("cart_items_offcanvas").innerHTML += `Empty Cart`;
   }
   else{
@@ -287,8 +291,9 @@ $(document).ready(function(){
             
         for (var i = 0; i < cartItems.length; i++) {
             var item = cartItems[i];
-            console.log(item.food_item_name);
-            totalprice= item.food_item_price* parseInt(cart[i].qty)
+            console.log(item.food_item_discount_price);
+            item_price=item.food_item_price-item.food_item_discount_price
+            totalprice= item_price* parseInt(cart[i].qty)
             sum_of_prices+=totalprice;
             console.log("Total price is:",totalprice)
             document.getElementById("cart_items_offcanvas")
@@ -311,6 +316,7 @@ $(document).ready(function(){
                       <p>Rs.
                       <span id="total_price`+cart[i].id+`">`+totalprice+`</span>
                       <span style="display:none;" id="Original_price`+cart[i].id+`">`+item.food_item_price+`</span>
+                      <span style="display:none;" id="Discounted_price`+cart[i].id+`">`+item.food_item_discount_price+`</span>
                       </p>
                   </ul>
                   </div>`);
@@ -354,12 +360,15 @@ $(document).ready(function(){
     // Update the quantity for this specific item
     var element = $("#btn_qty_val" + id);
     var original_priceId = $("#Original_price" + id);
+    var discounted_priceId = $("#Discounted_price" + id);
     var total_priceId = $("#total_price" + id);
     var sumId = $("#sum_of_prices");
     var qty = parseInt(element.text());
     var price = parseInt(original_priceId.text());
+    var discount_price = parseInt(discounted_priceId.text());
     qty = Math.max(0, qty -1);
-    new_totalprice=price*qty;
+    item_price= price-discount_price
+    new_totalprice=item_price*qty;
     sum_of_prices -= price; 
     element.text(qty);
     total_priceId.text(new_totalprice)
@@ -389,13 +398,16 @@ $(document).ready(function(){
     // Update the quantity for this specific item
     var element = $("#btn_qty_val" + id);
     var original_priceId = $("#Original_price" + id);
+    var discounted_priceId = $("#Discounted_price" + id);
     var total_priceId = $("#total_price" + id);
     var sumId = $("#sum_of_prices");
     var qty = parseInt(element.text());
     var price = parseInt(original_priceId.text());
+    var discount_price = parseInt(discounted_priceId.text());
     qty =qty+ 1;
     element.text(qty);
-    new_totalprice=price*qty;
+    item_price= price-discount_price
+    new_totalprice=item_price*qty;
     sum_of_prices += price; 
     total_priceId.text(new_totalprice)
     sumId.text(sum_of_prices)
@@ -417,29 +429,19 @@ $(document).ready(function(){
   // var selectElement = document.getElementById("food_type");
 
     // Add event listener for change event
-    $('#food_type').change(function() {
+    $('#foodtype_dropdownMenuButton').on('change',function() {
         // Get the selected option value
-        var food_type_id = $(this).val();
-        console.log("Selected value:", food_type_id);
-        food_type_fk=$(".category_food_type_fk").text()
-        console.log("Food Type Fk:", food_type_fk);
-        // food_type_fk.text(food_type_id)
-        if(food_type_fk== food_type_id){
-          $('.carouselSearchByFood_carousel-item').hide();
-          $('.carouselSearchByFood_carousel-item[data-food-type="' + food_type_id + '"]').show();
-          $('#carouselSearchByFood').carousel('dispose').carousel();
-        }else{
-          $('.carouselSearchByFood_carousel-item').show();
-        }
-      // Show only the carousel items that match the selected food type
-
-      // Trigger the carousel to update its state
+        var selectedFoodType  = $(this).val();
+        console.log("Selected value:", selectedFoodType);
+        // Hide all carousel items
+        $('.category_slide').hide();
+        $('#carouselSearchByFood[data-food-type="' + selectedFoodType + '"]').show();
     });
 
 
 
 
-
+// //////////////////////////////////////checkout work
 
 
 

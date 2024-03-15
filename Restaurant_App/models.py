@@ -43,9 +43,6 @@ class Restaurant_Timings(models.Model):
     def is_open_now(self):
         now = datetime.datetime.now().time()
         return self.open_timings <= now <= self.closing_timings
-    def discount(Food_Item):
-        
-        return food_item_with_max_discount
     def __str__(self):
         return str(self.rest_timing_id)
     

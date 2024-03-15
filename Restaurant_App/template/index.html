@@ -44,28 +44,7 @@
         <!-- Sale & Revenue End -->
         
             <!-- Sales Chart Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="row g-4" style="margin-top: 1%;">
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-secondary text-center p-4" style="border-radius: 30px; box-shadow: 0.4rem 0.4rem 3.4rem #181c249c;">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h4 class="mb-0" style="background: linear-gradient(50deg, #fb3c00, #ffb800); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight:bold; font-family: 'Bad Script';">... Restaurant Sales ...</h3>
-                                <a href=""  style="color: #fd6900!important; font-weight:bold;">Show All</a>
-                            </div>
-                            <canvas id="worldwide-sales"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="bg-secondary text-center p-4"  style="border-radius: 30px; box-shadow: 0.4rem 0.4rem 3.4rem #181c249c;">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h4 class="mb-0" style="background: linear-gradient(50deg, #fb3c00, #ffb800); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight:bold; font-family: 'Bad Script';">... Salse and Revenue ...</h4>
-                                <a href="" style="color: #fd6900!important; font-weight:bold;">Show All</a>
-                            </div>
-                            <canvas id="salse-revenue"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
             <!-- Sales Chart End -->
 
             <!-- Recent Sales Start -->
@@ -73,14 +52,13 @@
                 <div class="bg-secondary text-center p-3" style="border-radius: 15px 30px; box-shadow: 0.4rem 0.4rem 3.4rem #181c249c; padding-top: 20%; padding-bottom:20%;">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h4 class="mb-0" style="background: linear-gradient(50deg, #fb3c00, #ffb800); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight:bold; font-family: 'Bad Script'; padding:1%;">... Recent Salse Of Our Restaurant ...</h4>
-                        <a href=""style="color: #fd6900!important; font-weight:bold;">Show All</a>
+                        <a href="{% url 'orders_list' %}"style="color: #fd6900!important; font-weight:bold;">Show All</a>
                     </div>
                     <div class="table-responsive" style="padding-bottom:10%; margin:1%">
                         <table class="table text-start align-middle table-hover mb-0 table table-striped table-borderless">
                             <thead>
                                 <tr class="text" style="padding: 3%; font-family: 'Bad Script'; font-weight:bold; font-size: 22px; color:rgb(85, 85, 85)">
                                     <th scope="col" style="padding: 1%;">Date</th>
-                                    <th scope="col">Invoice</th>
                                     <th scope="col">Customer</th>
                                     <th scope="col">Amount</th>
                                     <th scope="col">Status</th>
@@ -88,46 +66,16 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for order in list  %}
+  <div id="cart_item_detail_url" style="display: none;">{% url 'cart_items_list' %}</div>
                                 <tr>
-                                    <td style="padding: 1%;">01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-md" href="" style="color: #fd6900!important; border: none; border-radius: 30px;">View Detail</a></td>
+                                    <td style="padding: 1%;">{{order.order_date}}</td>
+                                    <td>{{order.user_fk.username}}</td>
+                                    <td>{{order.order_total_price}}</td>
+                                    <td>{{order.order_status}}</td>
+                                    <td><button data-bs-toggle="modal" data-bs-target="#cart_modal" data-order-id="{{order.order_id}}" class="cart_detail_btn btn btn-md" href="" style="color: #fd6900!important; border: none; border-radius: 30px;">View Detail</button></td>
                                 </tr>
-                                <tr>
-                                    <td style="padding: 1%;">01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-md" href="" style="color: #fd6900!important; border: none; border-radius: 30px;">View Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 1%;">01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-md" href="" style="color: #fd6900!important; border: none; border-radius: 30px;">View Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 1%;">01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-md" href="" style="color: #fd6900!important; border: none; border-radius: 30px;">View Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 1%;">01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-md" href="" style="color: #fd6900!important; border: none; border-radius: 30px;">View Detail</a></td>
-                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -135,60 +83,33 @@
             </div>
             <!-- Recent Sales End -->
 
-
+    <!-- ============================================-->
+    <!-- <section> begin(Cart Items Modal) ============================-->
+        <!-- Modal -->
+        <div class="modal fade" id="cart_modal" tabindex="-1" aria-labelledby="cart_modal" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content modal-container">
+                  <div class="modal-header">
+                  <h1 class="modal-title fs-5 modal-container-title" id="exampleModalLabel" style="color:black">Cart Items Detail</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body modal-container-body">
+                    <div class=".item-info rtf" id="cart_items_info">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- ============================================-->
+        <!-- <section> ENDD(Cart Items Modal) ============================-->
+            
 
             <!-- Widgets Start -->
             <div class="container-fluid pt-4 px-4" style="margin-top: 5%; padding-bottom: 5%;">
                 <div class="row g-4">
-                    <div class="col-sm-12 col-md-6 col-xl-4">
-                        <div class="h-100 bg-secondary p-4" style="border-radius: 15px 30px; box-shadow: 0.4rem 0.4rem 3.4rem #181c249c; padding-top: 20%; padding-bottom:20%;">
-                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                <h6 class="mb-0" style="background: linear-gradient(50deg, #fb3c00, #ffb800); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight:bold; font-family: 'Bad Script'; padding:1%;">... Messages ...</h6>
-                                <a href="" style="color: #fd6900!important; font-weight:bold;">Show All</a>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="/static/Restaurant_CSS/img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0" style="color: #fd6900!important;">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                    <span>Short message goes here...</span>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="/static/Restaurant_CSS/img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0" style="color: #fd6900!important;">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                    <span>Short message goes here...</span>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-3">
-                                <img class="rounded-circle flex-shrink-0" src="/static/Restaurant_CSS/img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0" style="color: #fd6900!important;">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                    <span>Short message goes here...</span>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center pt-3">
-                                <img class="rounded-circle flex-shrink-0" src="/static/Restaurant_CSS/img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h6 class="mb-0" style="color: #fd6900!important;">Jhon Doe</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                    <span>Short message goes here...</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-xl-4">
+                    
+                    <div class="col-sm-12 col-md-12 col-xl-12">
                         <div class="h-100 bg-secondary p-4"style=" border-radius: 15px 30px; box-shadow: 0.4rem 0.4rem 3.4rem #181c249c; padding-top: 20%; padding-bottom:20%;">
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <h6 class="mb-0" style="background: linear-gradient(50deg, #fb3c00, #ffb800); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight:bold; font-family: 'Bad Script'; padding:1%;">... Calender ...</h6>
@@ -197,66 +118,56 @@
                             <div id="calender"></div>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-6 col-xl-4">
-                        <div class="h-100 bg-secondary p-4" style=" border-radius: 15px 30px; box-shadow: 0.4rem 0.4rem 3.4rem #181c249c; padding-top: 20%; padding-bottom:20%;">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0" style="background: linear-gradient(50deg, #fb3c00, #ffb800); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight:bold; font-family: 'Bad Script'; padding: 1%;">... To Do List ...</h6>
-                                <a href=""style="color: #fd6900!important; font-weight:bold;">Show All</a>
-                            </div>
-                            <div class="d-flex mb-2">
-                                <input class="form-control bg-dark border-0" type="text" placeholder="Enter task">
-                                <button type="button" class="btn ms-2 btn-grad">Add</button>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-2">
-                                <input class="form-check-input m-0" type="checkbox">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span>Short task goes here...</span>
-                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-2">
-                                <input class="form-check-input m-0" type="checkbox">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span>Short task goes here...</span>
-                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-2">
-                                <input class="form-check-input m-0" type="checkbox" checked>
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span><del>Short task goes here...</del></span>
-                                        <button class="btn btn-sm"style="color: #fd6900;"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center border-bottom py-2">
-                                <input class="form-check-input m-0" type="checkbox">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span>Short task goes here...</span>
-                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center pt-2">
-                                <input class="form-check-input m-0" type="checkbox">
-                                <div class="w-100 ms-3">
-                                    <div class="d-flex w-100 align-items-center justify-content-between">
-                                        <span>Short task goes here...</span>
-                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
             <!-- Widgets End -->
 
             
             {% endblock %} 
+
+            {% block js %}
+<script>
+    $('#cart_modal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var objectId = button.data('order-id'); // Extract object ID from data attribute
+        var cart_items_list_Url = document.getElementById("cart_item_detail_url").textContent;
+        $.ajax({
+            url: cart_items_list_Url,
+            type: 'GET',
+            data: { object_id: objectId },
+            success: function(response) {
+                try {
+                    cartItems=response.cart_items
+                    var cartContainer = document.getElementById("cart_items_info");
+                    cartContainer.innerHTML= "";                
+                    console.log("cart Item list is",cartItems)
+                    if (cartItems.length>0){
+                    for(var i=0; i<cartItems.length; i++){
+                        item= cartItems[i]
+                        cartContainer.insertAdjacentHTML("beforeend",`
+                        <div>Name: ${item.food_item_name}</div>
+                        <div>Quantity: ${item.cart_item_qty}</div>
+                        <div>Price: Rs.${item.cart_item_price}</div>
+                        <div>Instructions: ${item.cart_item_instructions}</div>
+                        <hr>
+                    `)}
+                    }
+                    else{
+                        cartContainer.insertAdjacentHTML("beforeend",`
+                        <h6 style="color:grey">No Cart Item is Present</h6>
+                        <hr>`)
+                    }
+                    }                    
+                 catch (error) {
+                  console.error('Error updating modal content:', error);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("ajax error is:",xhr.responseText);
+            }
+        });
+    });
+
+</script>
+{% endblock js %}

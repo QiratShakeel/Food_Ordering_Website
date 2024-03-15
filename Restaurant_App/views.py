@@ -23,7 +23,8 @@ def home(request):
         no_of_orders=Order.objects.all().count()
         today = timezone.now().date()
         todays_orders_count = Order.objects.filter(order_date__date=today).count()
-        params={"total_revenue":total_revenue,"todays_total_price":todays_total_price,'rest':rest,"no_of_orders":no_of_orders,"todays_orders_count":todays_orders_count}
+        obj=Order.objects.all()
+        params={"list":obj,"total_revenue":total_revenue,"todays_total_price":todays_total_price,'rest':rest,"no_of_orders":no_of_orders,"todays_orders_count":todays_orders_count}
         return render(request,"Restaurant_App/template/index.html",params)
     else:
         return redirect(restaurant_signin)
@@ -258,15 +259,28 @@ def timing_details(request,id):
 def cart_items_list(request):
     if request.method == 'GET' and request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         object_id = request.GET.get('object_id')
-        # Logic to fetch object details using object_id
+
+        # Check if the order ID exists
+        if not object_id:
+            return JsonResponse({'error': 'Order ID is required'}, status=400)
         try:
-            cart_items=Cart_Items.objects.filter(order_fk=object_id)
-            cart_items_data = list(cart_items.values())
-            return JsonResponse(cart_items_data,safe=False)
-        except Food_Item.DoesNotExist:
-            return JsonResponse({'error': 'Cart Item Not Found for the order'}, status=404)
+            # Fetch cart items associated with the order ID
+            cart_items = Cart_Items.objects.filter(order_fk=object_id)
+
+            # Serialize cart items into JSON format
+            serialized_items = [{
+                'cart_item_id': item.cart_item_id,
+                'food_item_name': item.food_item_fk.food_item_name,
+                'cart_item_qty': item.cart_item_qty,
+                'cart_item_price': item.cart_item_price,
+                'cart_item_instructions': item.cart_item_instructions
+            } for item in cart_items]
+            return JsonResponse({'cart_items': serialized_items})
+        except Cart_Items.DoesNotExist:
+            # Handle the case where no cart items are found for the given order ID
+            return JsonResponse({'error': 'No cart items found for the order'}, status=404)
     else:
-        # Handle invalid requests
+        # Handle non-AJAX or invalid requests
         return JsonResponse({'error': 'Invalid request'}, status=400)
 
 

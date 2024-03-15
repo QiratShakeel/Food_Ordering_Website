@@ -1,0 +1,43 @@
+{% extends 'Customer_App/template/base.html' %}
+{% block content %}
+<section class="py-8">
+    <div class="container-fluid" style="position: relative;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    padding:6%;">
+    <div    style="   
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;">
+    <i style="font-size: 80px;color:#F17228 " class="fa-regular fa-circle-check"></i>
+        <h1 style="color:grey;font-weight:normal;font-family: 'Bad Script';">Thankyou! For Your Order </h1>
+        <p style="color:grey;font-weight:normal;font-family: 'Bad Script';">Your Order Has Been Recieved</p>
+        <div class="d-grid bottom-0"><a class="btn btn-lg btn-grad " href="{% url 'customer_index' %}">CONTINUE TO ORDER<i class="fas fa-chevron-right ms-2"></i></a></div>
+    </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block js %}
+<script>
+    $(document).ready(function(){
+        localStorage.clear();
+        cart=[];
+        sum=0;
+    for (var i = 0; i < cart.length; i++) {
+      qty=parseInt(cart[i].qty)
+      sum += qty;      
+    }
+        localStorage.setItem('cart',JSON.stringify(cart));
+        document.getElementById('cartno').innerHTML = sum; 
+        document.getElementById("cart_items_offcanvas").innerHTML = "";
+        sum_of_prices = 0;
+    });
+</script>
+{% endblock js %}
+

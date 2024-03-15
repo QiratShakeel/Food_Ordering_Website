@@ -14,4 +14,8 @@ urlpatterns = [
     path('customer_change_password/', views.customer_change_password,name='customer_change_password'),
     path('all_restaurants/', views.all_restaurants,name='all_restaurants'),
     path('category_items/<int:id>', views.category_items,name='category_items'),
+    path('search_results', views.search_results,name='search_results'),
+    path('customer_order_list', views.customer_order_list,name='customer_order_list'),
+    path('order_confirmation', views.order_confirmation,name='order_confirmation'),
+    path('rating_reviews', views.rating_reviews,name='rating_reviews'),
 ] 

@@ -16,7 +16,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- responsive style -->
     <link href="/static/Customer_CSS/Restaurant_Page_theme/css/responsive.css" rel="stylesheet" />
-  
+
+    <!--Rating & Review CSS Here-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Arizonia&family=Bad+Script&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!--Rating & Review CSS END Here -->
+
       {% comment %} Restaurant detail theme link end {% endcomment %}
       {% endblock links %}
     {% block css %}
@@ -35,8 +45,119 @@
         background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
         /* Other overlay styles */
     }
+    .rating {
+      display: flex;
+      flex-direction: row-reverse;
+  }
 
-<<<<<<< HEAD
+  .rating input {
+      display: none;
+  }
+
+  .rating label {
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      font-size: 24px;
+      /**color:#fb3c00
+      background-image: linear-gradient(50deg, #fb3c00, #ffb800); 
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent;**/
+  }
+
+  .rating label:hover,
+  .rating label:hover ~ label,
+  .rating input:checked ~ label {
+      background: linear-gradient(50deg, #fb3c00, #ffb800); 
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent;
+  }
+
+  .rating input:checked ~ label:hover,
+  .rating input:checked ~ label:hover ~ label {
+      background: linear-gradient(50deg, #fb3c00, #ffb800); 
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent;
+  }
+
+  .btn-grad {
+      background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%);
+      margin: 10px;
+      padding: 15px 45px;
+      text-align: center;
+      text-transform: uppercase;
+      transition: 0.5s;
+      background-size: 200% auto;
+      color: white;            
+      box-shadow: 0 0 20px #fc6914;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .btn-grad:hover {
+      background-position: right center; /* change the direction of the change here */
+      color: #fff;
+      text-decoration: none;
+    }
+
+    #re_head
+    {
+      text-align: center;
+      font-family: 'Bad Script';
+      background: linear-gradient(50deg, #fb3c00, #ffb800); 
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent;
+      font-weight: normal;
+      margin: 30px;
+      padding: 30px;
+    }
+    .img-fluid
+    {
+      width: 100px;
+      margin-top: 40px;
+      margin-left: 30px;
+    }
+    .card_ra
+    {
+      border-radius: 15px 30px;
+      box-shadow: 0 0 20px #3b3b3b50;
+    }
+    .card-title-re
+    {
+      font-family: 'Bad Script';
+      font-weight: bold;
+    }
+    .card-title-RA
+    {
+      color: #ffb800;
+    }
+    .bar-container {
+      width: 100%;
+      background-color: #f1f1f1;
+      text-align: center;
+      color: white;
+    }
+    
+    /* Individual bars */
+    .bar-5 {width: 60%; height: 18px; background-color: #04AA6D; border-radius: 50px;}
+    .bar-4 {width: 30%; height: 18px; background-color: #2196F3; border-radius: 50px;}
+    .bar-3 {width: 10%; height: 18px; background-color: #00bcd4; border-radius: 50px;}
+    .bar-2 {width: 4%; height: 18px; background-color: #ff9800; border-radius: 50px;}
+    .bar-1 {width: 15%; height: 18px; background-color: #f44336; border-radius: 50px;}
+    
+    /* Responsive layout - make the columns stack on top of each other instead of next to each other */
+    @media (max-width: 400px) {
+      .side, .middle {
+        width: 100%;
+      }
+      /* Hide the right column on small screens */
+      .right {
+        display: none;
+      }
+    }
+    .rating label.active {
+      color:#fb3c00; /* Color of active stars */
+  }
     </style>
     {% endblock css %}
   {% block content %}
@@ -56,93 +177,10 @@
           </div>
         </div>
       </section>
-=======
-  <div class="hero_area">
-    <div class="bg-box">
-      <img src="/static/Customer_CSS/Restaurant_Page_theme/images/37.png" alt="" style="border-radius: 0 0 0 90px;">
-    </div>
-    <!-- slider section -->
-    <section class="slider_section ">
-      <div id="carouselExampleCaptions" class="carousel slide">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="container ">
-              <div class="row">
-                <div class="col-md-7 col-lg-6 ">
-                  <div class="detail-box">
-                    <h1>
-                      Fast Food Restaurant
-                    </h1>
-                    <p>
-                      Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
-                    </p>
-                    <div class="btn-box">
-                      <a href="" class="btn-grad">
-                        Order Now
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item ">
-            <div class="container ">
-              <div class="row">
-                <div class="col-md-7 col-lg-6 ">
-                  <div class="detail-box">
-                    <h1>
-                      Fast Food Restaurant
-                    </h1>
-                    <p>
-                      Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
-                    </p>
-                    <div class="btn-box">
-                      <a href="" class="btn-grad">
-                        Order Now
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container ">
-              <div class="row">
-                <div class="col-md-7 col-lg-6 ">
-                  <div class="detail-box">
-                    <h1>
-                      Fast Food Restaurant
-                    </h1>
-                    <p>
-                      Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
-                    </p>
-                    <div class="btn-box">
-                      <a href="" class="btn-grad">
-                        Order Now
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="container">
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-          </div>
-        </div>
-      </div>
->>>>>>> 42f507cf85402d6d8ed93dc5a314f5a645670cf9
 
 
   <!-- offer section -->
 
-<<<<<<< HEAD
   <section class="offer_section" style="padding: 50px 0px 27px 0px ">
    <h1 style="text-align: center;font-family: 'Source Sans Pro', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';font-weight:bold;color: #F17228 !important;">Discounts Items</h1>
     <div class="offer_container">
@@ -156,31 +194,13 @@
                 <div class="card-body">
                   <h5 class="card-title" style="text-align: center; background: linear-gradient(50deg, #fb3c00, #ffb800); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight:bold; font-family: 'Source Sans Pro', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 34px;">{{discount.food_item_name}}</h5>
                   <p class="card-text" style="text-align: center; font-size: 16px; color:rgb(104, 103, 103);">Discount {{discount.food_item_discount_price}} Rs Off</p>
-=======
-  <section class="offer_section layout_padding-bottom" style="margin-top: 30px;">
-   <h1 style="text-align: center;">Discounts Items</h1>
-    <div class="offer_container">
-      <div class="container ">
-        <div class="row">
-          <div class="col-md-4" style="margin-top: 30px">
-            <div class="box" style="background-color: white!important;">
-              <div class="card" style="width: 20rem; border-radius: 0 30px; box-shadow: 0 0 20px #14141433;">
-                <img src="/static/Customer_CSS/Restaurant_Page_theme/images/o1.jpg" class="card-img-top" alt="burger" style="clip-path: circle(100% at center 0);">
-                <div class="card-body">
-                  <h5 class="card-title" style="text-align: center; background: linear-gradient(50deg, #fb3c00, #ffb800); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight:bold; font-family: 'Dancing Script', cursive; font-size: 34px;">Burger Club</h5>
-                  <p class="card-text" style="text-align: center; font-size: 16px; color:rgb(104, 103, 103);">Discount 15% Off</p>
->>>>>>> 42f507cf85402d6d8ed93dc5a314f5a645670cf9
                   <a href="#" class="btn btn-grad ">Order Now <i class="fa-solid fa-cart-shopping" style="padding-left: 5px;"></i></a>
                 </div>
               </div>
             </div>
           </div>
-<<<<<<< HEAD
           {% endfor %}
           {% comment %} <div class="col-md-4">
-=======
-          <div class="col-md-4">
->>>>>>> 42f507cf85402d6d8ed93dc5a314f5a645670cf9
             <div class="box" style="background-color: white!important;">
               <div class="card" style="width: 20rem; border-radius: 30px 30px; box-shadow: 0 0 20px #14141433;">
                 <img src="/static/Customer_CSS/Restaurant_Page_theme/images/o5.jpg" class="card-img-top" alt="burger" style="clip-path: circle(100% at center 0);">
@@ -202,11 +222,7 @@
                   <a href="#" class="btn btn-grad ">Order Now <i class="fa-solid fa-cart-shopping" style="padding-left: 5px;"></i></a>
                 </div>
               </div>
-<<<<<<< HEAD
           </div> {% endcomment %}
-=======
-          </div>
->>>>>>> 42f507cf85402d6d8ed93dc5a314f5a645670cf9
         </div>
       </div>
     </div>
@@ -252,6 +268,10 @@
                     <h6>
                       Rs. {{items.food_item_price}}
                     </h6>
+                    <br/>
+                        {% if items.food_item_discount_price > 0 %}
+                        <span class="text-1000 " style="color:lightgrey;">Discount of Rs.{{items.food_item_discount_price}}</span>
+                        {% endif %}
                     <a href="">
                       <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                         <g>
@@ -333,7 +353,8 @@
           <div class=".item-info rtf">
             <h1 id="modal_name"></h1>
             <p id="modal_desc"></p>
-            <h6 id="modal_price"></h6>
+            <h6 id="modal_price" style="display:inline;padding-right:10px"></h6>
+            <span id="modal_discount_price"></span>
           </div>
           <div class="rtf">
             <h1>Special Instructions</h1>
@@ -358,11 +379,7 @@
   <!-- end food section -->
 
   <!-- about section -->
-<<<<<<< HEAD
   <!--<h1 style="text-align: center; margin-bottom: 40px">About Food</h1>
-=======
-  <h1 style="text-align: center; margin-bottom: 40px">About Food</h1>
->>>>>>> 42f507cf85402d6d8ed93dc5a314f5a645670cf9
   <section class="about_section" style="border-radius: 0 80px 0 80px; margin-bottom: 10%; box-shadow: 0 0 20px #14141433;"">
     <div class="container  ">
       <div class="row">
@@ -395,46 +412,137 @@
 <br/>-->
   <!-- end about section -->
 
+  <!--reviews and rating section-->
+  <div class="container mt-5">
+    <h2 style="text-align: center;font-family: 'Source Sans Pro', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';font-weight:bold;color: #F17228 !important;padding:2%;">Give Us Rating and Reviews</h2>
+    {% comment %} <h2 id="re_head">Give Us Rating and Reviews</h2> {% endcomment %}
+  {% comment %} <div id="rating_reviews_url" style="display: none;">{% url 'rating_reviews' %}</div>     {% endcomment %}
+  <form id="ratingForm" method="post" action="{% url 'rating_reviews' %}">
+    {% csrf_token %}
+    <input id="rest_id" hidden value="{{obj}}"/>
+        {% comment %} <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" >
+            <label for="floatingInput">User Name</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput">
+            <label for="floatingInput">Email address</label>
+        </div> {% endcomment %}
+      <div class="form-group" style="display: flex;
+      justify-content: center;
+      align-items: center;">
+        <label for="rating" style="font-family: 'Bad Script'; font-weight: bolder;">Give Us Rate Here:</label><br>
+        <div class="rating">
+          <input type="radio" id="star1" name="rating" value="1">
+          <label for="star1"><i class="fas fa-star star"></i></label>
+          <input type="radio" id="star2" name="rating" value="2">
+          <label for="star2"><i class="fas fa-star star"></i></label>
+          <input type="radio"  id="star3" name="rating" value="3">
+          <label for="star3"><i class="fas fa-star star"></i></label>
+          <input type="radio" id="star4" name="rating" value="4">
+          <label for="star4"><i class="fas fa-star star"></i></label>
+          <input type="radio"  id="star5" name="rating" value="5">
+          <label for="star5"><i class="fas fa-star star"></i></label>
+        </div>
+      </div>
+       <div class="form-floating">
+          <textarea class="form-control" id="review_" style="height: 100px"></textarea>
+          <label for="review_" >Review</label>
+       </div>
+       <div class="d-grid gap-2 col-6 mx-auto" style="margin-top: 30px;">
+          <button type="submit" class="btn btn-grad" id="review_post_btn">Submit Review</button>
+      </div>
+    </form>
+  </div>
+
+  <section style="margin-top: 30px; padding: 20px;">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-6">
+              <h3 style="text-align: center;font-family: 'Source Sans Pro', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';font-weight:bold;color: #F17228 !important;margin: 30px;
+              padding: 30px;">Our Comments</h3>
+              {% comment %} <h1 id="re_head">Our Comments</h1> {% endcomment %}
+              {% for reviews in reviews  %}  
+              <div class="card mb-3 card_ra" style="max-width: 540px; margin-bottom: 30px;">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="/static/Customer_CSS/assets/img/gallery/review_userr_image.png" class="img-fluid rounded-start" alt="...">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title-re">{{reviews.user_fk.username}}</h5>
+                          <p class="card-title-RA">{{reviews.user_fk.email}}</p>
+                          <span class="card-text"><small class="text-body-secondary">{{reviews.rating}}/5</small></span>
+                          <p class="card-text">{{reviews.review}}</p>
+                          <p class="card-text"><small class="text-body-secondary">{{reviews.created_at}}</small></p>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+              {% endfor %}
+                
+            </div>
+            <div class="col-lg-6">
+              <h3 style="text-align: center;font-family: 'Source Sans Pro', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';font-weight:bold;color: #F17228 !important;margin: 30px;
+              padding: 30px;">Our Top Rating</h3>
+              {% comment %} <h1 id="re_head">Our Top Rating</h1> {% endcomment %}
+              <div class="row">
+                <div class="side">
+                  <div style="font-family: 'Bad Script'; font-weight: bold; margin-bottom: 10px; margin-top: 10px">Five star</div>
+                </div>
+                <div class="middle">
+                  <div class="bar-container">
+                    <div class="bar-5"></div>
+                  </div>
+                </div>
+                <div class="side">
+                  <div  style="font-family: 'Bad Script'; font-weight: bold; margin-bottom: 10px; margin-top: 10px">Four star</div>
+                </div>
+                <div class="middle">
+                  <div class="bar-container">
+                    <div class="bar-4"></div>
+                  </div>
+                </div>
+                <div class="side">
+                  <div style="font-family: 'Bad Script'; font-weight: bold; margin-bottom: 10px; margin-top: 10px">Three star</div>
+                </div>
+                <div class="middle">
+                  <div class="bar-container">
+                    <div class="bar-3"></div>
+                  </div>
+                </div>
+                <div class="side">
+                  <div style="font-family: 'Bad Script'; font-weight: bold; margin-bottom: 10px ;margin-top: 10px">Two star</div>
+                </div>
+                <div class="middle">
+                  <div class="bar-container">
+                    <div class="bar-2"></div>
+                  </div>
+                </div>
+                <div class="side">
+                  <div style="font-family: 'Bad Script'; font-weight: bold; margin-bottom: 10px; margin-top: 10px">One star</div>
+                </div>
+                <div class="middle">
+                  <div class="bar-container">
+                    <div class="bar-1"></div>
+                  </div>
+                </div>
+              </div>
+        </div>
+            </div>
+        </div>
+    </div>
+  </section>
+  <!--end reviews and rating section-->
+
+
   
       {% comment %} Food Detail Page scripting start{% endcomment %}
         <!-- 
     Essential Scripts
     =====================================-->
 
-    <script>
-<<<<<<< HEAD
-      document.addEventListener("DOMContentLoaded", function() {
-        const filtersMenu = document.querySelector('.filters_menu');
-        const items = document.querySelectorAll('.filters-content .box');
     
-        filtersMenu.addEventListener('click', function(e) {
-          if (e.target.tagName === 'LI') {
-            const filter = e.target.getAttribute('data-filter');
-    
-            items.forEach(item => {
-              const category = item.getAttribute('data-category');
-              if (filter === 'all' || category === filter) {
-                item.style.display = 'block';
-              } else {
-                item.style.display = 'none';
-              }
-            });
-    
-            const activeItem = filtersMenu.querySelector('.active');
-            activeItem.classList.remove('active');
-            e.target.classList.add('active');
-          }
-        });
-      });
-=======
-      const myCarouselElement = document.querySelector('#myCarousel')
-
-      const carousel = new bootstrap.Carousel(myCarouselElement, {
-       interval: 2000,
-       touch: false
-      })
->>>>>>> 42f507cf85402d6d8ed93dc5a314f5a645670cf9
-    </script>
     
     <!-- Main jQuery -->
     <script src="/static/Customer_CSS/Food_Related_Page_theme/plugins/jquery/dist/jquery.min.js"></script>
@@ -457,7 +565,78 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
     <script type="text/javascript" src="/static/Customer_CSS/Food_Related_Page_theme/plugins/google-map/gmap.js"></script>
 
+          <!--Rating & Review Script-->
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+
     <!-- Main Js File -->
     <script src="/static/Customer_CSS/Food_Related_Page_theme/js/script.js"></script>
     {% comment %} Food Detail Page scripting end{% endcomment %}
     {% endblock %} 
+    {% block js %}
+    <script>
+      $(document).ready(function() {
+        $('.rating label').click(function() {
+          $('.rating label').removeClass('active'); // Remove active class from all labels
+          $(this).addClass('active'); // Add active class to the clicked label
+          $(this).prevAll('label').addClass('active');
+          var rating = $(this).prev('input[type="radio"]').val();
+          //console.log('Selected rating:', rating);
+        });
+        var rest_id = document.getElementById('rest_id').value;
+        console.log("rest id :",rest_id)
+        $('#ratingForm').submit(function(event) {
+          //var rating_reviews_Url = document.getElementById("rating_reviews_url").textContent;
+          event.preventDefault(); // Prevent default form submission
+          
+          // Get the selected rating value
+          var ratingValue = $('input[name="rating"]:checked').val();
+          var reviewText = document.getElementById('review_').value;
+          var rest_id = document.getElementById('rest_id').value;
+
+          // Send rating value via AJAX to Django view
+          $.ajax({
+              url: $(this).attr('action'),
+              type: 'POST',
+              data: {
+                csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
+                  rating: ratingValue,
+                  review: reviewText,
+                  rest_id: rest_id
+              },
+              success: function(response) {
+                  console.log('Rating submitted successfully');
+                  // Handle success response
+              },
+              error: function(xhr, status, error) {
+                  console.error('Error submitting rating:', error);
+                  // Handle error response
+              }
+          });
+      });
+    
+        console.log("is something wrong")
+        const filtersMenu = document.querySelector('.filters_menu');
+        const items = document.querySelectorAll('.filters-content .box');
+    
+        filtersMenu.addEventListener('click', function(e) {
+          if (e.target.tagName === 'LI') {
+            const filter = e.target.getAttribute('data-filter');
+    
+            items.forEach(item => {
+              const category = item.getAttribute('data-category');
+              if (filter === 'all' || category === filter) {
+                item.style.display = 'block';
+              } else {
+                item.style.display = 'none';
+              }
+            });
+    
+            const activeItem = filtersMenu.querySelector('.active');
+            activeItem.classList.remove('active');
+            e.target.classList.add('active');
+          }
+        });
+      });
+    </script>
+    {% endblock js %}

@@ -28,7 +28,7 @@ def admin_signup(request):
         name=request.POST.get('admin_name')
         email=request.POST.get('admin_email')
         password=request.POST.get('admin_pass')
-        user= User.objects.create_user(name,email,password)
+        user= User.objects.create_superuser(name,email,password)
         user.save()
         return redirect('admin_signin')
     return render(request,"Admin_App/template/admin_signup.html")
@@ -183,12 +183,5 @@ def admin_restaurants_list(request):
 
 def admin_orders_list(request):
     obj=Order.objects.all()
-    restaurant_name="";
-    for order in obj:
-        cart_items=Cart_Items.objects.filter(order_fk=order.order_id)
-        if cart_items.exists():
-            restaurant_name = cart_items.first().food_item_fk.rest_fk_id.rest_name
-        else:
-            restaurant_name= "N/A" 
-    params={"list":obj,"restaurant_name":restaurant_name}
+    params={"list":obj}
     return render(request,"Admin_App/template/list/admin_orders_list.html",params)

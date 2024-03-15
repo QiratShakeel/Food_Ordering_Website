@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from Restaurant_App.models import Food_Item
+from Restaurant_App.models import Food_Item,Restaurant
 
 # Create your models here.
 class Order(models.Model): 
@@ -25,4 +25,13 @@ class Cart_Items(models.Model):
     cart_item_instructions = models.CharField(max_length = 250)
     def __str__(self):
         return self.cart_item_id
+    
+
+class Rating_Review(models.Model):
+    rating_review_id = models.AutoField(primary_key=True)
+    rating = models.IntegerField(choices=[(i, i) for i in range(1, 6)])
+    review = models.TextField()
+    user_fk= models.ForeignKey(User,on_delete=models.CASCADE)
+    rest_fk_id = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
     

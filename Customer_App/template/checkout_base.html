@@ -232,6 +232,8 @@ span.price {
     {% comment %} Main Page scripting end{% endcomment %}
     {% comment %} <script src="/static/Customer_CSS/assets/js/main.js"></script>  {% endcomment %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="/static/Customer_CSS/assets/js/main.js"></script>    
+
 <script>
   // /* -------------------------------------------------------------------------- */
 // /*                            Cart Section Checkout Button Work                */
@@ -263,7 +265,8 @@ $(document).ready(function(){
           cartItemsContainer.innerHTML += `<h4>Cart <span class="price" style="color:black"></h4>`;
       for (var i = 0; i < cartItems.length; i++) {
           var item = cartItems[i];
-          totalprice= item.food_item_price* parseInt(cart[i].qty)
+          item_price=item.food_item_price-item.food_item_discount_price
+          totalprice= item_price* parseInt(cart[i].qty)
           sum_of_prices+=totalprice;
           document.getElementById("checkout_cart_section_")
               .insertAdjacentHTML("beforeend",  `<p>`+item.food_item_name+` <span class="price">Rs. `+totalprice+`</span></p>`);
@@ -284,8 +287,24 @@ $(document).ready(function(){
   console.log("json form",JSON.stringify(ajaxData))
 
   $('#order_btn_').click(function(){
+    console.log("order")
     var checkoutUrl = document.getElementById("checkout_url").textContent;
-    var ajaxData = { key:"value",cart:cart };  // Data to be sent via AJAX
+    order_total_price=document.getElementById("totalprice").value ;
+    order_address_city=document.getElementById("order_address_city").value ;
+    order_address=document.getElementById("order_address").value ;
+    order_address_landmark=document.getElementById("order_address_landmark").value ;
+    order_address_instructions=document.getElementById("order_address_instructions").value ;
+    user_fk=document.getElementById("user_fk").value ;
+    var ajaxData = { 
+      key:"value",
+      cart:cart,
+      order_total_price:order_total_price,
+      order_address_city:order_address_city,
+      order_address:order_address,
+      order_address_landmark:order_address_landmark,
+      order_address_instructions:order_address_instructions,
+      user_fk:user_fk
+    };  // Data to be sent via AJAX
     //console.log(JSON.stringify(ajaxData))
     var csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     $.ajax({
@@ -304,6 +323,7 @@ $(document).ready(function(){
       }
     });
   })
+  
 
 
 

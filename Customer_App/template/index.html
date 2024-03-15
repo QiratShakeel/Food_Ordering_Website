@@ -54,32 +54,8 @@
 </style>
 {% endblock css %}
 {% block content %}
-<<<<<<< HEAD
 
 <section class="py-5 overflow-hidden" style="background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%);height:650px" id="home">
-=======
-<style>
-  .btn-grad {
-    background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%);
-    padding: 15px 45px;
-    text-align: center;
-    text-transform: uppercase;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: white;            
-    box-shadow: 0 0 20px #f88e029f;
-    border-radius: 10px;
-    display: block;
-  }
-
-  .btn-grad:hover {
-    background-position: right center; /* change the direction of the change here */
-    color: #fff;
-    text-decoration: none;
-  }
-</style>
-<section class="py-5 overflow-hidden" style="background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%);" id="home">
->>>>>>> 42f507cf85402d6d8ed93dc5a314f5a645670cf9
   <div class="container">
     <div class="row flex-center">
       <div class="col-md-5 col-lg-6 order-0 order-md-1 mt-8 mt-md-0"><a class="img-landing-banner" href="#!"><img class="banner_img-fluid" src="/static/Customer_CSS/assets/img/gallery/index_banner_image.png" alt="hero-header" /></a></div>
@@ -133,31 +109,24 @@
 
 <!-- ============================================-->
 <!-- <section> begin(Food Categories Section) ============================-->
-  <section class="py-4 overflow-hidden">
+  <section class="py-6 overflow-hidden">
     <div class="container">
-      <div class="row flex-center mb-1">
+      <div class="row flex-center mb-5">
         <div class="col-lg-7">
           <h5 class="fw-bold fs-3 fs-lg-5 lh-sm text-center text-lg-start" style="color: #FFB30E!important;">Cuisines
           </h5>
         </div>
         {% comment %} <div class="col-lg-4 text-lg-end text-center"><a class="btn btn-lg text-800 me-2" href="#" role="button">VIEW ALL <i class="fas fa-chevron-right ms-2"></i></a></div> {% endcomment %}
         <div class="foodtype_dropdown col-lg-4">
-          <button  id="foodtype_dropdownMenuButton" class="foodtype_dropdown-toggle btn btn-danger btn-gradee shadow-warning text-white"> Choose Your Food Type <span><i class="fa-solid fa-caret-down"></i></span></button>
+          <select  id="foodtype_dropdownMenuButton" class="foodtype_dropdown-toggle btn btn-danger btn-gradee shadow-warning text-white"> <span><i class="fa-solid fa-caret-down"></i></span>
           <div class="foodtype_dropdown-menu" style="text-align:center;" aria-labelledby="foodtype_dropdownMenuButton">
+            <option style="background-color: white;color: black;" value="all" id="{{type.food_id}}" class="food_type_id">All</option>
             {% for type in type %}
-            <option value="{{type.food_id}}" id="{{type.food_id}}" class="food_type_id">{{type.food_type}}</option>
+            <option style="background-color: white;color: black;" value="{{type.food_type}}" id="{{type.food_id}}" class="food_type_id">{{type.food_type}}</option>
             {% endfor %}
           </div>
+        </select>
         </div>
-        {% comment %} <div class="nav-item nav-profile dropdown col-lg-4">
-          <select id="food_type" class="btn btn-danger dropdown-toggle ">
-            <option selected value="0">Choose Your Food Type</option>
-            <option value="0">Both</option>
-            {% for type in type %}
-            <option value="{{type.food_id}}" id="{{type.food_id}}" class="food_type_id">{{type.food_type}}</option>
-            {% endfor %}
-        </select>      
-        </div>       {% endcomment %}
         <div class="col-lg-auto position-relative">          
           <button class="carousel-control-prev s-icon-prev carousel-icon" type="button" data-bs-target="#carouselSearchByFood" data-bs-slide="prev"><span class="carousel-control-prev-icon hover-top-shadow" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>
           <button class="carousel-control-next s-icon-next carousel-icon" type="button" data-bs-target="#carouselSearchByFood" data-bs-slide="next"><span class="carousel-control-next-icon hover-top-shadow" aria-hidden="true"></span><span class="visually-hidden">Next</span></button>
@@ -166,7 +135,7 @@
       <div class="row flex-center">
         <div class="col-12">
           {% for cat,range,nSlides in allCat  %}
-          <div class="carousel slide" id="carouselSearchByFood" data-bs-touch="false" data-bs-interval="false">
+          <div class="carousel slide category_slide" id="carouselSearchByFood" data-food-type="all" data-bs-touch="false" data-bs-interval="false">
             <div class="carousel-inner">
               <div class="carousel-item carouselSearchByFood_carousel-item active" data-bs-interval="10000">
                 <div class="row h-100 align-items-center">
@@ -188,52 +157,58 @@
                   {% endfor %}
                 </div>
               </div>
-              {% comment %} <div class="carousel-item" data-bs-interval="5000">
+            </div>
+          </div>
+          {% endfor %}
+          {% for veg_food_type,range,nSlides in all_veg_food_type  %}
+          <div style="display:none" class="carousel slide category_slide"  id="carouselSearchByFood" data-food-type="veg" data-bs-touch="false" data-bs-interval="false">
+            <div class="carousel-inner">
+              <div class="carousel-item carouselSearchByFood_carousel-item active" data-bs-interval="10000">
                 <div class="row h-100 align-items-center">
-                  <div class="col-sm-6 col-md-4 col-xl mb-5 h-100">
-                    <div class="card card-span h-100 rounded-circle"><img class="img-fluid rounded-circle h-100" src="/static/Customer_CSS/assets/img/gallery/search-pizza.png" alt="..." />
+                  {% for category in veg_food_type  %}
+                  <div class="col-sm-6 col-md-4 col-xl mb-5 h-100" style="text-align:center">
+                    <a href="{% url 'category_items' category.food_cat_id  %}">
+                    <div class="card card-span h-100 rounded-circle" style="align-items:center"><img class="img-fluid rounded-circle h-100" src="{{category.food_cat_img.url}}" style="height:108px !important;width:108px !important" alt="..." />
                       <div class="card-body ps-0">
-                        <h5 class="text-center fw-bold text-1000 text-truncate mb-2">pizza</h5>
+                        <span style="display:none" class="category_food_type_fk" id="category_food_type_fk{{category.food_type_fk.food_id}}">{{category.food_type_fk.food_id}}</span>
+                        <h5 class="text-center fw-bold text-1000 text-truncate mb-2">{{category.food_cat}}</h5>
                       </div>
                     </div>
+                    </a>
                   </div>
-                  <div class="col-sm-6 col-md-4 col-xl mb-5 h-100">
-                    <div class="card card-span h-100 rounded-circle"><img class="img-fluid rounded-circle h-100" src="/static/Customer_CSS/assets/img/gallery/burger.png" alt="..." />
-                      <div class="card-body ps-0">
-                        <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Burger</h5>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-md-4 col-xl mb-5 h-100">
-                    <div class="card card-span h-100 rounded-circle"><img class="img-fluid rounded-circle h-100" src="/static/Customer_CSS/assets/img/gallery/noodles.png" alt="..." />
-                      <div class="card-body ps-0">
-                        <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Noodles</h5>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-md-4 col-xl mb-5 h-100">
-                    <div class="card card-span h-100 rounded-circle"><img class="img-fluid rounded-circle h-100" src="/static/Customer_CSS/assets/img/gallery/sub-sandwich.png" alt="..." />
-                      <div class="card-body ps-0">
-                        <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Sub-sandwiches</h5>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-md-4 col-xl mb-5 h-100">
-                    <div class="card card-span h-100 rounded-circle"><img class="img-fluid rounded-circle h-100" src="/static/Customer_CSS/assets/img/gallery/chowmein.png" alt="..." />
-                      <div class="card-body ps-0">
-                        <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Chowmein</h5>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-md-4 col-xl mb-5 h-100">
-                    <div class="card card-span h-100 rounded-circle"><img class="img-fluid rounded-circle h-100" src="/static/Customer_CSS/assets/img/gallery/steak.png" alt="..." />
-                      <div class="card-body ps-0">
-                        <h5 class="text-center fw-bold text-1000 text-truncate mb-2">Steak</h5>
-                      </div>
-                    </div>
-                  </div>
+                  {% if forloop.counter|divisibleby:8 and forloop.counter > 0 and not forloop.last %}
+                  </div></div><div class="carousel-item" data-bs-interval="5000">  
+                  <div class="row h-100 align-items-center">
+                  {% endif %}
+                  {% endfor %}
                 </div>
-              </div> {% endcomment %}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          {% for non_veg_food_type,range,nSlides  in all_non_veg_food_type  %}
+          <div style="display:none" class="carousel slide category_slide" id="carouselSearchByFood" data-food-type="non veg" data-bs-touch="false" data-bs-interval="false">
+            <div class="carousel-inner">
+              <div class="carousel-item carouselSearchByFood_carousel-item active" data-bs-interval="10000">
+                <div class="row h-100 align-items-center">
+                  {% for category in non_veg_food_type  %}
+                  <div class="col-sm-6 col-md-4 col-xl mb-5 h-100" style="text-align:center">
+                    <a href="{% url 'category_items' category.food_cat_id  %}">
+                    <div class="card card-span h-100 rounded-circle" style="align-items:center"><img class="img-fluid rounded-circle h-100" src="{{category.food_cat_img.url}}" style="height:108px !important;width:108px !important" alt="..." />
+                      <div class="card-body ps-0">
+                        <span style="display:none" class="category_food_type_fk" id="category_food_type_fk{{category.food_type_fk.food_id}}">{{category.food_type_fk.food_id}}</span>
+                        <h5 class="text-center fw-bold text-1000 text-truncate mb-2">{{category.food_cat}}</h5>
+                      </div>
+                    </div>
+                    </a>
+                  </div>
+                  {% if forloop.counter|divisibleby:8 and forloop.counter > 0 and not forloop.last %}
+                  </div></div><div class="carousel-item" data-bs-interval="5000">  
+                  <div class="row h-100 align-items-center">
+                  {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
             </div>
           </div>
           {% endfor %}
@@ -248,12 +223,14 @@
 
 
 <!-- ============================================-->
+
+
 <!-- <section> begin(Food Items) ============================-->
-  <section class="py-4 overflow-hidden">
+  <section class="py-6 overflow-hidden">
 
     <div class="container">
       <div class="row h-100">
-        <div class="col-lg-7 mx-auto text-center mt-0 mb-3">
+        <div class="col-lg-7 mx-auto text-center mt-0 mb-5">
           <h5 class="fw-bold fs-3 fs-lg-5 lh-sm" style="color: #FFB30E!important;">Popular items</h5>
         </div>
         <div class="col-12">
@@ -267,7 +244,10 @@
                       <div class="card card-span h-100 rounded-3"><img class="img-fluid rounded-3 h-100" src="{{items.0.food_img.url}}" alt="..." style="height:145px !important"/>
                       <div class="card-body ps-0">
                         <h5 class="fw-bold text-1000 text-truncate mb-1">{{items.0.food_item_name}}</h5>
-                        <div><span class="text-warning me-2"><i class="fas fa-map-marker-alt"></i></span><span class="text-primary">{{items.0.rest_fk_id.rest_name}}</span></div><span class="text-1000 fw-bold">Rs.{{items.0.food_item_price}}</span>
+                        <div><span class="text-warning me-2"><i class="fas fa-map-marker-alt"></i></span><span class="text-primary">{{items.0.rest_fk_id.rest_name}}</span></div><span class="text-1000 fw-bold">Rs.{{items.0.food_item_price}}</span><br/>
+                        {% if items.0.food_item_discount_price > 0 %}
+                        <span class="text-1000 fw-bold">Discount of: Rs.{{items.0.food_item_discount_price}}</span>
+                        {% endif %}
                       </div>
                       </div>
                       <div class="d-grid gap-2"><a class="btn btn-lg btn-grad" href="#!" role="button">Order now</a></div>
@@ -280,7 +260,10 @@
                       <div class="card card-span h-100 rounded-3"><img class="img-fluid rounded-3 h-100" src="{{items.food_img.url}}" style="height:145px !important" alt="..." />
                       <div class="card-body ps-0">
                         <h5 class="fw-bold text-1000 text-truncate mb-1">{{items.food_item_name}}</h5>
-                        <div><span class="text-warning me-2"><i class="fas fa-map-marker-alt"></i></span><span class="text-primary">{{items.rest_fk_id.rest_name}}</span></div><span class="text-1000 fw-bold">Rs.{{items.food_item_price}}</span>
+                        <div><span class="text-warning me-2"><i class="fas fa-map-marker-alt"></i></span><span class="text-primary">{{items.rest_fk_id.rest_name}}</span></div><span class="text-1000 fw-bold">Rs.{{items.food_item_price}}</span><br/>
+                        {% if items.food_item_discount_price > 0 %}
+                        <span class="text-1000 " style="color:lightgrey;">Discount of Rs.{{items.food_item_discount_price}}</span>
+                        {% endif %}
                       </div>
                       </div>
                       <div class="d-grid gap-2"><a class="btn btn-lg btn-grad" href="#!" role="button">Order now</a></div>
@@ -321,7 +304,8 @@
           <div class=".item-info rtf">
             <h1 id="modal_name"></h1>
             <p id="modal_desc"></p>
-            <h6 id="modal_price"></h6>
+            <h6 id="modal_price" style="display:inline;padding-right:10px"></h6>
+            <span id="modal_discount_price"></span>
           </div>
           <div class="rtf">
             <h1>Special Instructions</h1>
@@ -347,117 +331,6 @@
 
 
 
-<<<<<<< HEAD
-=======
-<section id="testimonial">
-  <div class="container">
-    <div class="row h-100">
-      <div class="col-lg-7 mx-auto text-center mb-6">
-        <h5 class="fw-bold fs-3 fs-lg-5 lh-sm mb-3">Featured Restaurants</h5>
-      </div>
-    </div>
-    <div class="row gx-2">
-      <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5">
-        <div class="card card-span h-100 text-white rounded-3"><img class="img-fluid rounded-3 h-100" src="/static/Customer_CSS/assets/img/gallery/food-world.png" alt="..." />
-          <div class="card-img-overlay ps-0"><span class="badge bg-danger p-2 ms-3"><i class="fas fa-tag me-2 fs-0"></i><span class="fs-0">20% off</span></span><span class="badge bg-primary ms-2 me-1 p-2"><i class="fas fa-clock me-1 fs-0"></i><span class="fs-0">Fast</span></span></div>
-          <div class="card-body ps-0">
-            <div class="d-flex align-items-center mb-3"><img class="img-fluid" src="/static/Customer_CSS/assets/img/gallery/food-world-logo.png" alt="" />
-              <div class="flex-1 ms-3">
-                <h5 class="mb-0 fw-bold text-1000">Food world</h5><span class="text-primary fs--1 me-1"><i class="fas fa-star"></i></span><span class="mb-0 text-primary">46</span>
-              </div>
-            </div><span class="badge bg-soft-danger p-2"><span class="fw-bold fs-1 text-danger">Opens Tomorrow</span></span>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5">
-        <div class="card card-span h-100 text-white rounded-3"><img class="img-fluid rounded-3 h-100" src="/static/Customer_CSS/assets/img/gallery/pizza-hub.png" alt="..." />
-          <div class="card-img-overlay ps-0"><span class="badge bg-danger p-2 ms-3"><i class="fas fa-tag me-2 fs-0"></i><span class="fs-0">10% off</span></span><span class="badge bg-primary ms-2 me-1 p-2"><i class="fas fa-clock me-1 fs-0"></i><span class="fs-0">Fast</span></span></div>
-          <div class="card-body ps-0">
-            <div class="d-flex align-items-center mb-3"><img class="img-fluid" src="/static/Customer_CSS/assets/img/gallery/pizzahub-logo.png" alt="" />
-              <div class="flex-1 ms-3">
-                <h5 class="mb-0 fw-bold text-1000">Pizza hub</h5><span class="text-primary fs--1 me-1"><i class="fas fa-star"></i></span><span class="mb-0 text-primary">40</span>
-              </div>
-            </div><span class="badge bg-soft-danger p-2"><span class="fw-bold fs-1 text-danger">Opens Tomorrow</span></span>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5">
-        <div class="card card-span h-100 text-white rounded-3"><img class="img-fluid rounded-3 h-100" src="/static/Customer_CSS/assets/img/gallery/donuts-hut.png" alt="..." />
-          <div class="card-img-overlay ps-0"><span class="badge bg-danger p-2 ms-3"><i class="fas fa-tag me-2 fs-0"></i><span class="fs-0">15% off</span></span><span class="badge bg-primary ms-2 me-1 p-2"><i class="fas fa-clock me-1 fs-0"></i><span class="fs-0">Fast</span></span></div>
-          <div class="card-body ps-0">
-            <div class="d-flex align-items-center mb-3"><img class="img-fluid" src="/static/Customer_CSS/assets/img/gallery/donuts-hut-logo.png" alt="" />
-              <div class="flex-1 ms-3">
-                <h5 class="mb-0 fw-bold text-1000">Donuts hut</h5><span class="text-primary fs--1 me-1"><i class="fas fa-star"></i></span><span class="mb-0 text-primary">20</span>
-              </div>
-            </div><span class="badge bg-soft-success p-2"><span class="fw-bold fs-1 text-success">Open Now</span></span>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5">
-        <div class="card card-span h-100 text-white rounded-3"><img class="img-fluid rounded-3 h-100" src="/static/Customer_CSS/assets/img/gallery/donuthut.png" alt="..." />
-          <div class="card-img-overlay ps-0"><span class="badge bg-danger p-2 ms-3"><i class="fas fa-tag me-2 fs-0"></i><span class="fs-0">15% off</span></span><span class="badge bg-primary ms-2 me-1 p-2"><i class="fas fa-clock me-1 fs-0"></i><span class="fs-0">Fast</span></span></div>
-          <div class="card-body ps-0">
-            <div class="d-flex align-items-center mb-3"><img class="img-fluid" src="/static/Customer_CSS/assets/img/gallery/donut-hut-logo.png" alt="" />
-              <div class="flex-1 ms-3">
-                <h5 class="mb-0 fw-bold text-1000">Donuts hut</h5><span class="text-primary fs--1 me-1"><i class="fas fa-star"></i></span><span class="mb-0 text-primary">50</span>
-              </div>
-            </div><span class="badge bg-soft-success p-2"><span class="fw-bold fs-1 text-success">Open Now</span></span>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5">
-        <div class="card card-span h-100 text-white rounded-3"><img class="img-fluid rounded-3 h-100" src="/static/Customer_CSS/assets/img/gallery/ruby-tuesday.png" alt="..." />
-          <div class="card-img-overlay ps-0"><span class="badge bg-danger p-2 ms-3"><i class="fas fa-tag me-2 fs-0"></i><span class="fs-0">10% off</span></span><span class="badge bg-primary ms-2 me-1 p-2"><i class="fas fa-clock me-1 fs-0"></i><span class="fs-0">Fast</span></span></div>
-          <div class="card-body ps-0">
-            <div class="d-flex align-items-center mb-3"><img class="img-fluid" src="/static/Customer_CSS/assets/img/gallery/ruby-tuesday-logo.png" alt="" />
-              <div class="flex-1 ms-3">
-                <h5 class="mb-0 fw-bold text-1000">Ruby tuesday</h5><span class="text-primary fs--1 me-1"><i class="fas fa-star"></i></span><span class="mb-0 text-primary">50</span>
-              </div>
-            </div><span class="badge bg-soft-success p-2"><span class="fw-bold fs-1 text-success">Open Now</span></span>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5">
-        <div class="card card-span h-100 text-white rounded-3"><img class="img-fluid rounded-3 h-100" src="/static/Customer_CSS/assets/img/gallery/kuakata.png" alt="..." />
-          <div class="card-img-overlay ps-0"><span class="badge bg-danger p-2 ms-3"><i class="fas fa-tag me-2 fs-0"></i><span class="fs-0">10% off</span></span><span class="badge bg-primary ms-2 me-1 p-2"><i class="fas fa-clock me-1 fs-0"></i><span class="fs-0">Fast</span></span></div>
-          <div class="card-body ps-0">
-            <div class="d-flex align-items-center mb-3"><img class="img-fluid" src="/static/Customer_CSS/assets/img/gallery/kuakata-logo.png" alt="" />
-              <div class="flex-1 ms-3">
-                <h5 class="mb-0 fw-bold text-1000">Kuakata Fried Chicken</h5><span class="text-primary fs--1 me-1"><i class="fas fa-star"></i></span><span class="mb-0 text-primary">50</span>
-              </div>
-            </div><span class="badge bg-soft-success p-2"><span class="fw-bold fs-1 text-success">Open Now</span></span>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5">
-        <div class="card card-span h-100 text-white rounded-3"><img class="img-fluid rounded-3 h-100" src="/static/Customer_CSS/assets/img/gallery/red-square.png" alt="..." />
-          <div class="card-img-overlay ps-0"><span class="badge bg-danger p-2 ms-3"><i class="fas fa-tag me-2 fs-0"></i><span class="fs-0">10% off</span></span><span class="badge bg-primary ms-2 me-1 p-2"><i class="fas fa-clock me-1 fs-0"></i><span class="fs-0">Fast</span></span></div>
-          <div class="card-body ps-0">
-            <div class="d-flex align-items-center mb-3"><img class="img-fluid" src="/static/Customer_CSS/assets/img/gallery/red-square-logo.png" alt="" />
-              <div class="flex-1 ms-3">
-                <h5 class="mb-0 fw-bold text-1000">Kuakata Fried Chicken</h5><span class="text-primary fs--1 me-1"><i class="fas fa-star"></i></span><span class="mb-0 text-primary">50</span>
-              </div>
-            </div><span class="badge bg-soft-success p-2"><span class="fw-bold fs-1 text-success">Open Now</span></span>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5">
-        <div class="card card-span h-100 text-white rounded-3"><img class="img-fluid rounded-3 h-100" src="/static/Customer_CSS/assets/img/gallery/taco-bell.png" alt="..." />
-          <div class="card-img-overlay ps-0"><span class="badge bg-danger p-2 ms-3"><i class="fas fa-tag me-2 fs-0"></i><span class="fs-0">10% off</span></span><span class="badge bg-primary ms-2 me-1 p-2"><i class="fas fa-clock me-1 fs-0"></i><span class="fs-0">Fast</span></span></div>
-          <div class="card-body ps-0">
-            <div class="d-flex align-items-center mb-3"><img class="img-fluid" src="/static/Customer_CSS/assets/img/gallery/taco-bell-logo.png" alt="" />
-              <div class="flex-1 ms-3">
-                <h5 class="mb-0 fw-bold text-1000">Taco bell</h5><span class="text-primary fs--1 me-1"><i class="fas fa-star"></i></span><span class="mb-0 text-primary">50</span>
-              </div>
-            </div><span class="badge bg-soft-success p-2"><span class="fw-bold fs-1 text-success">Open Now</span></span>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 d-flex justify-content-center mt-5"> <a class="btn btn-lg btn-grad" href="#!">View All <i class="fas fa-chevron-right ms-2"> </i></a></div>
-    </div>
-  </div>
-</section>
->>>>>>> 42f507cf85402d6d8ed93dc5a314f5a645670cf9
 
 
 <!-- ============================================-->
@@ -555,20 +428,22 @@
     <div class="row gx-2">
       {% for restaurant in restaurant %}
       <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5" >
-        <a href="{% url 'restaurant_detail' restaurant.rest_fk_id %}">
-        <div class="card card-span h-100 text-white rounded-3"><img  class="img-fluid rounded-3 h-100" src="{{restaurant.rest_fk_id.rest_banner_img.url}}" alt="..." />
+        <a href="{% url 'restaurant_detail' restaurant.rest_id %}">
+        <div class="card card-span h-100 text-white rounded-3"><img  class="img-fluid rounded-3 h-100" src="{{restaurant.rest_banner_img.url}}" alt="..." />
           <div class="card-img-overlay ps-0"><span class="badge bg-danger p-2 ms-3"><i class="fas fa-tag me-2 fs-0"></i><span class="fs-0">20% off</span></span><span class="badge bg-primary ms-2 me-1 p-2"><i class="fas fa-clock me-1 fs-0"></i><span class="fs-0">Fast</span></span></div>
           <div class="card-body ps-0">
-            <div class="d-flex align-items-center mb-3"><img class="img-fluid" style="width:80px" src="{{restaurant.rest_fk_id.rest_logo_img.url}}" alt="" />
+            <div class="d-flex align-items-center mb-3"><img class="img-fluid" style="width:80px" src="{{restaurant.rest_logo_img.url}}" alt="" />
               <div class="flex-1 ms-3">
-                <h5 class="mb-0 fw-bold text-1000">{{restaurant.rest_fk_id.rest_name}}</h5><span class="text-primary fs--1 me-1"><i class="fas fa-star"></i></span><span class="mb-0 text-primary">46</span>
+                <h5 class="mb-0 fw-bold text-1000">{{restaurant.rest_name}}</h5><span class="text-primary fs--1 me-1"><i class="fas fa-star"></i></span><span class="mb-0 text-primary">46</span>
               </div>
-            </div><span class="badge bg-soft-danger p-2"><span class="fw-bold fs-1 text-danger">
+            </div><span class="badge bg-soft-danger p-2">
+              {% comment %} <span class="fw-bold fs-1 text-danger">
               {% if restaurant.is_open_now %}
                 Opens Now
               {% else %}
                 Closed Now
-              {% endif %}</span></span>
+              {% endif %}</span> {% endcomment %}
+            </span>
           </div>
         </div>
         </a>
@@ -587,17 +462,19 @@
 
 <!-- ============================================-->
 <!-- <section> begin(Discounted Items) ============================-->
-  <section class="py-0">
+  <section class="py-6">
     <div class="container">
+      <center><h5 class="fw-bold fs-3 fs-lg-5 lh-sm mb-3" style="color: #F17228 !important;padding:4%">Discounted Items</h5></center>
       <div class="row h-100 gx-2 mt-3">
+        {% for discounted_items in discounted_items %}
         <div class="col-sm-6 col-lg-3 mb-3 mb-md-0 h-100 pb-4">
           <div class="card card-span h-100">
-            <div class="position-relative"> <img class="img-fluid rounded-3 w-100" src="/static/Customer_CSS/assets/img/gallery/discount-item-1.png" alt="..." />
+            <div class="position-relative"> <img style="height:216px;" class="img-fluid rounded-3 w-100" src="{{discounted_items.food_img.url}}" alt="..." />
               <div class="card-actions">
                 <div class="badge badge-foodwagon bg-primary p-4">
                   <div class="d-flex flex-between-center">
-                    <div class="text-white fs-7">15</div>
-                    <div class="d-block text-white fs-2">% <br />
+                    <div class="text-white fs-7">{{discounted_items.food_item_discount_price}}</div>
+                    <div class="d-block text-white fs-2">Rs <br />
                       <div class="fw-normal fs-1 mt-2">Off</div>
                     </div>
                   </div>
@@ -605,11 +482,12 @@
               </div>
             </div>
             <div class="card-body px-0">
-              <h5 class="fw-bold text-1000 text-truncate">Flat Hill Slingback</h5><span class="badge bg-soft-danger py-2 px-3"><span class="fs-1 text-danger">6 days Remaining</span></span>
+              <h5 class="fw-bold text-1000 text-truncate">{{discounted_items.food_item_name}}</h5><span class="badge bg-soft-danger py-2 px-3"></span>
             </div><a class="stretched-link" href="#"></a>
           </div>
         </div>
-        <div class="col-sm-6 col-lg-3 mb-3 mb-md-0 h-100 pb-4">
+        {% endfor %}
+        {% comment %} <div class="col-sm-6 col-lg-3 mb-3 mb-md-0 h-100 pb-4">
           <div class="card card-span h-100">
             <div class="position-relative"> <img class="img-fluid rounded-3 w-100" src="/static/Customer_CSS/assets/img/gallery/discount-item-2.png" alt="..." />
               <div class="card-actions">
@@ -665,7 +543,7 @@
               <h5 class="fw-bold text-1000 text-truncate">Silverside Wristwatch</h5><span class="badge bg-soft-danger py-2 px-3"><span class="fs-1 text-danger">6 days Remaining</span></span>
             </div><a class="stretched-link" href="#"></a>
           </div>
-        </div>
+        </div> {% endcomment %}
       </div>
     </div><!-- end of .container-->
   
@@ -737,7 +615,8 @@
               <div class="col-md-7 col-xl-5 col-xxl-4 p-4 p-lg-5">
                 <h1 class="card-title mt-xl-5 mb-4">Best deals <span class="text-primary"> Crispy Sandwiches</span></h1>
                 <p class="fs-1">Enjoy the large size of sandwiches. Complete your meal with the perfect slice of sandwiches.</p>
-                <div class="d-grid bottom-0"><a class="btn btn-lg mt-xl-6 btn-grad" href="#!">PROCEED TO ORDER<i class="fas fa-chevron-right ms-2"></i></a></div>
+                <div class="d-grid bottom-0"><a class="btn btn-lg mt-xl-6 btn-grad" 
+                  href="{% url 'category_items' 5 %}">PROCEED TO ORDER<i class="fas fa-chevron-right ms-2"></i></a></div>
               </div>
             </div>
           </div>
@@ -797,7 +676,7 @@
               <div class="col-md-7 col-xl-5 col-xxl-4 p-4 p-lg-5">
                 <h1 class="card-title mt-xl-5 mb-4">Wanna eat hot & <span class="text-primary">spicy Pizza?</span></h1>
                 <p class="fs-1">Pair up with a friend and enjoy the hot and crispy pizza pops. Try it with the best deals.</p>
-                <div class="d-grid bottom-0"><a class="btn btn-lg btn-grad mt-xl-6" href="#!">PROCEED TO ORDER<i class="fas fa-chevron-right ms-2"></i></a></div>
+                <div class="d-grid bottom-0"><a class="btn btn-lg btn-grad mt-xl-6" href="{% url 'category_items' 9 %}">PROCEED TO ORDER<i class="fas fa-chevron-right ms-2"></i></a></div>
               </div>
             </div>
           </div>
@@ -818,14 +697,10 @@
 
   <div class="container">
     <div class="row flex-center">
-<<<<<<< HEAD
       <div class="col-xxl-9 py-7 text-center" style="    display: flex;
       flex-direction: column;
       align-items: center;
-      }">
-=======
-      <div class="col-xxl-9 py-7 text-center">
->>>>>>> 42f507cf85402d6d8ed93dc5a314f5a645670cf9
+      ">
         <h1 class="fw-bold mb-4 text-white fs-6">Are you ready to order <br />with the best deals? </h1><a class="btn btn-grad" href="#"> PROCEED TO ORDER<i class="fas fa-chevron-right ms-2"></i></a>
       </div>
     </div>

@@ -1,0 +1,108 @@
+divdiv{% extends 'Customer_App/template/base.html' %}
+{% block content %}
+<!-------------Order List Here------------>
+<div class="container-fluid pt-4 px-4"">
+    <div class="row" style="margin-top: 30px;">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card bg-light" style="border-radius: 15px 30px; box-shadow: 0 0.5rem 1.2rem rgba(0,0,0,.2)">
+                <div class="card-body" style="margin-bottom: 50px; padding: 20px;"></div>
+                <h1 class="card-title" style="text-align: center; color:#ff6a00bb; font-size: 30px; font-family:cursive;">View Orders</h1>
+                <h2 class="card-title" style="text-align: center; color:rgb(95, 95, 95); font-size: 15px; font-family: 'Bad Script'; font-weight:bold">... You Can View Orders List Here ...</h2>
+                   <div class="table-responsive pt-3" style=" padding: 20px">
+                     <table  class="table table-striped table table-striped table-hover"  style=" box-shadow: 0 0.5rem 1.2rem rgba(0,0,0,.2);">
+                    <thead>
+                        <tr style="text-align: center;">
+                            <th style="font-size: 20px;">Date</th>
+                            <th style="font-size: 20px;">Price</th>
+                            <th style="font-size: 20px;">Status</th>
+                            <th style="font-size: 20px;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                         {% for order in list  %}
+                        <tr style="text-align: center; font-size: 19px; font-family:cursive;">
+                            <td>{{order.order_date}}</td>
+                            <td>{{order.order_total_price}}</td>
+                            <td>{{order.order_status}}</td>
+  <div id="cart_item_detail_url" style="display: none;">{% url 'cart_items_list' %}</div>
+                            <td>
+                                <button type="button" class="cart_detail_btn btn-icon-text" style="background-color: #e46103; color: white;  border: none; box-shadow: 0 0.5rem 1.2rem rgba(247, 127, 29, 0.534);margin-bottom:10px" data-bs-toggle="modal" data-bs-target="#cart_modal" data-order-id="{{order.order_id}}">
+                                    Details</button>
+                            </td>                            
+                        </tr>
+                        {% endfor %} 
+                    </tbody>
+                     </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-------------Order List ENDS Here------------>
+    
+    <!-- ============================================-->
+    <!-- <section> begin(Cart Items Modal) ============================-->
+        <!-------------Cart Item Modal Here------------>
+        <!-- Modal -->
+  <div class="modal fade" id="cart_modal" tabindex="-1" aria-labelledby="cart_modal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content modal-container">
+          <div class="modal-header">
+          <h1 class="modal-title fs-5 modal-container-title" id="exampleModalLabel" style="color:black">Cart Items Detail</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body modal-container-body">
+            <div class=".item-info rtf" id="cart_items_info">
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-------------Cart Item Modal END Here------------>
+
+{% endblock %}
+{% block js %}
+<script>
+    $('#cart_modal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var objectId = button.data('order-id'); // Extract object ID from data attribute
+        var cart_items_list_Url = document.getElementById("cart_item_detail_url").textContent;
+        $.ajax({
+            url: cart_items_list_Url,
+            type: 'GET',
+            data: { object_id: objectId },
+            success: function(response) {
+                try {
+                    cartItems=response.cart_items
+                    var cartContainer = document.getElementById("cart_items_info");
+                    cartContainer.innerHTML= "";                
+                    console.log("cart Item list is",cartItems)
+                    if (cartItems.length>0){
+                    for(var i=0; i<cartItems.length; i++){
+                        item= cartItems[i]
+                        cartContainer.insertAdjacentHTML("beforeend",`
+                        <div>Name: ${item.food_item_name}</div>
+                        <div>Quantity: ${item.cart_item_qty}</div>
+                        <div>Price: Rs.${item.cart_item_price}</div>
+                        <div>Instructions: ${item.cart_item_instructions}</div>
+                        <hr>
+                    `)}
+                    }
+                    else{
+                        cartContainer.insertAdjacentHTML("beforeend",`
+                        <h6 style="color:grey">No Cart Item is Present</h6>
+                        <hr>`)
+                    }
+                    }                    
+                 catch (error) {
+                  console.error('Error updating modal content:', error);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("ajax error is:",xhr.responseText);
+            }
+        });
+    });
+
+</script>
+{% endblock js %}
